@@ -10,6 +10,8 @@ import Cocoa
 
 class Document: NSDocument {
 
+    var xliffDocument: NSXMLDocument!
+    
     override init() {
         super.init()
         // Add your subclass-specific initialization here.
@@ -41,9 +43,14 @@ class Document: NSDocument {
         // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        do {
+            self.xliffDocument = try NSXMLDocument(data: data, options: NSXMLDocumentTidyHTML)
+        } catch {
+            throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        }
+        
     }
-
+    
 
 }
 

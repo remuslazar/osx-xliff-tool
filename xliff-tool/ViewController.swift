@@ -59,15 +59,21 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     func updateTranslationForElement(elem: NSXMLElement, newValue: String) {
-        if newValue != elem.stringValue {
-            
+        
+        if elem.elementsForName("target").count == 0 {
+            elem.addChild(NSXMLElement(name: "target", stringValue: ""))
+        }
+        
+        let target = elem.elementsForName("target").first!
+        if newValue != target.stringValue {
             // register undo/redo operation
             document?.undoManager?.prepareWithInvocationTarget(self)
-                .updateTranslationForElement(elem, newValue: elem.stringValue!)
+                .updateTranslationForElement(elem, newValue: target.stringValue!)
             
             // update the value in place
-            elem.stringValue = newValue
+            target.stringValue = newValue
         }
+        
     }
     
     // MARK: Outlets
@@ -77,8 +83,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBAction func textFieldEndEditing(sender: NSTextField) {
         let row = outlineView.rowForView(sender)
         if row != -1 {
-            if let targetElem = (outlineView.itemAtRow(row) as? NSXMLElement)?.elementsForName("target").first {
-                updateTranslationForElement(targetElem, newValue: sender.stringValue)
+            if let elem = outlineView.itemAtRow(row) as? NSXMLElement {
+                updateTranslationForElement(elem, newValue: sender.stringValue)
             }
         }
     }

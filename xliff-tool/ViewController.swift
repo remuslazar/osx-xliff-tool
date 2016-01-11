@@ -10,7 +10,8 @@ import Cocoa
 
 class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
 
-    var xliffFile: XliffFile?
+    // MARK: private data
+    private var xliffFile: XliffFile?
     
     weak var document: Document? {
         didSet {
@@ -23,18 +24,11 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override var representedObject: AnyObject? {
-        didSet {
-            print("representedObject: \(self.representedObject)")
-        // Update the view, if already loaded.
-        }
-    }
+    // MARK: Outlets
     
     @IBOutlet weak var outlineView: NSOutlineView!
+    
+    // MARK: NSOutlineView Delegate
     
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
         if item == nil { // top level item

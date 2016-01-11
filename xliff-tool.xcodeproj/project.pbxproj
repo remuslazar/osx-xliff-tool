@@ -26,6 +26,7 @@
 		D888B2F21C3D851400660308 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D888B2F81C4161C100660308 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		D888B2FE1C417ACD00660308 /* XliffFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XliffFile.swift; sourceTree = "<group>"; };
+		D888B3011C43CEC400660308 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +156,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D888B2F01C3D851400660308 /* Base */,
+				D888B3011C43CEC400660308 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

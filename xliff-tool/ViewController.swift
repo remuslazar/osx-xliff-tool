@@ -45,11 +45,15 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     func updateTranslationForElement(elem: NSXMLElement, newValue: String) {
-        // register undo/redo operation
-        document?.undoManager?.prepareWithInvocationTarget(self)
-            .updateTranslationForElement(elem, newValue: elem.stringValue!)
-        // update the value in place
-        elem.stringValue = newValue
+        if newValue != elem.stringValue {
+            
+            // register undo/redo operation
+            document?.undoManager?.prepareWithInvocationTarget(self)
+                .updateTranslationForElement(elem, newValue: elem.stringValue!)
+            
+            // update the value in place
+            elem.stringValue = newValue
+        }
     }
     
     // MARK: Outlets

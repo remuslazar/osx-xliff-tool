@@ -62,6 +62,42 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    private func configureContentCell(cell: NSTableCellView, columnIdentifier identifier: String, xmlElement: NSXMLElement) {
+        switch identifier {
+        case "AutomaticTableColumnIdentifier.0":
+            cell.textField!.stringValue = xmlElement.elementsForName("source").first?.stringValue ?? ""
+            break
+        case "AutomaticTableColumnIdentifier.1":
+            cell.textField!.stringValue = xmlElement.elementsForName("target").first?.stringValue ?? ""
+            break
+        case "AutomaticTableColumnIdentifier.2":
+            cell.textField!.stringValue = xmlElement.elementsForName("note").first?.stringValue ?? ""
+            break
+        default: break
+        }
+    }
+    
+    private func heightForItem(item: AnyObject) -> CGFloat {
+        let heights = outlineView.tableColumns.map { (col) -> CGFloat in
+            let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
+            let xmlElement = item as! NSXMLElement
+            configureContentCell(cell, columnIdentifier: col.identifier, xmlElement: xmlElement)
+            cell.layoutSubtreeIfNeeded()
+            var width = cell.frame.size.width - 2 // leading space from the textField to the superView
+
+            let row = outlineView.rowForItem(item)
+            if (row == 0) {
+                // because we're using NSOutliveView, the first level is indended by this amount
+                let indent = outlineView.indentationPerLevel
+                width += indent
+            }
+            
+            let size = cell.textField!.sizeThatFits(CGSize(width: width, height: 10000))
+            return size.height + 2 // some spacing between the table rows
+        }
+        return heights.maxElement()!
+    }
+    
     func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
         let cell = outlineView.makeViewWithIdentifier(tableColumn == nil ? "GroupedItemCellIdentifier" : tableColumn!.identifier, owner: nil) as! NSTableCellView
         
@@ -69,20 +105,9 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         if let file = item as? XliffFile.File {
             cell.textField!.stringValue = file.name
         } else if let xmlElement = item as? NSXMLElement {
-            switch tableColumn!.identifier {
-            case "AutomaticTableColumnIdentifier.0":
-                cell.textField!.stringValue = xmlElement.elementsForName("source").first?.stringValue ?? ""
-                break
-            case "AutomaticTableColumnIdentifier.1":
-                cell.textField!.stringValue = xmlElement.elementsForName("target").first?.stringValue ?? ""
-                break
-            case "AutomaticTableColumnIdentifier.2":
-                cell.textField!.stringValue = xmlElement.elementsForName("note").first?.stringValue ?? ""
-                break
-            default: break
-            }
+            configureContentCell(cell, columnIdentifier: tableColumn!.identifier, xmlElement: xmlElement)
         }
-        
+
         return cell
     }
     
@@ -92,7 +117,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat {
         if item is XliffFile.File { return outlineView.rowHeight }
-        return 75.0
+        return heightForItem(item)
     }
 
 }

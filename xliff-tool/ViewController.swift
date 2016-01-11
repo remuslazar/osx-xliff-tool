@@ -24,9 +24,46 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    // MARK: VC Lifecycle
+    
+    func reloadUI() {
+        outlineView?.reloadData()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
+            name: NSUndoManagerDidUndoChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
+            name: NSUndoManagerDidRedoChangeNotification, object: nil)
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    func updateTranslationForElement(elem: NSXMLElement, newValue: String) {
+        // register undo/redo operation
+        document?.undoManager?.prepareWithInvocationTarget(self)
+            .updateTranslationForElement(elem, newValue: elem.stringValue!)
+        // update the value in place
+        elem.stringValue = newValue
+    }
+    
     // MARK: Outlets
     
     @IBOutlet weak var outlineView: NSOutlineView!
+    
+    @IBAction func textFieldEndEditing(sender: NSTextField) {
+        let row = outlineView.rowForView(sender)
+        if row != -1 {
+            if let targetElem = (outlineView.itemAtRow(row) as? NSXMLElement)?.elementsForName("target").first {
+                updateTranslationForElement(targetElem, newValue: sender.stringValue)
+            }
+        }
+    }
     
     // MARK: NSOutlineView Delegate
     

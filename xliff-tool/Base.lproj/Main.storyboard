@@ -597,6 +597,9 @@
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
+                                <connections>
+                                    <action selector="filter:" target="5gI-5U-AMq" id="LUu-65-KcY"/>
+                                </connections>
                             </searchField>
                         </subviews>
                         <constraints>

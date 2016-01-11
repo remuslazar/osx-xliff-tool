@@ -88,6 +88,21 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             }
         }
     }
+    
+    @IBAction func filter(sender: NSSearchField) {
+        print("filter: \(sender.stringValue)")
+        if let xliffDocument = document?.xliffDocument {
+            xliffFile = XliffFile(xliffDocument: xliffDocument, searchString: sender.stringValue.isEmpty ? nil : sender.stringValue)
+            reloadUI()
+            updateStatusBar()
+            if !sender.stringValue.isEmpty {
+                for item in xliffFile!.files {
+                    outlineView?.expandItem(item)
+                }
+            }
+        }
+    }
+
     @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
     // MARK: NSOutlineView Delegate

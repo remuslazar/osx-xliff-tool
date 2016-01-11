@@ -61,17 +61,25 @@
 		D888B2E61C3D851400660308 /* xliff-tool */ = {
 			isa = PBXGroup;
 			children = (
-				D888B3061C43FBF500660308 /* InfoPlist.strings */,
-				D888B2E71C3D851400660308 /* AppDelegate.swift */,
 				D888B2E91C3D851400660308 /* ViewController.swift */,
-				D888B2F81C4161C100660308 /* WindowController.swift */,
 				D888B2EB1C3D851400660308 /* Document.swift */,
-				D888B2ED1C3D851400660308 /* Assets.xcassets */,
 				D888B2EF1C3D851400660308 /* Main.storyboard */,
-				D888B2F21C3D851400660308 /* Info.plist */,
 				D888B2FE1C417ACD00660308 /* XliffFile.swift */,
+				D8C0DB941C44220200320C2C /* Supporting Files */,
 			);
 			path = "xliff-tool";
+			sourceTree = "<group>";
+		};
+		D8C0DB941C44220200320C2C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D888B2F21C3D851400660308 /* Info.plist */,
+				D888B2ED1C3D851400660308 /* Assets.xcassets */,
+				D888B3061C43FBF500660308 /* InfoPlist.strings */,
+				D888B2E71C3D851400660308 /* AppDelegate.swift */,
+				D888B2F81C4161C100660308 /* WindowController.swift */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,6 +307,7 @@
 				D888B2F71C3D851400660308 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

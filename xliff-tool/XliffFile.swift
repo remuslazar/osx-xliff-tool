@@ -41,4 +41,10 @@ class XliffFile {
         self.files = files
     }
     
+    var totalCount: Int {
+        return files.map({ (file) -> Int in
+            return file.items.count
+        }).reduce(0, combine: +)
+    }
+    
 }

@@ -11,7 +11,11 @@ import Cocoa
 class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
 
     // MARK: private data
-    private var xliffFile: XliffFile?
+    private var xliffFile: XliffFile? {
+        didSet {
+            updateStatusBar()
+        }
+    }
     
     weak var document: Document? {
         didSet {
@@ -28,6 +32,16 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     func reloadUI() {
         outlineView?.reloadData()
+    }
+    
+    private func updateStatusBar() {
+        if let file = xliffFile {
+            infoLabel?.stringValue = String.localizedStringWithFormat(
+                NSLocalizedString("%d file(s), %d localizable string(s) available", comment: "Status bar label"),
+                file.files.count, file.totalCount)
+        } else {
+            infoLabel?.stringValue = NSLocalizedString("No xliff file loaded", comment: "Status bar label when no xliff file is loaded")
+        }
     }
     
     override func viewDidAppear() {
@@ -68,6 +82,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             }
         }
     }
+    @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
     // MARK: NSOutlineView Delegate
     
@@ -134,7 +149,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
-        let cell = outlineView.makeViewWithIdentifier(tableColumn == nil ? "GroupedItemCellIdentifier" : tableColumn!.identifier, owner: nil) as! NSTableCellView
+        let cell = outlineView.makeViewWithIdentifier(tableColumn == nil ? "GroupedItemCellIdentifier" : tableColumn!.identifier, owner: self) as! NSTableCellView
         
         // configure the cell
         if let file = item as? XliffFile.File {

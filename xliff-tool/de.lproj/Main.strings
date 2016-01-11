@@ -1,4 +1,3 @@
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1UJ-Zu-uKl"; */
 "1UJ-Zu-uKl.title" = "Text Cell";
 
@@ -30,25 +29,25 @@
 "4sb-4s-VLi.title" = "Quit xliff-tool";
 
 /* Class = "NSTableColumn"; headerCell.title = "Translation"; ObjectID = "5J1-GD-mDl"; */
-"5J1-GD-mDl.headerCell.title" = "Translation";
+"5J1-GD-mDl.headerCell.title" = "Übersetzung";
 
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
-"5QF-Oa-p0T.title" = "Edit";
+"5QF-Oa-p0T.title" = "Bearbeiten";
 
 /* Class = "NSMenuItem"; title = "About xliff-tool"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "About xliff-tool";
+"5kV-Vb-QxS.title" = "Über xliff-tool";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
-"6dh-zS-Vam.title" = "Redo";
-
-/* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v"; */
-"78Y-hA-62v.title" = "Correct Spelling Automatically";
+"6dh-zS-Vam.title" = "Widerrufen";
 
 /* Class = "NSMenuItem"; title = "Substitutions"; ObjectID = "9ic-FL-obx"; */
 "9ic-FL-obx.title" = "Substitutions";
 
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "9yt-4B-nSM"; */
 "9yt-4B-nSM.title" = "Smart Copy/Paste";
+
+/* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v"; */
+"78Y-hA-62v.title" = "Correct Spelling Automatically";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Main Menu";
@@ -63,19 +62,19 @@
 "CmR-YN-mcL.headerCell.title" = "Note";
 
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
-"DVo-aG-piG.title" = "Close";
+"DVo-aG-piG.title" = "Schließen";
 
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Dk9-rI-75b"; */
 "Dk9-rI-75b.title" = "Text Cell";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7"; */
-"Dv1-io-Yv7.title" = "Spelling and Grammar";
+"Dv1-io-Yv7.title" = "Rechtschreibprüfung";
 
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
-"F2S-fz-NVQ.title" = "Help";
+"F2S-fz-NVQ.title" = "Hilfe";
 
 /* Class = "NSMenuItem"; title = "xliff-tool Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "xliff-tool Help";
+"FKE-Sm-Kum.title" = "xliff-tool Hilfe";
 
 /* Class = "NSMenu"; title = "Substitutions"; ObjectID = "FeM-D8-WVr"; */
 "FeM-D8-WVr.title" = "Substitutions";
@@ -90,7 +89,7 @@
 "HFo-cy-zxI.title" = "Show Spelling and Grammar";
 
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
-"IAo-SY-fd9.title" = "Open…";
+"IAo-SY-fd9.title" = "Öffnen…";
 
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H"; */
 "KaW-ft-85H.title" = "Revert to Saved";
@@ -102,7 +101,7 @@
 "LE2-aR-0XJ.title" = "Bring All to Front";
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
-"OY7-WF-poV.title" = "Minimize";
+"OY7-WF-poV.title" = "Minimieren";
 
 /* Class = "NSMenuItem"; title = "Hide xliff-tool"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "Hide xliff-tool";
@@ -128,8 +127,8 @@
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "UEZ-Bs-lqG"; */
 "UEZ-Bs-lqG.title" = "Capitalize";
 
-/* Class = "NSTextFieldCell"; placeholderString = "Translation"; ObjectID = "VLe-zm-rdx"; */
-"VLe-zm-rdx.placeholderString" = "Translation";
+/* Class = "NSTextFieldCell"; placeholderString = "Not translated"; ObjectID = "VLe-zm-rdx"; */
+"VLe-zm-rdx.placeholderString" = "Keine Übersetzung vorhanden";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "VLe-zm-rdx"; */
 "VLe-zm-rdx.title" = "Table View Cell";
@@ -253,3 +252,4 @@
 
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "z6F-FW-3nz"; */
 "z6F-FW-3nz.title" = "Show Substitutions";
+

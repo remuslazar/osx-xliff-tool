@@ -1,0 +1,6 @@
+/* Status bar label */
+"%d file(s), %d localizable string(s) available" = "%1$d Datei(en), %2$d lokalisierbare Resource(n) vorhanden";
+
+/* Status bar label when no xliff file is loaded */
+"No xliff file loaded" = "Keine XLIFF Datei geladen";
+

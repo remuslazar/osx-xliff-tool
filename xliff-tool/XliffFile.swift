@@ -8,6 +8,10 @@
 
 import Foundation
 
+/**
+ Parses the XLIFF document and provides some convenience methods (e.g. for calculating total count).
+ Useful to "front" a XLIFF document implementing the TableView delegate methods.
+ */
 class XliffFile {
 
     class File {
@@ -21,12 +25,13 @@ class XliffFile {
     }
     
     private let xliff: NSXMLDocument
+
+    /** Array of file containers available in the xliff container */
     let files: [File]
     
     init(xliffDocument: NSXMLDocument, searchString: String? = nil) {
         self.xliff = xliffDocument
         var files = [File]()
-        
         if let root = xliffDocument.rootElement() {
             for file in root.children! {
                 if let file = file as? NSXMLElement {

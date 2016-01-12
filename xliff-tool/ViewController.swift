@@ -90,7 +90,6 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     @IBAction func filter(sender: NSSearchField) {
-        print("filter: \(sender.stringValue)")
         if let xliffDocument = document?.xliffDocument {
             xliffFile = XliffFile(xliffDocument: xliffDocument, searchString: sender.stringValue.isEmpty ? nil : sender.stringValue)
             reloadUI()

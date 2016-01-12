@@ -44,6 +44,10 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    func resizeTable() {
+        outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(indexesInRange: NSRange(location: 0,length: outlineView.numberOfRows)))
+    }
+    
     override func viewDidAppear() {
         super.viewDidAppear()
         
@@ -51,8 +55,10 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             name: NSUndoManagerDidUndoChangeNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
             name: NSUndoManagerDidRedoChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeTable"),
+            name: NSOutlineViewColumnDidResizeNotification, object: nil)
     }
-    
+   
     override func viewWillDisappear() {
         super.viewWillDisappear()
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -153,7 +159,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             let xmlElement = item as! NSXMLElement
             configureContentCell(cell, columnIdentifier: col.identifier, xmlElement: xmlElement)
             cell.layoutSubtreeIfNeeded()
-            var width = cell.frame.size.width - 2 // leading space from the textField to the superView
+            let col = outlineView.columnWithIdentifier(col.identifier)
+            var width = outlineView.tableColumns[col].width - 2
 
             let row = outlineView.rowForItem(item)
             if (row == 0) {
@@ -189,6 +196,6 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         if item is XliffFile.File { return outlineView.rowHeight }
         return heightForItem(item)
     }
-
+    
 }
 

@@ -6,7 +6,7 @@
 
 /* Placeholder telling the user that the source language for a specific file is unavailable in the source xliff file
    Placeholder telling the user that the target language for a specific file is unavailable in the source xliff file */
-"<unknown>" = "<unbekannt>";
+"?" = "?";
 
 /* Read error description */
 "Could not read file." = "Die Datei kann nicht gelesen werden.";

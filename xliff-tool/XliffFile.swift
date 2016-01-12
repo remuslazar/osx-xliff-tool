@@ -16,11 +16,15 @@ class XliffFile {
 
     class File {
         let name: String
+        let sourceLanguage: String?
+        let targetLanguage: String?
         let items: [NSXMLElement]
         
-        init(name: String, items: [NSXMLElement]) {
+        init(name: String, items: [NSXMLElement], sourceLanguage: String?, targetLanguage: String?) {
             self.name = name
             self.items = items
+            self.sourceLanguage = sourceLanguage
+            self.targetLanguage = targetLanguage
         }
     }
     
@@ -45,7 +49,11 @@ class XliffFile {
                         return false
                     })
                 }
-                files.append(File(name: file.attributeForName("original")!.stringValue!, items: items))
+                files.append(File(
+                    name: file.attributeForName("original")!.stringValue!,
+                    items: items,
+                    sourceLanguage: file.attributeForName("source-language")?.stringValue,
+                    targetLanguage: file.attributeForName("target-language")?.stringValue))
             }
         }
         

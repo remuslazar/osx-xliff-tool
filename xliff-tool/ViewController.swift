@@ -164,6 +164,15 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    private func configureGroupCell(cell: NSTableCellView, file: XliffFile.File) {
+        cell.textField!.stringValue = String.localizedStringWithFormat(
+            "%@ (source=%@, target=%@)",
+            file.name,
+            file.sourceLanguage ?? NSLocalizedString("<unknown>", comment: "Placeholder telling the user that the source language for a specific file is unavailable in the source xliff file"),
+            file.targetLanguage ?? NSLocalizedString("<unknown>", comment: "Placeholder telling the user that the target language for a specific file is unavailable in the source xliff file")
+        )
+    }
+    
     private func heightForItem(item: AnyObject) -> CGFloat {
         let heights = outlineView.tableColumns.map { (col) -> CGFloat in
             let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
@@ -191,7 +200,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         
         // configure the cell
         if let file = item as? XliffFile.File {
-            cell.textField!.stringValue = file.name
+            configureGroupCell(cell, file: file)
         } else if let xmlElement = item as? NSXMLElement {
             configureContentCell(cell, columnIdentifier: tableColumn!.identifier, xmlElement: xmlElement)
         }

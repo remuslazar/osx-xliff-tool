@@ -166,7 +166,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     private func configureGroupCell(cell: NSTableCellView, file: XliffFile.File) {
         cell.textField!.stringValue = String.localizedStringWithFormat(
-            "%@ (source=%@, target=%@)",
+            NSLocalizedString("%@ (source=%@, target=%@)", comment: "Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container."),
             file.name,
             file.sourceLanguage ?? NSLocalizedString("<unknown>", comment: "Placeholder telling the user that the source language for a specific file is unavailable in the source xliff file"),
             file.targetLanguage ?? NSLocalizedString("<unknown>", comment: "Placeholder telling the user that the target language for a specific file is unavailable in the source xliff file")

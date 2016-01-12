@@ -110,6 +110,17 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
 
     @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
+    // MARK: Menu actions
+    @IBAction func deleteTranslationForSelectedRow(sender: AnyObject) {
+        if outlineView.selectedRow != -1 {
+            if let elem = outlineView.itemAtRow(outlineView.selectedRow) as? NSXMLElement {
+                updateTranslationForElement(elem, newValue: "")
+                outlineView.reloadDataForRowIndexes(NSIndexSet(index: outlineView.selectedRow),
+                    columnIndexes: NSIndexSet(index: outlineView.columnWithIdentifier("AutomaticTableColumnIdentifier.1")))
+            }
+        }
+    }
+    
     // MARK: NSOutlineView Delegate
     
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {

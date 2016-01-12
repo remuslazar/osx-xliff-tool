@@ -1,5 +1,18 @@
+/* Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container. */
+"%@ (source=%@, target=%@)" = "%1$@ (source=%2$@, target=%3$@)";
+
 /* Status bar label */
 "%d file(s), %d localizable string(s) available" = "%1$d Datei(en), %2$d lokalisierbare Resource(n) vorhanden";
+
+/* Placeholder telling the user that the source language for a specific file is unavailable in the source xliff file
+   Placeholder telling the user that the target language for a specific file is unavailable in the source xliff file */
+"<unknown>" = "<unbekannt>";
+
+/* Read error description */
+"Could not read file." = "Die Datei kann nicht gelesen werden.";
+
+/* Read failure reason */
+"File was in an invalid format." = "Die Datei hat falsches Format.";
 
 /* Status bar label when no xliff file is loaded */
 "No xliff file loaded" = "Keine XLIFF Datei geladen";

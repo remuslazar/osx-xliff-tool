@@ -33,23 +33,19 @@ class XliffFile {
         self.xliff = xliffDocument
         var files = [File]()
         if let root = xliffDocument.rootElement() {
-            for file in root.children! {
-                if let file = file as? NSXMLElement {
-                    if file.name! == "file" {
-                        var items = try! file.nodesForXPath("body/trans-unit") as! [NSXMLElement]
-                        if let search = searchString {
-                            items = items.filter({ (elem) -> Bool in
-                                for elementName in ["original", "target", "note"] {
-                                    if let s = elem.elementsForName(elementName).first?.stringValue {
-                                        if s.localizedCaseInsensitiveContainsString(search) { return true }
-                                    }
-                                }
-                                return false
-                            })
+            for file in root.elementsForName("file") {
+                var items = try! file.nodesForXPath("body/trans-unit") as! [NSXMLElement]
+                if let search = searchString {
+                    items = items.filter({ (elem) -> Bool in
+                        for elementName in ["original", "target", "note"] {
+                            if let s = elem.elementsForName(elementName).first?.stringValue {
+                                if s.localizedCaseInsensitiveContainsString(search) { return true }
+                            }
                         }
-                        files.append(File(name: file.attributeForName("original")!.stringValue!, items: items))
-                    }
+                        return false
+                    })
                 }
+                files.append(File(name: file.attributeForName("original")!.stringValue!, items: items))
             }
         }
         

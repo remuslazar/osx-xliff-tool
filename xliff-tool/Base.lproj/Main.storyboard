@@ -150,6 +150,12 @@ CA
                                                 <action selector="deleteTranslationForSelectedRow:" target="Ady-hI-5gd" id="iq6-ya-wJU"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Copy Source String" keyEquivalent="c" id="nFh-ta-yvQ">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="copySourceToTargetForSelectedRow:" target="Ady-hI-5gd" id="TND-FZ-VwE"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="uyl-h8-XO2"/>
                                         <menuItem title="Find…" tag="1" keyEquivalent="f" id="Xz5-n4-O0W">
                                             <connections>

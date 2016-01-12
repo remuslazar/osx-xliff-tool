@@ -121,6 +121,18 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    /** Copy the source string to target for further editing. If no row is selected, this method does nothing */
+    @IBAction func copySourceToTargetForSelectedRow(sender: AnyObject) {
+        if outlineView.selectedRow != -1 {
+            if let elem = outlineView.itemAtRow(outlineView.selectedRow) as? NSXMLElement,
+                newValue = elem.elementsForName("source").first?.stringValue {
+                updateTranslationForElement(elem, newValue: newValue )
+                outlineView.reloadDataForRowIndexes(NSIndexSet(index: outlineView.selectedRow),
+                    columnIndexes: NSIndexSet(index: outlineView.columnWithIdentifier("AutomaticTableColumnIdentifier.1")))
+            }
+        }
+    }
+    
     // MARK: NSOutlineView Delegate
     
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {

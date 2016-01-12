@@ -46,8 +46,12 @@ class Document: NSDocument {
         // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
         do {
             self.xliffDocument = try NSXMLDocument(data: data, options: NSXMLDocumentTidyHTML)
-        } catch {
-            throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        } catch (let error as NSError) {
+            throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
+                NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),
+                NSLocalizedFailureReasonErrorKey: error.localizedDescription ??
+                    NSLocalizedString("File was in an invalid format.", comment: "Read failure reason")
+                ])
         }
         
     }

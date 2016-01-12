@@ -159,7 +159,7 @@ CA
                                         <menuItem isSeparatorItem="YES" id="uyl-h8-XO2"/>
                                         <menuItem title="Find…" tag="1" keyEquivalent="f" id="Xz5-n4-O0W">
                                             <connections>
-                                                <action selector="performFindPanelAction:" target="Ady-hI-5gd" id="cD7-Qs-BN4"/>
+                                                <action selector="activateSearchField:" target="Ady-hI-5gd" id="eeD-od-nEe"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Spelling and Grammar" id="Dv1-io-Yv7">
@@ -484,6 +484,7 @@ CA
                     <connections>
                         <outlet property="infoLabel" destination="cir-3R-FSA" id="PeI-XM-TWh"/>
                         <outlet property="outlineView" destination="Y8P-hs-l3X" id="4qj-jV-EJb"/>
+                        <outlet property="searchField" destination="hae-41-XCH" id="3li-Dd-i33"/>
                     </connections>
                 </viewController>
                 <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

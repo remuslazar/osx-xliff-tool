@@ -110,6 +110,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
 
     @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
+    @IBOutlet weak var searchField: NSSearchField!
+    
     // MARK: Menu actions
     @IBAction func deleteTranslationForSelectedRow(sender: AnyObject) {
         if outlineView.selectedRow != -1 {
@@ -131,6 +133,11 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
                     columnIndexes: NSIndexSet(index: outlineView.columnWithIdentifier("AutomaticTableColumnIdentifier.1")))
             }
         }
+    }
+    
+    /** Activates the search/filter field in the UI so that the user can begin typing */
+    @IBAction func activateSearchField(sender: AnyObject) {
+        self.view.window?.makeFirstResponder(searchField)
     }
     
     // MARK: NSOutlineView Delegate

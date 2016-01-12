@@ -4,6 +4,9 @@
 /* Class = "NSMenuItem"; title = "xliff-tool"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "xliff-tool";
 
+/* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "2mk-yb-eet"; */
+"2mk-yb-eet.placeholderString" = "Filter";
+
 /* Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg"; */
 "3IN-sU-3Bg.title" = "Rechtschreibung";
 
@@ -26,7 +29,7 @@
 "5kV-Vb-QxS.title" = "Über xliff-tool";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
-"6dh-zS-Vam.title" = "Widerrufen";
+"6dh-zS-Vam.title" = "Wiederholen";
 
 /* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v"; */
 "78Y-hA-62v.title" = "Automatische Rechtschreibkorrektur";
@@ -113,13 +116,13 @@
 "dMs-cI-mzQ.title" = "Datei";
 
 /* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
-"dRJ-4n-Yzg.title" = "Undo";
+"dRJ-4n-Yzg.title" = "Widerrufen";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gPk-RE-P9h"; */
 "gPk-RE-P9h.title" = "Table View Cell";
 
 /* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
-"gVA-U4-sdL.title" = "Paste";
+"gVA-U4-sdL.title" = "Einfügen";
 
 /* Class = "NSTextFieldCell"; title = "Group Header"; ObjectID = "jwG-el-8vG"; */
 "jwG-el-8vG.title" = "Group Header";
@@ -144,6 +147,9 @@
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK"; */
 "qIS-W8-SiK.title" = "Seite einrichten…";
+
+/* Class = "NSTextFieldCell"; title = "Info-Label"; ObjectID = "rWk-0W-esM"; */
+"rWk-0W-esM.title" = "Info-Label";
 
 /* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN"; */
 "rbD-Rh-wIN.title" = "Rechtschreibung während der Eingabe prüfen";

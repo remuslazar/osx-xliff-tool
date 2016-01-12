@@ -1,5 +1,5 @@
 /* Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container. */
-"%@ (source=%@, target=%@)" = "%1$@ (source=%2$@, target=%3$@)";
+"%@ (source=%@, target=%@)" = "%1$@ (von=%2$@, nach=%3$@)";
 
 /* Status bar label */
 "%d file(s), %d localizable string(s) available" = "%1$d Datei(en), %2$d lokalisierbare Resource(n) vorhanden";

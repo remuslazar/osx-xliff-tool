@@ -1,0 +1,31 @@
+<plist version="1.0">
+    <dict>
+        <key>%d file(s), %d localizable string(s) available</key>
+        <dict>
+            <key>NSStringLocalizedFormatKey</key>
+            <string>%1$#@files@</string>
+            <key>files</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>one</key>
+                <string>Eine Datei, %2$#@from_total@</string>
+                <key>other</key>
+                <string>%d Dateien, %2$#@from_total@</string>
+            </dict>
+            <key>from_total</key>
+            <dict>
+                <key>NSStringFormatSpecTypeKey</key>
+                <string>NSStringPluralRuleType</string>
+                <key>NSStringFormatValueTypeKey</key>
+                <string>d</string>
+                <key>one</key>
+                <string>eine lokalisierbare Ressource vorhanden</string>
+                <key>other</key>
+                <string>%d lokalisierbaren Ressourcen vorhanden</string>
+            </dict>
+        </dict>
+    </dict>
+</plist>

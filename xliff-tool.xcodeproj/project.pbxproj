@@ -16,6 +16,7 @@
 		D888B2FF1C417ACD00660308 /* XliffFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2FE1C417ACD00660308 /* XliffFile.swift */; };
 		D888B3041C43FBF500660308 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D888B3061C43FBF500660308 /* InfoPlist.strings */; };
 		D8C0DB971C44329700320C2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DB991C44329700320C2C /* Localizable.strings */; };
+		D8C0DB9B1C44F9D400320C2C /* EditableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DB9A1C44F9D400320C2C /* EditableTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		D888B3011C43CEC400660308 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		D888B3051C43FBF500660308 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8C0DB981C44329700320C2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D8C0DB9A1C44F9D400320C2C /* EditableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		D888B2E61C3D851400660308 /* xliff-tool */ = {
 			isa = PBXGroup;
 			children = (
+				D8C0DB9A1C44F9D400320C2C /* EditableTextField.swift */,
 				D888B2E91C3D851400660308 /* ViewController.swift */,
 				D888B2EB1C3D851400660308 /* Document.swift */,
 				D888B2EF1C3D851400660308 /* Main.storyboard */,
@@ -162,6 +165,7 @@
 				D888B2E81C3D851400660308 /* AppDelegate.swift in Sources */,
 				D888B2EC1C3D851400660308 /* Document.swift in Sources */,
 				D888B2FF1C417ACD00660308 /* XliffFile.swift in Sources */,
+				D8C0DB9B1C44F9D400320C2C /* EditableTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

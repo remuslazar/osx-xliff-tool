@@ -18,7 +18,20 @@
 		D8C0DB971C44329700320C2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DB991C44329700320C2C /* Localizable.strings */; };
 		D8C0DB9B1C44F9D400320C2C /* EditableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DB9A1C44F9D400320C2C /* EditableTextField.swift */; };
 		D8C0DB9E1C45410B00320C2C /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DBA01C45410B00320C2C /* Localizable.stringsdict */; };
+		D8C0DBAA1C46EF2A00320C2C /* xliff_toolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */; };
+		D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DBB21C46F35C00320C2C /* de.xliff */; };
+		D8C0DBB41C46F5DC00320C2C /* XliffFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2FE1C417ACD00660308 /* XliffFile.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D8C0DBAC1C46EF2A00320C2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D888B2DC1C3D851400660308 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D888B2E31C3D851400660308;
+			remoteInfo = "xliff-tool";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D888B2E41C3D851400660308 /* xliff-tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xliff-tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,10 +50,21 @@
 		D8C0DB9F1C45410B00320C2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D8C0DBA11C45410E00320C2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		D8C0DBA21C45785700320C2C /* xliff-tool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xliff-tool.entitlements"; sourceTree = "<group>"; };
+		D8C0DBA71C46EF2A00320C2C /* xliff-toolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xliff-toolTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xliff_toolTests.swift; sourceTree = "<group>"; };
+		D8C0DBAB1C46EF2A00320C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D8C0DBB21C46F35C00320C2C /* de.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = de.xliff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D888B2E11C3D851400660308 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8C0DBA41C46EF2A00320C2C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				D888B2E61C3D851400660308 /* xliff-tool */,
+				D8C0DBA81C46EF2A00320C2C /* xliff-toolTests */,
 				D888B2E51C3D851400660308 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				D888B2E41C3D851400660308 /* xliff-tool.app */,
+				D8C0DBA71C46EF2A00320C2C /* xliff-toolTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +120,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D8C0DBA81C46EF2A00320C2C /* xliff-toolTests */ = {
+			isa = PBXGroup;
+			children = (
+				D8C0DBB11C46F35C00320C2C /* fixtures */,
+				D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */,
+				D8C0DBAB1C46EF2A00320C2C /* Info.plist */,
+			);
+			path = "xliff-toolTests";
+			sourceTree = "<group>";
+		};
+		D8C0DBB11C46F35C00320C2C /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				D8C0DBB21C46F35C00320C2C /* de.xliff */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,6 +158,24 @@
 			productReference = D888B2E41C3D851400660308 /* xliff-tool.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D8C0DBA61C46EF2A00320C2C /* xliff-toolTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8C0DBAE1C46EF2A00320C2C /* Build configuration list for PBXNativeTarget "xliff-toolTests" */;
+			buildPhases = (
+				D8C0DBA31C46EF2A00320C2C /* Sources */,
+				D8C0DBA41C46EF2A00320C2C /* Frameworks */,
+				D8C0DBA51C46EF2A00320C2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D8C0DBAD1C46EF2A00320C2C /* PBXTargetDependency */,
+			);
+			name = "xliff-toolTests";
+			productName = "xliff-toolTests";
+			productReference = D8C0DBA71C46EF2A00320C2C /* xliff-toolTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -133,6 +195,10 @@
 							};
 						};
 					};
+					D8C0DBA61C46EF2A00320C2C = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = D888B2E31C3D851400660308;
+					};
 				};
 			};
 			buildConfigurationList = D888B2DF1C3D851400660308 /* Build configuration list for PBXProject "xliff-tool" */;
@@ -150,6 +216,7 @@
 			projectRoot = "";
 			targets = (
 				D888B2E31C3D851400660308 /* xliff-tool */,
+				D8C0DBA61C46EF2A00320C2C /* xliff-toolTests */,
 			);
 		};
 /* End PBXProject section */
@@ -164,6 +231,14 @@
 				D888B3041C43FBF500660308 /* InfoPlist.strings in Resources */,
 				D8C0DB9E1C45410B00320C2C /* Localizable.stringsdict in Resources */,
 				D888B2F11C3D851400660308 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8C0DBA51C46EF2A00320C2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +258,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D8C0DBA31C46EF2A00320C2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8C0DBAA1C46EF2A00320C2C /* xliff_toolTests.swift in Sources */,
+				D8C0DBB41C46F5DC00320C2C /* XliffFile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D8C0DBAD1C46EF2A00320C2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D888B2E31C3D851400660308 /* xliff-tool */;
+			targetProxy = D8C0DBAC1C46EF2A00320C2C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D888B2EF1C3D851400660308 /* Main.storyboard */ = {
@@ -331,6 +423,34 @@
 			};
 			name = Release;
 		};
+		D8C0DBAF1C46EF2A00320C2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "xliff-toolTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xliff-tool.app/Contents/MacOS/xliff-tool";
+			};
+			name = Debug;
+		};
+		D8C0DBB01C46EF2A00320C2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "xliff-toolTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xliff-tool.app/Contents/MacOS/xliff-tool";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -351,6 +471,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D8C0DBAE1C46EF2A00320C2C /* Build configuration list for PBXNativeTarget "xliff-toolTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8C0DBAF1C46EF2A00320C2C /* Debug */,
+				D8C0DBB01C46EF2A00320C2C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

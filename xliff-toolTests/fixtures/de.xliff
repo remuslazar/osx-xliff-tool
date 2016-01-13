@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="xliff-tool/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="1UJ-Zu-uKl.title">
+        <source>Text Cell</source>
+        <target>Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1UJ-Zu-uKl";</note>
+      </trans-unit>
+      <trans-unit id="1Xt-HY-uBw.title">
+        <source>xliff-tool</source>
+        <target>xliff-tool</target>
+        <note>Class = "NSMenuItem"; title = "xliff-tool"; ObjectID = "1Xt-HY-uBw";</note>
+      </trans-unit>
+      <trans-unit id="2mk-yb-eet.placeholderString">
+        <source>Filter</source>
+        <target>Filter</target>
+        <note>Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "2mk-yb-eet";</note>
+      </trans-unit>
+      <trans-unit id="3IN-sU-3Bg.title">
+        <source>Spelling</source>
+        <target>Rechtschreibung</target>
+        <note>Class = "NSMenu"; title = "Spelling"; ObjectID = "3IN-sU-3Bg";</note>
+      </trans-unit>
+      <trans-unit id="3RZ-4P-x91.title">
+        <source>Text Cell</source>
+        <target>Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "3RZ-4P-x91";</note>
+      </trans-unit>
+      <trans-unit id="4VP-J9-NbX.headerCell.title">
+        <source>Source</source>
+        <target>Quelle</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "4VP-J9-NbX";</note>
+      </trans-unit>
+      <trans-unit id="4sb-4s-VLi.title">
+        <source>Quit xliff-tool</source>
+        <target>xliff-tool beenden</target>
+        <note>Class = "NSMenuItem"; title = "Quit xliff-tool"; ObjectID = "4sb-4s-VLi";</note>
+      </trans-unit>
+      <trans-unit id="5J1-GD-mDl.headerCell.title">
+        <source>Target</source>
+        <target>Ziel</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Target"; ObjectID = "5J1-GD-mDl";</note>
+      </trans-unit>
+      <trans-unit id="5QF-Oa-p0T.title">
+        <source>Edit</source>
+        <target>Bearbeiten</target>
+        <note>Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T";</note>
+      </trans-unit>
+      <trans-unit id="5kV-Vb-QxS.title">
+        <source>About xliff-tool</source>
+        <target>Über xliff-tool</target>
+        <note>Class = "NSMenuItem"; title = "About xliff-tool"; ObjectID = "5kV-Vb-QxS";</note>
+      </trans-unit>
+      <trans-unit id="6dh-zS-Vam.title">
+        <source>Redo</source>
+        <target>Wiederholen</target>
+        <note>Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam";</note>
+      </trans-unit>
+      <trans-unit id="78Y-hA-62v.title">
+        <source>Correct Spelling Automatically</source>
+        <target>Automatische Rechtschreibkorrektur</target>
+        <note>Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v";</note>
+      </trans-unit>
+      <trans-unit id="AYu-sK-qS6.title">
+        <source>Main Menu</source>
+        <target>Hauptmenü</target>
+        <note>Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6";</note>
+      </trans-unit>
+      <trans-unit id="Bw7-FT-i3A.title">
+        <source>Save As…</source>
+        <target>Speichern unter…</target>
+        <note>Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A";</note>
+      </trans-unit>
+      <trans-unit id="Ckk-yw-fiv.title">
+        <source>Window</source>
+        <target>Fenster</target>
+        <note>Class = "NSWindow"; title = "Window"; ObjectID = "Ckk-yw-fiv";</note>
+      </trans-unit>
+      <trans-unit id="CmR-YN-mcL.headerCell.title">
+        <source>Note</source>
+        <target>Bemerkung</target>
+        <note>Class = "NSTableColumn"; headerCell.title = "Note"; ObjectID = "CmR-YN-mcL";</note>
+      </trans-unit>
+      <trans-unit id="DVo-aG-piG.title">
+        <source>Close</source>
+        <target>Schließen</target>
+        <note>Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG";</note>
+      </trans-unit>
+      <trans-unit id="Dk9-rI-75b.title">
+        <source>Text Cell</source>
+        <target>Text Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Dk9-rI-75b";</note>
+      </trans-unit>
+      <trans-unit id="Dv1-io-Yv7.title">
+        <source>Spelling and Grammar</source>
+        <target>Rechtschreibprüfung</target>
+        <note>Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7";</note>
+      </trans-unit>
+      <trans-unit id="F2S-fz-NVQ.title">
+        <source>Help</source>
+        <target>Hilfe</target>
+        <note>Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ";</note>
+      </trans-unit>
+      <trans-unit id="H8h-7b-M4v.title">
+        <source>View</source>
+        <target>View</target>
+        <note>Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v";</note>
+      </trans-unit>
+      <trans-unit id="HFo-cy-zxI.title">
+        <source>Show Spelling and Grammar</source>
+        <target>Zeige Rechtschreibung und Grammatik</target>
+        <note>Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI";</note>
+      </trans-unit>
+      <trans-unit id="IAo-SY-fd9.title">
+        <source>Open…</source>
+        <target>Öffnen…</target>
+        <note>Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9";</note>
+      </trans-unit>
+      <trans-unit id="KaW-ft-85H.title">
+        <source>Revert to Saved</source>
+        <target>Zurück zu gespeichert</target>
+        <note>Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H";</note>
+      </trans-unit>
+      <trans-unit id="Kd2-mp-pUS.title">
+        <source>Show All</source>
+        <target>Alle anzeigen</target>
+        <note>Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS";</note>
+      </trans-unit>
+      <trans-unit id="LE2-aR-0XJ.title">
+        <source>Bring All to Front</source>
+        <target>Alle nach vorne bringen</target>
+        <note>Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ";</note>
+      </trans-unit>
+      <trans-unit id="OY7-WF-poV.title">
+        <source>Minimize</source>
+        <target>Minimieren</target>
+        <note>Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV";</note>
+      </trans-unit>
+      <trans-unit id="Olw-nP-bQN.title">
+        <source>Hide xliff-tool</source>
+        <target>xliff-tool verstecken</target>
+        <note>Class = "NSMenuItem"; title = "Hide xliff-tool"; ObjectID = "Olw-nP-bQN";</note>
+      </trans-unit>
+      <trans-unit id="R4o-n2-Eq4.title">
+        <source>Zoom</source>
+        <target>Zoom</target>
+        <note>Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4";</note>
+      </trans-unit>
+      <trans-unit id="Td7-aD-5lo.title">
+        <source>Window</source>
+        <target>Fenster</target>
+        <note>Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo";</note>
+      </trans-unit>
+      <trans-unit id="VLe-zm-rdx.placeholderString">
+        <source>Not translated</source>
+        <target>Keine Übersetzung vorhanden</target>
+        <note>Class = "NSTextFieldCell"; placeholderString = "Not translated"; ObjectID = "VLe-zm-rdx";</note>
+      </trans-unit>
+      <trans-unit id="VLe-zm-rdx.title">
+        <source>Table View Cell</source>
+        <target>Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "VLe-zm-rdx";</note>
+      </trans-unit>
+      <trans-unit id="Vdr-fp-XzO.title">
+        <source>Hide Others</source>
+        <target>Andere verstecken</target>
+        <note>Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO";</note>
+      </trans-unit>
+      <trans-unit id="W48-6f-4Dl.title">
+        <source>Edit</source>
+        <target>Bearbeiten</target>
+        <note>Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl";</note>
+      </trans-unit>
+      <trans-unit id="Xz5-n4-O0W.title">
+        <source>Find…</source>
+        <target>Finden…</target>
+        <note>Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W";</note>
+      </trans-unit>
+      <trans-unit id="aTl-1u-JFS.title">
+        <source>Print…</source>
+        <target>Drucken…</target>
+        <note>Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS";</note>
+      </trans-unit>
+      <trans-unit id="aUF-d1-5bR.title">
+        <source>Window</source>
+        <target>Window</target>
+        <note>Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR";</note>
+      </trans-unit>
+      <trans-unit id="bib-Uj-vzu.title">
+        <source>File</source>
+        <target>Datei</target>
+        <note>Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu";</note>
+      </trans-unit>
+      <trans-unit id="dMs-cI-mzQ.title">
+        <source>File</source>
+        <target>Datei</target>
+        <note>Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ";</note>
+      </trans-unit>
+      <trans-unit id="dRJ-4n-Yzg.title">
+        <source>Undo</source>
+        <target>Widerrufen</target>
+        <note>Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg";</note>
+      </trans-unit>
+      <trans-unit id="gPk-RE-P9h.title">
+        <source>Table View Cell</source>
+        <target>Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gPk-RE-P9h";</note>
+      </trans-unit>
+      <trans-unit id="gVA-U4-sdL.title">
+        <source>Paste</source>
+        <target>Einfügen</target>
+        <note>Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL";</note>
+      </trans-unit>
+      <trans-unit id="jwG-el-8vG.title">
+        <source>Group Header</source>
+        <target>Group Header</target>
+        <note>Class = "NSTextFieldCell"; title = "Group Header"; ObjectID = "jwG-el-8vG";</note>
+      </trans-unit>
+      <trans-unit id="mEh-4w-IYs.title">
+        <source>Table View Cell</source>
+        <target>Table View Cell</target>
+        <note>Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "mEh-4w-IYs";</note>
+      </trans-unit>
+      <trans-unit id="mK6-2p-4JG.title">
+        <source>Check Grammar With Spelling</source>
+        <target>Grammatik während der Eingabe prüfen</target>
+        <note>Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG";</note>
+      </trans-unit>
+      <trans-unit id="nFh-ta-yvQ.title">
+        <source>Copy Source String</source>
+        <target>Quellstring kopieren</target>
+        <note>Class = "NSMenuItem"; title = "Copy Source String"; ObjectID = "nFh-ta-yvQ";</note>
+      </trans-unit>
+      <trans-unit id="oas-Oc-fiZ.title">
+        <source>Open Recent</source>
+        <target>Benutzte Dateien</target>
+        <note>Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ";</note>
+      </trans-unit>
+      <trans-unit id="pa3-QI-u2k.title">
+        <source>Delete</source>
+        <target>Löschen</target>
+        <note>Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k";</note>
+      </trans-unit>
+      <trans-unit id="pxx-59-PXV.title">
+        <source>Save…</source>
+        <target>Speichern…</target>
+        <note>Class = "NSMenuItem"; title = "Save…"; ObjectID = "pxx-59-PXV";</note>
+      </trans-unit>
+      <trans-unit id="qIS-W8-SiK.title">
+        <source>Page Setup…</source>
+        <target>Seite einrichten…</target>
+        <note>Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK";</note>
+      </trans-unit>
+      <trans-unit id="rWk-0W-esM.title">
+        <source>Info-Label</source>
+        <target>Info-Label</target>
+        <note>Class = "NSTextFieldCell"; title = "Info-Label"; ObjectID = "rWk-0W-esM";</note>
+      </trans-unit>
+      <trans-unit id="rbD-Rh-wIN.title">
+        <source>Check Spelling While Typing</source>
+        <target>Rechtschreibung während der Eingabe prüfen</target>
+        <note>Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN";</note>
+      </trans-unit>
+      <trans-unit id="tXI-mr-wws.title">
+        <source>Open Recent</source>
+        <target>Benutzte Dateien</target>
+        <note>Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws";</note>
+      </trans-unit>
+      <trans-unit id="uQy-DD-JDr.title">
+        <source>xliff-tool</source>
+        <target>xliff-tool</target>
+        <note>Class = "NSMenu"; title = "xliff-tool"; ObjectID = "uQy-DD-JDr";</note>
+      </trans-unit>
+      <trans-unit id="uRl-iY-unG.title">
+        <source>Cut</source>
+        <target>Ausschneiden</target>
+        <note>Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG";</note>
+      </trans-unit>
+      <trans-unit id="vNY-rz-j42.title">
+        <source>Clear Menu</source>
+        <target>Clear Menu</target>
+        <note>Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42";</note>
+      </trans-unit>
+      <trans-unit id="wpr-3q-Mcd.title">
+        <source>Help</source>
+        <target>Hilfe</target>
+        <note>Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd";</note>
+      </trans-unit>
+      <trans-unit id="x3v-GG-iWU.title">
+        <source>Copy</source>
+        <target>Kopieren</target>
+        <note>Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="xliff-tool/Info.plist" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source/>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+      <trans-unit id="NSHumanReadableCopyright">
+        <source>Copyright © 2016 Remus Lazar. All rights reserved.</source>
+        <target>Copyright © 2016 Remus Lazar. Alle Rechte vorbehalten.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="xliff-tool/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="%@ (source=%@, target=%@)">
+        <source>%1$@ (source=%2$@, target=%3$@)</source>
+        <target>%1$@ (von=%2$@, nach=%3$@)</target>
+        <note>Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container.</note>
+      </trans-unit>
+      <trans-unit id="%d file(s), %d localizable string(s) available">
+        <source>%1$d file(s), %2$d localizable string(s) available</source>
+        <target>%1$d Datei(en), %2$d lokalisierbare Resource(n) vorhanden</target>
+        <note>Status bar label</note>
+      </trans-unit>
+      <trans-unit id="?">
+        <source>?</source>
+        <target>?</target>
+        <note>Placeholder telling the user that the source language for a specific file is unavailable in the source xliff file
+   Placeholder telling the user that the target language for a specific file is unavailable in the source xliff file</note>
+      </trans-unit>
+      <trans-unit id="Could not read file.">
+        <source>Could not read file.</source>
+        <target>Die Datei kann nicht gelesen werden.</target>
+        <note>Read error description</note>
+      </trans-unit>
+      <trans-unit id="File was in an invalid format.">
+        <source>File was in an invalid format.</source>
+        <target>Die Datei hat falsches Format.</target>
+        <note>Read failure reason</note>
+      </trans-unit>
+      <trans-unit id="No xliff file loaded">
+        <source>No xliff file loaded</source>
+        <target>Keine XLIFF Datei geladen</target>
+        <note>Status bar label when no xliff file is loaded</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="xliff-toolTests/Info.plist" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

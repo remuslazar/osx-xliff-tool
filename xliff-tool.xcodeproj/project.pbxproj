@@ -36,6 +36,7 @@
 		D8C0DB9A1C44F9D400320C2C /* EditableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableTextField.swift; sourceTree = "<group>"; };
 		D8C0DB9F1C45410B00320C2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D8C0DBA11C45410E00320C2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
+		D8C0DBA21C45785700320C2C /* xliff-tool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xliff-tool.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +69,7 @@
 		D888B2E61C3D851400660308 /* xliff-tool */ = {
 			isa = PBXGroup;
 			children = (
+				D8C0DBA21C45785700320C2C /* xliff-tool.entitlements */,
 				D8C0DB9A1C44F9D400320C2C /* EditableTextField.swift */,
 				D888B2E91C3D851400660308 /* ViewController.swift */,
 				D888B2EB1C3D851400660308 /* Document.swift */,
@@ -125,6 +127,11 @@
 					D888B2E31C3D851400660308 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 5MR244XF46;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -300,11 +307,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "xliff-tool/xliff-tool.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "xliff-tool/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-tool";
+				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -313,11 +321,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "xliff-tool/xliff-tool.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "xliff-tool/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-tool";
+				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

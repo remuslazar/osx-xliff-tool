@@ -479,6 +479,7 @@
 				D8C0DBB01C46EF2A00320C2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

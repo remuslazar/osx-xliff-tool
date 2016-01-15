@@ -1,8 +1,8 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1UJ-Zu-uKl"; */
 "1UJ-Zu-uKl.title" = "Text Cell";
 
-/* Class = "NSMenuItem"; title = "xliff-tool"; ObjectID = "1Xt-HY-uBw"; */
-"1Xt-HY-uBw.title" = "xliff-tool";
+/* Class = "NSMenuItem"; title = "XLIFFTool"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "";
 
 /* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "2mk-yb-eet"; */
 "2mk-yb-eet.placeholderString" = "Filter";
@@ -16,8 +16,8 @@
 /* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "4VP-J9-NbX"; */
 "4VP-J9-NbX.headerCell.title" = "Quelle";
 
-/* Class = "NSMenuItem"; title = "Quit xliff-tool"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "xliff-tool beenden";
+/* Class = "NSMenuItem"; title = "Quit XLIFFTool"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "XLIFFTool beenden";
 
 /* Class = "NSTableColumn"; headerCell.title = "Target"; ObjectID = "5J1-GD-mDl"; */
 "5J1-GD-mDl.headerCell.title" = "Ziel";
@@ -25,8 +25,8 @@
 /* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
 "5QF-Oa-p0T.title" = "Bearbeiten";
 
-/* Class = "NSMenuItem"; title = "About xliff-tool"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "Über xliff-tool";
+/* Class = "NSMenuItem"; title = "About XLIFFTool"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "Über XLIFFTool";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
 "6dh-zS-Vam.title" = "Wiederholen";
@@ -79,8 +79,8 @@
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
 "OY7-WF-poV.title" = "Minimieren";
 
-/* Class = "NSMenuItem"; title = "Hide xliff-tool"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "xliff-tool verstecken";
+/* Class = "NSMenuItem"; title = "Hide XLIFFTool"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "XLIFFTool verstecken";
 
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
 "R4o-n2-Eq4.title" = "Zoom";
@@ -157,8 +157,8 @@
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
 "tXI-mr-wws.title" = "Benutzte Dateien";
 
-/* Class = "NSMenu"; title = "xliff-tool"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "xliff-tool";
+/* Class = "NSMenu"; title = "XLIFFTool"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "";
 
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
 "uRl-iY-unG.title" = "Ausschneiden";

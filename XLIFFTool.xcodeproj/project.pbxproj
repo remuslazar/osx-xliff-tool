@@ -21,6 +21,7 @@
 		D8C0DBAA1C46EF2A00320C2C /* xliff_toolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */; };
 		D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DBB21C46F35C00320C2C /* de.xliff */; };
 		D8C0DBB41C46F5DC00320C2C /* XliffFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2FE1C417ACD00660308 /* XliffFile.swift */; };
+		D8CB82CD1C48E83E005ADDD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82CF1C48E83E005ADDD3 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D888B2E41C3D851400660308 /* xliff-tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xliff-tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D888B2E41C3D851400660308 /* XLIFFTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLIFFTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D888B2E71C3D851400660308 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D888B2E91C3D851400660308 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D888B2EB1C3D851400660308 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -50,10 +51,11 @@
 		D8C0DB9F1C45410B00320C2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D8C0DBA11C45410E00320C2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		D8C0DBA21C45785700320C2C /* xliff-tool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xliff-tool.entitlements"; sourceTree = "<group>"; };
-		D8C0DBA71C46EF2A00320C2C /* xliff-toolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xliff-toolTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8C0DBA71C46EF2A00320C2C /* XLIFFTool.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XLIFFTool.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xliff_toolTests.swift; sourceTree = "<group>"; };
 		D8C0DBAB1C46EF2A00320C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8C0DBB21C46F35C00320C2C /* de.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = de.xliff; sourceTree = "<group>"; };
+		D8CB82CE1C48E83E005ADDD3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +88,8 @@
 		D888B2E51C3D851400660308 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D888B2E41C3D851400660308 /* xliff-tool.app */,
-				D8C0DBA71C46EF2A00320C2C /* xliff-toolTests.xctest */,
+				D888B2E41C3D851400660308 /* XLIFFTool.app */,
+				D8C0DBA71C46EF2A00320C2C /* XLIFFTool.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,6 +125,7 @@
 		D8C0DBA81C46EF2A00320C2C /* xliff-toolTests */ = {
 			isa = PBXGroup;
 			children = (
+				D8CB82CF1C48E83E005ADDD3 /* InfoPlist.strings */,
 				D8C0DBB11C46F35C00320C2C /* fixtures */,
 				D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */,
 				D8C0DBAB1C46EF2A00320C2C /* Info.plist */,
@@ -141,9 +144,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D888B2E31C3D851400660308 /* xliff-tool */ = {
+		D888B2E31C3D851400660308 /* XLIFFTool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D888B2F51C3D851400660308 /* Build configuration list for PBXNativeTarget "xliff-tool" */;
+			buildConfigurationList = D888B2F51C3D851400660308 /* Build configuration list for PBXNativeTarget "XLIFFTool" */;
 			buildPhases = (
 				D888B2E01C3D851400660308 /* Sources */,
 				D888B2E11C3D851400660308 /* Frameworks */,
@@ -153,14 +156,14 @@
 			);
 			dependencies = (
 			);
-			name = "xliff-tool";
+			name = XLIFFTool;
 			productName = "xliff-tool";
-			productReference = D888B2E41C3D851400660308 /* xliff-tool.app */;
+			productReference = D888B2E41C3D851400660308 /* XLIFFTool.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D8C0DBA61C46EF2A00320C2C /* xliff-toolTests */ = {
+		D8C0DBA61C46EF2A00320C2C /* XLIFFToolTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8C0DBAE1C46EF2A00320C2C /* Build configuration list for PBXNativeTarget "xliff-toolTests" */;
+			buildConfigurationList = D8C0DBAE1C46EF2A00320C2C /* Build configuration list for PBXNativeTarget "XLIFFToolTests" */;
 			buildPhases = (
 				D8C0DBA31C46EF2A00320C2C /* Sources */,
 				D8C0DBA41C46EF2A00320C2C /* Frameworks */,
@@ -171,9 +174,9 @@
 			dependencies = (
 				D8C0DBAD1C46EF2A00320C2C /* PBXTargetDependency */,
 			);
-			name = "xliff-toolTests";
+			name = XLIFFToolTests;
 			productName = "xliff-toolTests";
-			productReference = D8C0DBA71C46EF2A00320C2C /* xliff-toolTests.xctest */;
+			productReference = D8C0DBA71C46EF2A00320C2C /* XLIFFTool.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -201,7 +204,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D888B2DF1C3D851400660308 /* Build configuration list for PBXProject "xliff-tool" */;
+			buildConfigurationList = D888B2DF1C3D851400660308 /* Build configuration list for PBXProject "XLIFFTool" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -215,8 +218,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D888B2E31C3D851400660308 /* xliff-tool */,
-				D8C0DBA61C46EF2A00320C2C /* xliff-toolTests */,
+				D888B2E31C3D851400660308 /* XLIFFTool */,
+				D8C0DBA61C46EF2A00320C2C /* XLIFFToolTests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */,
+				D8CB82CD1C48E83E005ADDD3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +276,7 @@
 /* Begin PBXTargetDependency section */
 		D8C0DBAD1C46EF2A00320C2C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D888B2E31C3D851400660308 /* xliff-tool */;
+			target = D888B2E31C3D851400660308 /* XLIFFTool */;
 			targetProxy = D8C0DBAC1C46EF2A00320C2C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -310,6 +314,14 @@
 				D8C0DBA11C45410E00320C2C /* de */,
 			);
 			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
+		D8CB82CF1C48E83E005ADDD3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8CB82CE1C48E83E005ADDD3 /* de */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -405,7 +417,7 @@
 				INFOPLIST_FILE = "xliff-tool/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XLIFFTool;
 			};
 			name = Debug;
 		};
@@ -419,7 +431,7 @@
 				INFOPLIST_FILE = "xliff-tool/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = XLIFFTool;
 			};
 			name = Release;
 		};
@@ -432,8 +444,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xliff-tool.app/Contents/MacOS/xliff-tool";
+				PRODUCT_NAME = XLIFFTool;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLIFFTool.app/Contents/MacOS/XLIFFTool";
 			};
 			name = Debug;
 		};
@@ -446,15 +458,15 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xliff-tool.app/Contents/MacOS/xliff-tool";
+				PRODUCT_NAME = XLIFFTool;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLIFFTool.app/Contents/MacOS/XLIFFTool";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D888B2DF1C3D851400660308 /* Build configuration list for PBXProject "xliff-tool" */ = {
+		D888B2DF1C3D851400660308 /* Build configuration list for PBXProject "XLIFFTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D888B2F31C3D851400660308 /* Debug */,
@@ -463,7 +475,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D888B2F51C3D851400660308 /* Build configuration list for PBXNativeTarget "xliff-tool" */ = {
+		D888B2F51C3D851400660308 /* Build configuration list for PBXNativeTarget "XLIFFTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D888B2F61C3D851400660308 /* Debug */,
@@ -472,13 +484,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8C0DBAE1C46EF2A00320C2C /* Build configuration list for PBXNativeTarget "xliff-toolTests" */ = {
+		D8C0DBAE1C46EF2A00320C2C /* Build configuration list for PBXNativeTarget "XLIFFToolTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D8C0DBAF1C46EF2A00320C2C /* Debug */,
 				D8C0DBB01C46EF2A00320C2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

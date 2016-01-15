@@ -1,2 +1,4 @@
+*.xcbkptlist
+*.xcuserstate
 *~
 xcdebugger/

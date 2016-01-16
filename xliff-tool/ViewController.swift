@@ -44,7 +44,11 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    func resizeTable() {
+    func resizeTable(notification: NSNotification) {
+        if let col = notification.userInfo?["NSTableColumn"] as? NSTableColumn {
+            // invalidate cache for the specific row
+            rowHeightsCache.removeValueForKey(col)
+        }
         outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(indexesInRange: NSRange(location: 0,length: outlineView.numberOfRows)))
     }
     
@@ -55,8 +59,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             name: NSUndoManagerDidUndoChangeNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
             name: NSUndoManagerDidRedoChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeTable"),
-            name: NSOutlineViewColumnDidResizeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeTable:"),
+            name: NSOutlineViewColumnDidResizeNotification, object: outlineView)
     }
    
     override func viewWillDisappear() {
@@ -192,14 +196,20 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         )
     }
     
+    private var rowHeightsCache = [NSTableColumn: [NSXMLElement: CGFloat]]()
+    
     private func heightForItem(item: AnyObject) -> CGFloat {
         let heights = outlineView.tableColumns.map { (col) -> CGFloat in
             let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
             let xmlElement = item as! NSXMLElement
+
+            if let height = rowHeightsCache[col]?[xmlElement] { return height }
+            
             configureContentCell(cell, columnIdentifier: col.identifier, xmlElement: xmlElement)
+            
             cell.layoutSubtreeIfNeeded()
-            let col = outlineView.columnWithIdentifier(col.identifier)
-            var width = outlineView.tableColumns[col].width - 2
+            let column = outlineView.columnWithIdentifier(col.identifier)
+            var width = outlineView.tableColumns[column].width - 2
 
             let row = outlineView.rowForItem(item)
             if (row == 0) {
@@ -207,9 +217,17 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
                 let indent = outlineView.indentationPerLevel
                 width += indent
             }
-            
+           
             let size = cell.textField!.sizeThatFits(CGSize(width: width, height: 10000))
-            return size.height + 2 // some spacing between the table rows
+            let height = size.height + 2 // some spacing between the table rows
+            
+            if var colCache = rowHeightsCache[col] {
+                colCache[xmlElement] = height
+            } else {
+                rowHeightsCache[col] = [xmlElement: height]
+            }
+            
+            return height
         }
         return heights.maxElement()!
     }

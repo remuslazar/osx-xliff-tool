@@ -22,6 +22,8 @@
 		D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DBB21C46F35C00320C2C /* de.xliff */; };
 		D8C0DBB41C46F5DC00320C2C /* XliffFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2FE1C417ACD00660308 /* XliffFile.swift */; };
 		D8CB82CD1C48E83E005ADDD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82CF1C48E83E005ADDD3 /* InfoPlist.strings */; };
+		D8CB82D11C4911EA005ADDD3 /* dummy.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82D01C4911EA005ADDD3 /* dummy.xliff */; };
+		D8CB82D31C4929F1005ADDD3 /* bigfile.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82D21C4929F1005ADDD3 /* bigfile.xliff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		D8C0DBAB1C46EF2A00320C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8C0DBB21C46F35C00320C2C /* de.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = de.xliff; sourceTree = "<group>"; };
 		D8CB82CE1C48E83E005ADDD3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8CB82D01C4911EA005ADDD3 /* dummy.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dummy.xliff; sourceTree = "<group>"; };
+		D8CB82D21C4929F1005ADDD3 /* bigfile.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bigfile.xliff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				D8C0DBB21C46F35C00320C2C /* de.xliff */,
+				D8CB82D01C4911EA005ADDD3 /* dummy.xliff */,
+				D8CB82D21C4929F1005ADDD3 /* bigfile.xliff */,
 			);
 			path = fixtures;
 			sourceTree = "<group>";
@@ -241,7 +247,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8CB82D11C4911EA005ADDD3 /* dummy.xliff in Resources */,
 				D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */,
+				D8CB82D31C4929F1005ADDD3 /* bigfile.xliff in Resources */,
 				D8CB82CD1C48E83E005ADDD3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

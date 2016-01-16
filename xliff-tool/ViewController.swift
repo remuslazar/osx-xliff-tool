@@ -206,8 +206,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             if let height = rowHeightsCache[col]?[xmlElement] { return height }
             
             configureContentCell(cell, columnIdentifier: col.identifier, xmlElement: xmlElement)
-            
-            cell.layoutSubtreeIfNeeded()
+//            cell.layoutSubtreeIfNeeded()
             let column = outlineView.columnWithIdentifier(col.identifier)
             var width = outlineView.tableColumns[column].width - 2
 
@@ -221,8 +220,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             let size = cell.textField!.sizeThatFits(CGSize(width: width, height: 10000))
             let height = size.height + 2 // some spacing between the table rows
             
-            if var colCache = rowHeightsCache[col] {
-                colCache[xmlElement] = height
+            if rowHeightsCache[col] != nil {
+                rowHeightsCache[col]![xmlElement] = height
             } else {
                 rowHeightsCache[col] = [xmlElement: height]
             }

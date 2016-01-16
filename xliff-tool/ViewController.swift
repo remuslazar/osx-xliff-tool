@@ -200,10 +200,10 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     private func heightForItem(item: AnyObject) -> CGFloat {
         let heights = outlineView.tableColumns.map { (col) -> CGFloat in
-            let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
             let xmlElement = item as! NSXMLElement
-
             if let height = rowHeightsCache[col]?[xmlElement] { return height }
+            
+            let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
             
             configureContentCell(cell, columnIdentifier: col.identifier, xmlElement: xmlElement)
 //            cell.layoutSubtreeIfNeeded()

@@ -275,7 +275,7 @@ CA
                                     <rect key="frame" x="1" y="0.0" width="841" height="479"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Tl8-ug-pLb" viewBased="YES" indentationPerLevel="6" indentationMarkerFollowsCell="NO" autoresizesOutlineColumn="YES" outlineTableColumn="4VP-J9-NbX" id="Y8P-hs-l3X">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Tl8-ug-pLb" viewBased="YES" indentationPerLevel="10" indentationMarkerFollowsCell="NO" autoresizesOutlineColumn="YES" outlineTableColumn="4VP-J9-NbX" id="Y8P-hs-l3X">
                                             <rect key="frame" x="0.0" y="0.0" width="841" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -312,6 +312,7 @@ CA
                                                                 <constraint firstAttribute="trailing" secondItem="pe6-Tl-DBR" secondAttribute="trailing" id="6lL-uX-EAH"/>
                                                                 <constraint firstItem="pe6-Tl-DBR" firstAttribute="leading" secondItem="i1s-uV-TQ8" secondAttribute="leading" constant="2" id="DIZ-vj-8jA"/>
                                                                 <constraint firstItem="pe6-Tl-DBR" firstAttribute="top" secondItem="i1s-uV-TQ8" secondAttribute="top" constant="1" id="UQ4-bx-9tq"/>
+                                                                <constraint firstAttribute="bottom" secondItem="pe6-Tl-DBR" secondAttribute="bottom" constant="1" id="hqG-mz-n20"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="pe6-Tl-DBR" id="L8z-1V-s3p"/>
@@ -401,7 +402,7 @@ CA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5SP-h8-eMe">
-                                                                    <rect key="frame" x="0.0" y="2" width="321" height="14"/>
+                                                                    <rect key="frame" x="0.0" y="2" width="325" height="14"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Table View Cell" id="gPk-RE-P9h">
                                                                         <font key="font" metaFont="toolTip"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -410,8 +411,9 @@ CA
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="5SP-h8-eMe" secondAttribute="trailing" constant="4" id="DLu-kh-7nv"/>
+                                                                <constraint firstAttribute="trailing" secondItem="5SP-h8-eMe" secondAttribute="trailing" id="DLu-kh-7nv"/>
                                                                 <constraint firstItem="5SP-h8-eMe" firstAttribute="leading" secondItem="gy7-gs-sZh" secondAttribute="leading" constant="2" id="bbv-d5-mvZ"/>
+                                                                <constraint firstAttribute="bottom" secondItem="5SP-h8-eMe" secondAttribute="bottom" constant="2" id="dby-4i-Mmc"/>
                                                                 <constraint firstItem="5SP-h8-eMe" firstAttribute="top" secondItem="gy7-gs-sZh" secondAttribute="top" constant="1" id="jKH-E0-LhW"/>
                                                             </constraints>
                                                             <connections>

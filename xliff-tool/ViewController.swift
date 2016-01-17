@@ -259,18 +259,17 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
             
             configureContentCell(cell, columnIdentifier: col.identifier, xmlElement: xmlElement)
+            cell.layoutSubtreeIfNeeded()
             let column = outlineView.columnWithIdentifier(col.identifier)
-            var width = outlineView.tableColumns[column].width - 2
-
-            let row = outlineView.rowForItem(item)
-            if (row == 0) {
+            var width = outlineView.tableColumns[column].width
+            
+            if (col.identifier == "AutomaticTableColumnIdentifier.0") {
                 // because we're using NSOutliveView, the first level is indended by this amount
-                let indent = outlineView.indentationPerLevel
-                width += indent
+                width -= outlineView.indentationPerLevel + 14.0
             }
            
             let size = cell.textField!.sizeThatFits(CGSize(width: width, height: 10000))
-            let height = size.height + 2 // some spacing between the table rows
+            let height = size.height + 2.0 // some spacing between the table rows
             
             if rowHeightsCache[col] != nil {
                 rowHeightsCache[col]![xmlElement] = height

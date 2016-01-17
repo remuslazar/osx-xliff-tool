@@ -193,9 +193,6 @@ CA
                             </menuItem>
                             <menuItem title="View" id="H8h-7b-M4v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                            <menuItem title="View" id="VOb-FU-zRX">
-                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="xhT-rW-p3X">
                                     <items>
                                         <menuItem title="Compact Rows" state="on" keyEquivalent="h" id="yB5-Io-E88">

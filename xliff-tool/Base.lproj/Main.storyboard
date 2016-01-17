@@ -275,7 +275,7 @@ CA
                                     <rect key="frame" x="1" y="0.0" width="841" height="479"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Tl8-ug-pLb" viewBased="YES" indentationPerLevel="17" autoresizesOutlineColumn="YES" outlineTableColumn="4VP-J9-NbX" id="Y8P-hs-l3X">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Tl8-ug-pLb" viewBased="YES" indentationPerLevel="6" indentationMarkerFollowsCell="NO" autoresizesOutlineColumn="YES" outlineTableColumn="4VP-J9-NbX" id="Y8P-hs-l3X">
                                             <rect key="frame" x="0.0" y="0.0" width="841" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -322,7 +322,7 @@ CA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ri-4G-ibb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="17"/>
+                                                                    <rect key="frame" x="-2" y="0.0" width="240" height="17"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Group Header" id="jwG-el-8vG">
                                                                         <font key="font" metaFont="titleBar"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -334,7 +334,7 @@ CA
                                                                 <constraint firstItem="9ri-4G-ibb" firstAttribute="top" secondItem="hto-UY-acJ" secondAttribute="top" id="EpD-VX-duW"/>
                                                                 <constraint firstAttribute="trailing" secondItem="9ri-4G-ibb" secondAttribute="trailing" constant="18" id="f5b-A0-9bH"/>
                                                                 <constraint firstAttribute="bottom" secondItem="9ri-4G-ibb" secondAttribute="bottom" id="kHp-GO-BTs"/>
-                                                                <constraint firstItem="9ri-4G-ibb" firstAttribute="leading" secondItem="hto-UY-acJ" secondAttribute="leading" constant="2" id="z0R-n1-i4v"/>
+                                                                <constraint firstItem="9ri-4G-ibb" firstAttribute="leading" secondItem="hto-UY-acJ" secondAttribute="leading" id="z0R-n1-i4v"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="9ri-4G-ibb" id="BbE-br-xjE"/>

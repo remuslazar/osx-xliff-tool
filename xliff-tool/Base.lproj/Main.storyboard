@@ -195,7 +195,7 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="xhT-rW-p3X">
                                     <items>
-                                        <menuItem title="Compact Rows" state="on" keyEquivalent="h" id="yB5-Io-E88">
+                                        <menuItem title="Compact Rows" state="on" keyEquivalent="H" id="yB5-Io-E88">
                                             <connections>
                                                 <action selector="toggleCompactRowsMode:" target="Ady-hI-5gd" id="n5c-pf-OuA"/>
                                             </connections>

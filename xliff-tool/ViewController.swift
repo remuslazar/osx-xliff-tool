@@ -88,9 +88,9 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         super.viewDidAppear()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
-            name: NSUndoManagerDidUndoChangeNotification, object: nil)
+            name: NSUndoManagerDidUndoChangeNotification, object: document!.undoManager)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
-            name: NSUndoManagerDidRedoChangeNotification, object: nil)
+            name: NSUndoManagerDidRedoChangeNotification, object: document!.undoManager)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeTable:"),
             name: NSOutlineViewColumnDidResizeNotification, object: outlineView)
     }

@@ -10,10 +10,6 @@ import Cocoa
 
 class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
 
-    private struct Settings {
-        var dynamicRowHeight = true
-    }
-    
     private struct Configuration {
         // max number of items in the XLIFF file to allow dynamic row height for all table rows
         // else we will re-tile just the selected row after selection, the remaining cells remaining single lined
@@ -27,13 +23,25 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    private var settings = Settings()
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == Selector("toggleCompactRowsMode:") { // "Compact Rows" Setting
+            // update the menu item state to match the current dynamicRowHeight setting
+            if document == nil { return false }
+            menuItem.state = dynamicRowHeight ? NSOffState : NSOnState
+        }
+        
+        return true
+    }
+    
+    private var dynamicRowHeight = false {
+        didSet { reloadUI()}
+    }
     
     weak var document: Document? {
         didSet {
             if let xliffDocument = document?.xliffDocument {
                 xliffFile = XliffFile(xliffDocument: xliffDocument)
-                if xliffFile?.totalCount > Configuration.maxItemsForDynamicRowHeight { settings.dynamicRowHeight = false }
+                if xliffFile?.totalCount < Configuration.maxItemsForDynamicRowHeight { dynamicRowHeight = true }
             } else {
                 xliffFile = nil
             }
@@ -138,6 +146,13 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
 
+    @IBAction func toggleCompactRowsMode(sender: AnyObject) {
+        if let menuItem = sender as? NSMenuItem {
+            menuItem.state = menuItem.state == NSOnState ? NSOffState : NSOnState
+            dynamicRowHeight = menuItem.state == NSOffState
+        }
+    }
+    
     @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
     @IBOutlet weak var searchField: NSSearchField!
@@ -175,7 +190,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     private var lastSelectedRow: Int?
     
     func outlineViewSelectionDidChange(notification: NSNotification) {
-        if !settings.dynamicRowHeight {
+        if !dynamicRowHeight {
             // if not using the dynamicRowHeight behavior, resize the currently selected cell accordingly
             outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(index: outlineView.selectedRow))
             if let last = lastSelectedRow {
@@ -287,7 +302,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat {
         if item is XliffFile.File { return outlineView.rowHeight }
-        if settings.dynamicRowHeight {
+        if dynamicRowHeight {
             return heightForItem(item)
         } else {
             if let selectedItem = outlineView.itemAtRow(outlineView.selectedRow) {

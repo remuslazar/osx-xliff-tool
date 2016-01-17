@@ -194,6 +194,18 @@ CA
                             <menuItem title="View" id="H8h-7b-M4v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
+                            <menuItem title="View" id="VOb-FU-zRX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="View" id="xhT-rW-p3X">
+                                    <items>
+                                        <menuItem title="Compact Rows" state="on" keyEquivalent="h" id="yB5-Io-E88">
+                                            <connections>
+                                                <action selector="toggleCompactRowsMode:" target="Ady-hI-5gd" id="n5c-pf-OuA"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">

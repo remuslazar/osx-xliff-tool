@@ -172,3 +172,9 @@
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
 "x3v-GG-iWU.title" = "Kopieren";
 
+/* Class = "NSMenu"; title = "View"; ObjectID = "xhT-rW-p3X"; */
+"xhT-rW-p3X.title" = "Darstellung";
+
+/* Class = "NSMenuItem"; title = "Compact Rows"; ObjectID = "yB5-Io-E88"; */
+"yB5-Io-E88.title" = "Kompakte Zeilen";
+

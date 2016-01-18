@@ -10,6 +10,12 @@ import Cocoa
 
 class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
 
+    private struct Configuration {
+        // max number of items in the XLIFF file to allow dynamic row height for all table rows
+        // else we will re-tile just the selected row after selection, the remaining cells remaining single lined
+        static let maxItemsForDynamicRowHeight = 150
+    }
+
     // MARK: private data
     private var xliffFile: XliffFile? {
         didSet {
@@ -17,14 +23,40 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == Selector("toggleCompactRowsMode:") { // "Compact Rows" Setting
+            // update the menu item state to match the current dynamicRowHeight setting
+            if document == nil { return false }
+            menuItem.state = dynamicRowHeight ? NSOffState : NSOnState
+        }
+        
+        return true
+    }
+    
+    private var dynamicRowHeight = false {
+        didSet { reloadUI()}
+    }
+    
     weak var document: Document? {
         didSet {
             if let xliffDocument = document?.xliffDocument {
                 xliffFile = XliffFile(xliffDocument: xliffDocument)
+                if xliffFile?.totalCount < Configuration.maxItemsForDynamicRowHeight { dynamicRowHeight = true }
             } else {
                 xliffFile = nil
             }
             outlineView.reloadData()
+        }
+    }
+    
+    
+    // MARK: rowHeight Cache
+    
+    private var rowHeightsCache = [NSTableColumn: [NSXMLElement: CGFloat]]()
+
+    private func purgeCachedHeightForItem(item: NSXMLElement) {
+        for col in rowHeightsCache.keys {
+            rowHeightsCache[col]!.removeValueForKey(item)
         }
     }
     
@@ -44,7 +76,11 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    func resizeTable() {
+    func resizeTable(notification: NSNotification) {
+        if let col = notification.userInfo?["NSTableColumn"] as? NSTableColumn {
+            // invalidate cache for the specific row
+            rowHeightsCache.removeValueForKey(col)
+        }
         outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(indexesInRange: NSRange(location: 0,length: outlineView.numberOfRows)))
     }
     
@@ -52,11 +88,11 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         super.viewDidAppear()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
-            name: NSUndoManagerDidUndoChangeNotification, object: nil)
+            name: NSUndoManagerDidUndoChangeNotification, object: document!.undoManager)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
-            name: NSUndoManagerDidRedoChangeNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeTable"),
-            name: NSOutlineViewColumnDidResizeNotification, object: nil)
+            name: NSUndoManagerDidRedoChangeNotification, object: document!.undoManager)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeTable:"),
+            name: NSOutlineViewColumnDidResizeNotification, object: outlineView)
     }
    
     override func viewWillDisappear() {
@@ -91,6 +127,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         if row != -1 {
             if let elem = outlineView.itemAtRow(row) as? NSXMLElement {
                 updateTranslationForElement(elem, newValue: sender.stringValue)
+                purgeCachedHeightForItem(elem)
+                outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(index: row))
             }
         }
     }
@@ -108,6 +146,13 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
 
+    @IBAction func toggleCompactRowsMode(sender: AnyObject) {
+        if let menuItem = sender as? NSMenuItem {
+            menuItem.state = menuItem.state == NSOnState ? NSOffState : NSOnState
+            dynamicRowHeight = menuItem.state == NSOffState
+        }
+    }
+    
     @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
     @IBOutlet weak var searchField: NSSearchField!
@@ -140,7 +185,20 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         self.view.window?.makeFirstResponder(searchField)
     }
     
-    // MARK: NSOutlineView Delegate
+    // MARK: NSOutlineView Delegate and Datasource
+    
+    private var lastSelectedRow: Int?
+    
+    func outlineViewSelectionDidChange(notification: NSNotification) {
+        if !dynamicRowHeight {
+            // if not using the dynamicRowHeight behavior, resize the currently selected cell accordingly
+            outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(index: outlineView.selectedRow))
+            if let last = lastSelectedRow {
+                outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(index: last))
+            }
+            lastSelectedRow = outlineView.selectedRow
+        }
+    }
     
     func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
         if item == nil { // top level item
@@ -192,24 +250,34 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         )
     }
     
+    
     private func heightForItem(item: AnyObject) -> CGFloat {
         let heights = outlineView.tableColumns.map { (col) -> CGFloat in
-            let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
             let xmlElement = item as! NSXMLElement
+            if let height = rowHeightsCache[col]?[xmlElement] { return height }
+            
+            let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
+            
             configureContentCell(cell, columnIdentifier: col.identifier, xmlElement: xmlElement)
             cell.layoutSubtreeIfNeeded()
-            let col = outlineView.columnWithIdentifier(col.identifier)
-            var width = outlineView.tableColumns[col].width - 2
-
-            let row = outlineView.rowForItem(item)
-            if (row == 0) {
+            let column = outlineView.columnWithIdentifier(col.identifier)
+            var width = outlineView.tableColumns[column].width
+            
+            if (col.identifier == "AutomaticTableColumnIdentifier.0") {
                 // because we're using NSOutliveView, the first level is indended by this amount
-                let indent = outlineView.indentationPerLevel
-                width += indent
+                width -= outlineView.indentationPerLevel + 14.0
+            }
+           
+            let size = cell.textField!.sizeThatFits(CGSize(width: width, height: 10000))
+            let height = size.height + 2.0 // some spacing between the table rows
+            
+            if rowHeightsCache[col] != nil {
+                rowHeightsCache[col]![xmlElement] = height
+            } else {
+                rowHeightsCache[col] = [xmlElement: height]
             }
             
-            let size = cell.textField!.sizeThatFits(CGSize(width: width, height: 10000))
-            return size.height + 2 // some spacing between the table rows
+            return height
         }
         return heights.maxElement()!
     }
@@ -233,7 +301,16 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat {
         if item is XliffFile.File { return outlineView.rowHeight }
-        return heightForItem(item)
+        if dynamicRowHeight {
+            return heightForItem(item)
+        } else {
+            if let selectedItem = outlineView.itemAtRow(outlineView.selectedRow) {
+                if item === selectedItem {
+                    return heightForItem(item)
+                }
+            }
+            return outlineView.rowHeight
+        }
     }
     
 }

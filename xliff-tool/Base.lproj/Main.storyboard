@@ -193,6 +193,15 @@ CA
                             </menuItem>
                             <menuItem title="View" id="H8h-7b-M4v">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="View" id="xhT-rW-p3X">
+                                    <items>
+                                        <menuItem title="Compact Rows" state="on" keyEquivalent="H" id="yB5-Io-E88">
+                                            <connections>
+                                                <action selector="toggleCompactRowsMode:" target="Ady-hI-5gd" id="n5c-pf-OuA"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -229,7 +238,7 @@ CA
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="xliff_tool" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="XLIFFTool" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -237,7 +246,7 @@ CA
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="WindowController" customModule="xliff_tool" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="WindowController" customModule="XLIFFTool" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Ckk-yw-fiv">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -255,7 +264,7 @@ CA
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="xliff_tool" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="XLIFFTool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ERx-hH-rdd">
                         <rect key="frame" x="0.0" y="0.0" width="843" height="514"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -266,7 +275,7 @@ CA
                                     <rect key="frame" x="1" y="0.0" width="841" height="479"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Tl8-ug-pLb" viewBased="YES" indentationPerLevel="17" autoresizesOutlineColumn="YES" outlineTableColumn="4VP-J9-NbX" id="Y8P-hs-l3X">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Tl8-ug-pLb" viewBased="YES" indentationPerLevel="10" indentationMarkerFollowsCell="NO" autoresizesOutlineColumn="YES" outlineTableColumn="4VP-J9-NbX" id="Y8P-hs-l3X">
                                             <rect key="frame" x="0.0" y="0.0" width="841" height="456"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -303,6 +312,7 @@ CA
                                                                 <constraint firstAttribute="trailing" secondItem="pe6-Tl-DBR" secondAttribute="trailing" id="6lL-uX-EAH"/>
                                                                 <constraint firstItem="pe6-Tl-DBR" firstAttribute="leading" secondItem="i1s-uV-TQ8" secondAttribute="leading" constant="2" id="DIZ-vj-8jA"/>
                                                                 <constraint firstItem="pe6-Tl-DBR" firstAttribute="top" secondItem="i1s-uV-TQ8" secondAttribute="top" constant="1" id="UQ4-bx-9tq"/>
+                                                                <constraint firstAttribute="bottom" secondItem="pe6-Tl-DBR" secondAttribute="bottom" constant="1" id="hqG-mz-n20"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="pe6-Tl-DBR" id="L8z-1V-s3p"/>
@@ -313,7 +323,7 @@ CA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ri-4G-ibb">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="238" height="17"/>
+                                                                    <rect key="frame" x="-2" y="0.0" width="240" height="17"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Group Header" id="jwG-el-8vG">
                                                                         <font key="font" metaFont="titleBar"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -325,7 +335,7 @@ CA
                                                                 <constraint firstItem="9ri-4G-ibb" firstAttribute="top" secondItem="hto-UY-acJ" secondAttribute="top" id="EpD-VX-duW"/>
                                                                 <constraint firstAttribute="trailing" secondItem="9ri-4G-ibb" secondAttribute="trailing" constant="18" id="f5b-A0-9bH"/>
                                                                 <constraint firstAttribute="bottom" secondItem="9ri-4G-ibb" secondAttribute="bottom" id="kHp-GO-BTs"/>
-                                                                <constraint firstItem="9ri-4G-ibb" firstAttribute="leading" secondItem="hto-UY-acJ" secondAttribute="leading" constant="2" id="z0R-n1-i4v"/>
+                                                                <constraint firstItem="9ri-4G-ibb" firstAttribute="leading" secondItem="hto-UY-acJ" secondAttribute="leading" id="z0R-n1-i4v"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="9ri-4G-ibb" id="BbE-br-xjE"/>
@@ -350,7 +360,7 @@ CA
                                                             <rect key="frame" x="258" y="1" width="254" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPH-8d-M9V" customClass="EditableTextField" customModule="xliff_tool" customModuleProvider="target">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPH-8d-M9V" customClass="EditableTextField" customModule="XLIFFTool" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="1" width="256" height="15"/>
                                                                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" placeholderString="Not translated" id="VLe-zm-rdx">
                                                                         <font key="font" metaFont="user"/>
@@ -392,7 +402,7 @@ CA
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5SP-h8-eMe">
-                                                                    <rect key="frame" x="0.0" y="2" width="321" height="14"/>
+                                                                    <rect key="frame" x="0.0" y="2" width="325" height="14"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Table View Cell" id="gPk-RE-P9h">
                                                                         <font key="font" metaFont="toolTip"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -401,8 +411,9 @@ CA
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="trailing" secondItem="5SP-h8-eMe" secondAttribute="trailing" constant="4" id="DLu-kh-7nv"/>
+                                                                <constraint firstAttribute="trailing" secondItem="5SP-h8-eMe" secondAttribute="trailing" id="DLu-kh-7nv"/>
                                                                 <constraint firstItem="5SP-h8-eMe" firstAttribute="leading" secondItem="gy7-gs-sZh" secondAttribute="leading" constant="2" id="bbv-d5-mvZ"/>
+                                                                <constraint firstAttribute="bottom" secondItem="5SP-h8-eMe" secondAttribute="bottom" constant="2" id="dby-4i-Mmc"/>
                                                                 <constraint firstItem="5SP-h8-eMe" firstAttribute="top" secondItem="gy7-gs-sZh" secondAttribute="top" constant="1" id="jKH-E0-LhW"/>
                                                             </constraints>
                                                             <connections>

@@ -27,3 +27,7 @@ v1.0b4
 default for bigger tables, for better usability and performance
 - Bugfix: don't perform a reload table on all open documents after a undo/redo
 operation
+
+v1.0b5
+
+- Hotfix, fixes some cases where the note table cell was not displayed correctly

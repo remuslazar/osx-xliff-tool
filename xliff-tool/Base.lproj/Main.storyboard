@@ -398,11 +398,11 @@ CA
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gy7-gs-sZh">
-                                                            <rect key="frame" x="515" y="1" width="323" height="17"/>
+                                                            <rect key="frame" x="515" y="1" width="323" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5SP-h8-eMe">
-                                                                    <rect key="frame" x="0.0" y="2" width="325" height="14"/>
+                                                                    <rect key="frame" x="0.0" y="1" width="325" height="14"/>
                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Table View Cell" id="gPk-RE-P9h">
                                                                         <font key="font" metaFont="toolTip"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -413,7 +413,7 @@ CA
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="5SP-h8-eMe" secondAttribute="trailing" id="DLu-kh-7nv"/>
                                                                 <constraint firstItem="5SP-h8-eMe" firstAttribute="leading" secondItem="gy7-gs-sZh" secondAttribute="leading" constant="2" id="bbv-d5-mvZ"/>
-                                                                <constraint firstAttribute="bottom" secondItem="5SP-h8-eMe" secondAttribute="bottom" constant="2" id="dby-4i-Mmc"/>
+                                                                <constraint firstAttribute="bottom" secondItem="5SP-h8-eMe" secondAttribute="bottom" constant="1" id="dby-4i-Mmc"/>
                                                                 <constraint firstItem="5SP-h8-eMe" firstAttribute="top" secondItem="gy7-gs-sZh" secondAttribute="top" constant="1" id="jKH-E0-LhW"/>
                                                             </constraints>
                                                             <connections>

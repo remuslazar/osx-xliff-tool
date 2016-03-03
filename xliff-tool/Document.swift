@@ -64,5 +64,65 @@ class Document: NSDocument {
         }
     }
 
+    var fileLastModificationDate: NSDate?
+    
+    private func getFileLastModificationDate(completionHandler: (NSDate) -> Void) {
+        if let url = fileURL {
+            let coordinator = NSFileCoordinator(filePresenter: self)
+            coordinator.coordinateReadingItemAtURL(url, options: .ImmediatelyAvailableMetadataOnly, error: nil) { (url) in
+                var lastMod: AnyObject?
+                try! url.getResourceValue(&lastMod, forKey: NSURLContentModificationDateKey)
+                completionHandler(lastMod as! NSDate)
+            }
+        }
+    }
+
+    // while reading and saving the file we read the file last modification timestamp,
+    // so we can detect the case when the file was overwritten externally
+    override func readFromURL(url: NSURL, ofType typeName: String) throws {
+        try super.readFromURL(url, ofType: typeName)
+        self.getFileLastModificationDate() { self.fileLastModificationDate = $0 }
+    }
+    
+    override func saveToURL(url: NSURL, ofType typeName: String, forSaveOperation saveOperation: NSSaveOperationType, completionHandler: (NSError?) -> Void) {
+        super.saveToURL(url, ofType: typeName, forSaveOperation: saveOperation) { (error) -> Void in
+            completionHandler(error)
+            self.getFileLastModificationDate() { self.fileLastModificationDate = $0 }
+        }
+    }
+
+    private func popupReloadFileAlert() {
+        dispatch_async(dispatch_get_main_queue()) {
+            let alert = NSAlert()
+            alert.informativeText = NSLocalizedString("Source file was changed and there are unsaved changes in memory.",
+                comment: "Alert Dialog message telling the user that the source file was changed externally and presents him the options")
+            alert.messageText = NSLocalizedString("Source file changed on disk",
+                comment: "Alert Title telling the user that the file has been changed")
+            
+            // buttons
+            alert.addButtonWithTitle(NSLocalizedString("Ignore", comment: "Option to ignore it"))
+            alert.addButtonWithTitle(NSLocalizedString("Reload file", comment: "Option to reload the file"))
+            
+            alert.alertStyle = .CriticalAlertStyle
+            
+            if alert.runModal() == NSAlertFirstButtonReturn { // overwrite source file
+            } else { // reload file
+                print("reloading..")
+                self.reloadDocument(nil)
+            }
+        }
+    }
+    
+    override func presentedItemDidChange() {
+        super.presentedItemDidChange()
+        getFileLastModificationDate() {
+            let interval = $0.timeIntervalSinceDate(self.fileLastModificationDate!)
+            if interval > 0 {
+                print("source file was changed externally")
+                self.popupReloadFileAlert()
+            }
+        }
+    }
+    
 }
 

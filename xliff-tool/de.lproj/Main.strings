@@ -64,6 +64,9 @@
 /* Class = "NSMenuItem"; title = "Show Spelling and Grammar"; ObjectID = "HFo-cy-zxI"; */
 "HFo-cy-zxI.title" = "Zeige Rechtschreibung und Grammatik";
 
+/* Class = "NSMenuItem"; title = "Reload"; ObjectID = "I9i-PN-NlN"; */
+"I9i-PN-NlN.title" = "Neu laden";
+
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "Öffnen…";
 

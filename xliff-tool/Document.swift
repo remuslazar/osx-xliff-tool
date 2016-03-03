@@ -56,6 +56,13 @@ class Document: NSDocument {
         
     }
     
+    @IBAction func reloadDocument(sender: AnyObject?) {
+        let controller = NSDocumentController.sharedDocumentController()
+        controller.currentDocument?.savePresentedItemChangesWithCompletionHandler() { (error) in
+        self.close()
+            controller.reopenDocumentForURL(self.fileURL!, withContentsOfURL: self.fileURL!, display: true) { _,_,_ in }
+        }
+    }
 
 }
 

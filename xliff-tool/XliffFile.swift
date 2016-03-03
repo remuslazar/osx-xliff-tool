@@ -51,7 +51,7 @@ class XliffFile {
                 }
                 files.append(File(
                     name: file.attributeForName("original")!.stringValue!,
-                    items: items,
+                    items: items.map { return $0 }, // dont use the items array directly to avoid memory leaks
                     sourceLanguage: file.attributeForName("source-language")?.stringValue,
                     targetLanguage: file.attributeForName("target-language")?.stringValue))
             }

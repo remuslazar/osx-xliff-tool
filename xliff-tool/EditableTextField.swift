@@ -12,7 +12,7 @@ class EditableTextField: NSTextField {
     override func becomeFirstResponder() -> Bool {
         if super.becomeFirstResponder() {
             if let textView = window?.firstResponder as? NSTextView {
-                textView.continuousSpellCheckingEnabled = true
+                textView.isContinuousSpellCheckingEnabled = true
             }
             return true
         }

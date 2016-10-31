@@ -10,12 +10,12 @@ import XCTest
 
 class xliff_toolTests: XCTestCase {
     
-    var testBundle: NSBundle!
+    var testBundle: Bundle!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        testBundle = NSBundle(forClass: self.dynamicType)
+        testBundle = Bundle(for: type(of: self))
     }
     
     override func tearDown() {
@@ -25,9 +25,9 @@ class xliff_toolTests: XCTestCase {
     
     func testXliffParsing() {
         // get the URL of the XML test file
-        let url = testBundle.URLForResource("de", withExtension: "xliff")!
-        let xliffData = NSData(contentsOfURL: url)!
-        let document = try! NSXMLDocument(data: xliffData, options: NSXMLDocumentTidyHTML)
+        let url = testBundle.url(forResource: "de", withExtension: "xliff")!
+        let xliffData = try! Data(contentsOf: url)
+        let document = try! XMLDocument(data: xliffData, options: NSXMLDocumentTidyHTML)
         let xliffFile = XliffFile(xliffDocument: document)
         
         XCTAssertEqual(xliffFile.files.count, 4)
@@ -36,12 +36,12 @@ class xliff_toolTests: XCTestCase {
         XCTAssertEqual(xliffFile.files[0].sourceLanguage!, "en")
         XCTAssertEqual(xliffFile.files[0].targetLanguage!, "de")
 
-        XCTAssertEqual(xliffFile.files[0].items.first!.elementsForName("source").first!.stringValue, "Text Cell")
+        XCTAssertEqual(xliffFile.files[0].items.first!.elements(forName: "source").first!.stringValue, "Text Cell")
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

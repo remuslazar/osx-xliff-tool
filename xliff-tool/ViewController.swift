@@ -118,6 +118,21 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         
     }
     
+    private var filter = XliffFile.Filter()
+    
+    private func reloadFilter() {
+        if let xliffDocument = document?.xliffDocument {
+            xliffFile = XliffFile(xliffDocument: xliffDocument, filter: filter)
+            reloadUI()
+            updateStatusBar()
+            if !filter.searchString.isEmpty {
+                for item in xliffFile!.files {
+                    outlineView?.expandItem(item)
+                }
+            }
+        }
+    }
+    
     // MARK: Outlets
     
     @IBOutlet weak var outlineView: NSOutlineView!
@@ -134,16 +149,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     @IBAction func filter(_ sender: NSSearchField) {
-        if let xliffDocument = document?.xliffDocument {
-            xliffFile = XliffFile(xliffDocument: xliffDocument, searchString: sender.stringValue.isEmpty ? nil : sender.stringValue)
-            reloadUI()
-            updateStatusBar()
-            if !sender.stringValue.isEmpty {
-                for item in xliffFile!.files {
-                    outlineView?.expandItem(item)
-                }
-            }
-        }
+        filter.searchString = sender.stringValue
+        reloadFilter()
     }
 
     @IBAction func toggleCompactRowsMode(_ sender: AnyObject) {
@@ -156,6 +163,13 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
     @IBOutlet weak var searchField: NSSearchField!
+    
+    @IBOutlet weak var onlyNonTranslated: NSButton!
+    
+    @IBAction func toggleNonTranslatedFilterMode(_ sender: Any) {
+        filter.onlyNonTranslated  = onlyNonTranslated.state == NSOnState
+        reloadFilter()
+    }
     
     // MARK: Menu actions
     @IBAction func deleteTranslationForSelectedRow(_ sender: AnyObject) {

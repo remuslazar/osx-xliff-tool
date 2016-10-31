@@ -14,7 +14,12 @@ import Foundation
  */
 class XliffFile {
 
-    class File {
+    struct Filter {
+        var searchString: String = ""
+        var onlyNonTranslated = true
+    }
+
+    class File : NSObject {
         let name: String
         let sourceLanguage: String?
         let targetLanguage: String?
@@ -39,16 +44,27 @@ class XliffFile {
         if let root = xliffDocument.rootElement() {
             for file in root.elements(forName: "file") {
                 var items = try! file.nodes(forXPath: "body/trans-unit") as! [XMLElement]
-                if let search = searchString {
+
+                if filter.onlyNonTranslated {
+                    items = items.filter({ (elem) -> Bool in
+                        if let targetString = elem.elements(forName: "target").first?.stringValue {
+                            return targetString.isEmpty
+                        }
+                        return true
+                    })
+                }
+                
+                if !filter.searchString.isEmpty {
                     items = items.filter({ (elem) -> Bool in
                         for elementName in ["source", "target", "note"] {
                             if let s = elem.elements(forName: elementName).first?.stringValue {
-                                if s.localizedCaseInsensitiveContains(search) { return true }
+                                if s.localizedCaseInsensitiveContains(filter.searchString) { return true }
                             }
                         }
                         return false
                     })
                 }
+
                 files.append(File(
                     name: file.attribute(forName: "original")!.stringValue!,
                     items: items.map { return $0 }, // dont use the items array directly to avoid memory leaks

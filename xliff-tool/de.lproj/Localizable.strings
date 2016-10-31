@@ -11,9 +11,6 @@
 /* Read error description */
 "Could not read file." = "Die Datei kann nicht gelesen werden.";
 
-/* Read failure reason */
-"File was in an invalid format." = "Die Datei hat falsches Format.";
-
 /* Status bar label when no xliff file is loaded */
 "No xliff file loaded" = "Keine XLIFF Datei geladen";
 

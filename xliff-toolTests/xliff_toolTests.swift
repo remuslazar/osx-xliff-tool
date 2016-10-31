@@ -52,6 +52,17 @@ class xliff_toolTests: XCTestCase {
         XCTAssertEqual(xliffFile.files[0].items.first!.elements(forName: "source").first!.stringValue, "Text Cell")
     }
     
+    // check if the saved XML XLIFF file is valid XML
+    func testXliffValidAfterSave() {
+        let data = xliffDocument.xmlData
+        do {
+            let _ = try Document.getXMLDocument(from: data)
+        } catch {
+            print (error.localizedDescription)
+            XCTFail()
+        }
+    }
+    
     // check of the xml file is saved while preserving all whitespace/line breaks from the original
     func testSaveFormatting() {
         let data = xliffDocument.xmlData

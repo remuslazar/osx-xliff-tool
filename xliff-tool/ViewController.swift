@@ -46,9 +46,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
                 xliffFile = nil
             }
             outlineView.reloadData()
-            for item in xliffFile!.files {
-                outlineView?.expandItem(item)
-            }
+            xliffFile?.files.forEach { outlineView?.expandItem($0) }
         }
     }
     

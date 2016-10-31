@@ -7,6 +7,15 @@
 //
 
 import XCTest
+@testable import XLIFFTool
+
+extension String {
+    var lines:[String] {
+        var result:[String] = []
+        enumerateLines{ (line, _) in result.append(line) }
+        return result
+    }
+}
 
 class xliff_toolTests: XCTestCase {
     
@@ -41,6 +50,18 @@ class xliff_toolTests: XCTestCase {
         XCTAssertEqual(xliffFile.files[0].targetLanguage!, "de")
 
         XCTAssertEqual(xliffFile.files[0].items.first!.elements(forName: "source").first!.stringValue, "Text Cell")
+    }
+    
+    // check of the xml file is saved while preserving all whitespace/line breaks from the original
+    func testSaveFormatting() {
+        let data = xliffDocument.xmlData
+        if let content = String(data: data, encoding: .utf8),
+            let originalContent = String(data: xliffData, encoding: .utf8) {
+            // check if the 3. last line is equal
+            XCTAssertEqual(
+                content.lines[content.lines.count - 3],
+                originalContent.lines[originalContent.lines.count - 3] )
+        }
     }
     
     func testPerformanceExample() {

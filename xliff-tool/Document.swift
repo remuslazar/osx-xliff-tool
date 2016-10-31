@@ -42,7 +42,7 @@ class Document: NSDocument {
 
     class func getXMLDocument(from data: Data) throws -> XMLDocument {
         do {
-            return try XMLDocument(data: data, options: Int(XMLNode.Options.documentTidyXML.rawValue))
+            return try XMLDocument(data: data, options: Int(XMLNode.Options.nodePreserveAll.rawValue))
         } catch (let error as NSError) {
             throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
                 NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),

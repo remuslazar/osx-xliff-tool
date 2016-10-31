@@ -102,21 +102,20 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     func updateTranslationForElement(_ elem: XMLElement, newValue: String) {
-        
         if elem.elements(forName: "target").count == 0 {
             elem.addChild(XMLElement(name: "target", stringValue: ""))
         }
-        
-        let target = elem.elements(forName: "target").first!
-        if newValue != target.stringValue {
-            // register undo/redo operation
-            (document?.undoManager?.prepare(withInvocationTarget: self) as AnyObject)
-                .updateTranslationForElement(elem, newValue: target.stringValue!)
-            
-            // update the value in place
-            target.stringValue = newValue
+        guard let target = elem.elements(forName: "target").first else { return print("Not able to find or create a `target` child element") }
+        guard newValue != target.stringValue else { return } // no need to update identical values
+      
+        // register undo/redo operation
+        if let undoTarget = document?.undoManager?.prepare(withInvocationTarget: self) {
+          (undoTarget as AnyObject)
+            .updateTranslationForElement(elem, newValue: target.stringValue!)
         }
-        
+      
+        // update the value in place
+        target.stringValue = newValue
     }
     
     private var filter = XliffFile.Filter()

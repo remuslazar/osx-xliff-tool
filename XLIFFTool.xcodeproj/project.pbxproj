@@ -198,6 +198,7 @@
 					D888B2E31C3D851400660308 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 5MR244XF46;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -206,6 +207,7 @@
 					};
 					D8C0DBA61C46EF2A00320C2C = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0810;
 						TestTargetID = D888B2E31C3D851400660308;
 					};
 				};
@@ -426,6 +428,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
 				PRODUCT_NAME = XLIFFTool;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -440,6 +443,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
 				PRODUCT_NAME = XLIFFTool;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -453,6 +457,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
 				PRODUCT_NAME = XLIFFTool;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLIFFTool.app/Contents/MacOS/XLIFFTool";
 			};
 			name = Debug;
@@ -467,6 +472,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
 				PRODUCT_NAME = XLIFFTool;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLIFFTool.app/Contents/MacOS/XLIFFTool";
 			};
 			name = Release;

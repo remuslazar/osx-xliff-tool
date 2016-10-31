@@ -7,24 +7,37 @@
 //
 
 import Cocoa
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
 
-    private struct Configuration {
+    fileprivate struct Configuration {
         // max number of items in the XLIFF file to allow dynamic row height for all table rows
         // else we will re-tile just the selected row after selection, the remaining cells remaining single lined
         static let maxItemsForDynamicRowHeight = 150
     }
 
     // MARK: private data
-    private var xliffFile: XliffFile? {
+    fileprivate var xliffFile: XliffFile? {
         didSet {
             updateStatusBar()
         }
     }
     
-    override func validateMenuItem(menuItem: NSMenuItem) -> Bool {
-        if menuItem.action == Selector("toggleCompactRowsMode:") { // "Compact Rows" Setting
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        if menuItem.action == #selector(ViewController.toggleCompactRowsMode(_:)) { // "Compact Rows" Setting
             // update the menu item state to match the current dynamicRowHeight setting
             if document == nil { return false }
             menuItem.state = dynamicRowHeight ? NSOffState : NSOnState
@@ -33,7 +46,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         return true
     }
     
-    private var dynamicRowHeight = false {
+    fileprivate var dynamicRowHeight = false {
         didSet { reloadUI()}
     }
     
@@ -52,11 +65,11 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     // MARK: rowHeight Cache
     
-    private var rowHeightsCache = [NSTableColumn: [NSXMLElement: CGFloat]]()
+    fileprivate var rowHeightsCache = [NSTableColumn: [XMLElement: CGFloat]]()
 
-    private func purgeCachedHeightForItem(item: NSXMLElement) {
+    fileprivate func purgeCachedHeightForItem(_ item: XMLElement) {
         for col in rowHeightsCache.keys {
-            rowHeightsCache[col]!.removeValueForKey(item)
+            rowHeightsCache[col]!.removeValue(forKey: item)
         }
     }
     
@@ -66,7 +79,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         outlineView?.reloadData()
     }
     
-    private func updateStatusBar() {
+    fileprivate func updateStatusBar() {
         if let file = xliffFile {
             infoLabel?.stringValue = String.localizedStringWithFormat(
                 NSLocalizedString("%d file(s), %d localizable string(s) available", comment: "Status bar label"),
@@ -76,40 +89,40 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    func resizeTable(notification: NSNotification) {
+    func resizeTable(_ notification: Notification) {
         if let col = notification.userInfo?["NSTableColumn"] as? NSTableColumn {
             // invalidate cache for the specific row
-            rowHeightsCache.removeValueForKey(col)
+            rowHeightsCache.removeValue(forKey: col)
         }
-        outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(indexesInRange: NSRange(location: 0,length: outlineView.numberOfRows)))
+        outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: NSRange(location: 0,length: outlineView.numberOfRows).toRange() ?? 0..<0))
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
-            name: NSUndoManagerDidUndoChangeNotification, object: document!.undoManager)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reloadUI"),
-            name: NSUndoManagerDidRedoChangeNotification, object: document!.undoManager)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resizeTable:"),
-            name: NSOutlineViewColumnDidResizeNotification, object: outlineView)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reloadUI),
+            name: NSNotification.Name.NSUndoManagerDidUndoChange, object: document!.undoManager)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reloadUI),
+            name: NSNotification.Name.NSUndoManagerDidRedoChange, object: document!.undoManager)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.resizeTable(_:)),
+            name: NSNotification.Name.NSOutlineViewColumnDidResize, object: outlineView)
     }
    
     override func viewWillDisappear() {
         super.viewWillDisappear()
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func updateTranslationForElement(elem: NSXMLElement, newValue: String) {
+    func updateTranslationForElement(_ elem: XMLElement, newValue: String) {
         
-        if elem.elementsForName("target").count == 0 {
-            elem.addChild(NSXMLElement(name: "target", stringValue: ""))
+        if elem.elements(forName: "target").count == 0 {
+            elem.addChild(XMLElement(name: "target", stringValue: ""))
         }
         
-        let target = elem.elementsForName("target").first!
+        let target = elem.elements(forName: "target").first!
         if newValue != target.stringValue {
             // register undo/redo operation
-            document?.undoManager?.prepareWithInvocationTarget(self)
+            (document?.undoManager?.prepare(withInvocationTarget: self) as AnyObject)
                 .updateTranslationForElement(elem, newValue: target.stringValue!)
             
             // update the value in place
@@ -122,18 +135,18 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     @IBOutlet weak var outlineView: NSOutlineView!
     
-    @IBAction func textFieldEndEditing(sender: NSTextField) {
-        let row = outlineView.rowForView(sender)
+    @IBAction func textFieldEndEditing(_ sender: NSTextField) {
+        let row = outlineView.row(for: sender)
         if row != -1 {
-            if let elem = outlineView.itemAtRow(row) as? NSXMLElement {
+            if let elem = outlineView.item(atRow: row) as? XMLElement {
                 updateTranslationForElement(elem, newValue: sender.stringValue)
                 purgeCachedHeightForItem(elem)
-                outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(index: row))
+                outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: row))
             }
         }
     }
     
-    @IBAction func filter(sender: NSSearchField) {
+    @IBAction func filter(_ sender: NSSearchField) {
         if let xliffDocument = document?.xliffDocument {
             xliffFile = XliffFile(xliffDocument: xliffDocument, searchString: sender.stringValue.isEmpty ? nil : sender.stringValue)
             reloadUI()
@@ -146,7 +159,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
 
-    @IBAction func toggleCompactRowsMode(sender: AnyObject) {
+    @IBAction func toggleCompactRowsMode(_ sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
             menuItem.state = menuItem.state == NSOnState ? NSOffState : NSOnState
             dynamicRowHeight = menuItem.state == NSOffState
@@ -158,49 +171,49 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBOutlet weak var searchField: NSSearchField!
     
     // MARK: Menu actions
-    @IBAction func deleteTranslationForSelectedRow(sender: AnyObject) {
+    @IBAction func deleteTranslationForSelectedRow(_ sender: AnyObject) {
         if outlineView.selectedRow != -1 {
-            if let elem = outlineView.itemAtRow(outlineView.selectedRow) as? NSXMLElement {
+            if let elem = outlineView.item(atRow: outlineView.selectedRow) as? XMLElement {
                 updateTranslationForElement(elem, newValue: "")
-                outlineView.reloadDataForRowIndexes(NSIndexSet(index: outlineView.selectedRow),
-                    columnIndexes: NSIndexSet(index: outlineView.columnWithIdentifier("AutomaticTableColumnIdentifier.1")))
+                outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
+                    columnIndexes: IndexSet(integer: outlineView.column(withIdentifier: "AutomaticTableColumnIdentifier.1")))
             }
         }
     }
     
     /** Copy the source string to target for further editing. If no row is selected, this method does nothing */
-    @IBAction func copySourceToTargetForSelectedRow(sender: AnyObject) {
+    @IBAction func copySourceToTargetForSelectedRow(_ sender: AnyObject) {
         if outlineView.selectedRow != -1 {
-            if let elem = outlineView.itemAtRow(outlineView.selectedRow) as? NSXMLElement,
-                newValue = elem.elementsForName("source").first?.stringValue {
+            if let elem = outlineView.item(atRow: outlineView.selectedRow) as? XMLElement,
+                let newValue = elem.elements(forName: "source").first?.stringValue {
                 updateTranslationForElement(elem, newValue: newValue )
-                outlineView.reloadDataForRowIndexes(NSIndexSet(index: outlineView.selectedRow),
-                    columnIndexes: NSIndexSet(index: outlineView.columnWithIdentifier("AutomaticTableColumnIdentifier.1")))
+                outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
+                    columnIndexes: IndexSet(integer: outlineView.column(withIdentifier: "AutomaticTableColumnIdentifier.1")))
             }
         }
     }
     
     /** Activates the search/filter field in the UI so that the user can begin typing */
-    @IBAction func activateSearchField(sender: AnyObject) {
+    @IBAction func activateSearchField(_ sender: AnyObject) {
         self.view.window?.makeFirstResponder(searchField)
     }
     
     // MARK: NSOutlineView Delegate and Datasource
     
-    private var lastSelectedRow: Int?
+    fileprivate var lastSelectedRow: Int?
     
-    func outlineViewSelectionDidChange(notification: NSNotification) {
+    func outlineViewSelectionDidChange(_ notification: Notification) {
         if !dynamicRowHeight {
             // if not using the dynamicRowHeight behavior, resize the currently selected cell accordingly
-            outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(index: outlineView.selectedRow))
+            outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: outlineView.selectedRow))
             if let last = lastSelectedRow {
-                outlineView.noteHeightOfRowsWithIndexesChanged(NSIndexSet(index: last))
+                outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: last))
             }
             lastSelectedRow = outlineView.selectedRow
         }
     }
     
-    func outlineView(outlineView: NSOutlineView, numberOfChildrenOfItem item: AnyObject?) -> Int {
+    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         if item == nil { // top level item
             return xliffFile != nil ? xliffFile!.files.count : 0
         } else {
@@ -212,12 +225,12 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         return 0
     }
     
-    func outlineView(outlineView: NSOutlineView, isItemExpandable item: AnyObject) -> Bool {
+    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
         // only top-level items are expandable
         return item is XliffFile.File
     }
     
-    func outlineView(outlineView: NSOutlineView, child index: Int, ofItem item: AnyObject?) -> AnyObject {
+    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if item == nil { // root item
             return xliffFile!.files[index]
         } else {
@@ -226,22 +239,22 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    private func configureContentCell(cell: NSTableCellView, columnIdentifier identifier: String, xmlElement: NSXMLElement) {
+    fileprivate func configureContentCell(_ cell: NSTableCellView, columnIdentifier identifier: String, xmlElement: XMLElement) {
         switch identifier {
         case "AutomaticTableColumnIdentifier.0":
-            cell.textField!.stringValue = xmlElement.elementsForName("source").first?.stringValue ?? ""
+            cell.textField!.stringValue = xmlElement.elements(forName: "source").first?.stringValue ?? ""
             break
         case "AutomaticTableColumnIdentifier.1":
-            cell.textField!.stringValue = xmlElement.elementsForName("target").first?.stringValue ?? ""
+            cell.textField!.stringValue = xmlElement.elements(forName: "target").first?.stringValue ?? ""
             break
         case "AutomaticTableColumnIdentifier.2":
-            cell.textField!.stringValue = xmlElement.elementsForName("note").first?.stringValue ?? ""
+            cell.textField!.stringValue = xmlElement.elements(forName: "note").first?.stringValue ?? ""
             break
         default: break
         }
     }
     
-    private func configureGroupCell(cell: NSTableCellView, file: XliffFile.File) {
+    fileprivate func configureGroupCell(_ cell: NSTableCellView, file: XliffFile.File) {
         cell.textField!.stringValue = String.localizedStringWithFormat(
             NSLocalizedString("%@ (source=%@, target=%@)", comment: "Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container."),
             file.name,
@@ -251,16 +264,16 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     
-    private func heightForItem(item: AnyObject) -> CGFloat {
+    fileprivate func heightForItem(_ item: AnyObject) -> CGFloat {
         let heights = outlineView.tableColumns.map { (col) -> CGFloat in
-            let xmlElement = item as! NSXMLElement
+            let xmlElement = item as! XMLElement
             if let height = rowHeightsCache[col]?[xmlElement] { return height }
             
-            let cell = outlineView.makeViewWithIdentifier(col.identifier, owner: nil) as! NSTableCellView
+            let cell = outlineView.make(withIdentifier: col.identifier, owner: nil) as! NSTableCellView
             
             configureContentCell(cell, columnIdentifier: col.identifier, xmlElement: xmlElement)
             cell.layoutSubtreeIfNeeded()
-            let column = outlineView.columnWithIdentifier(col.identifier)
+            let column = outlineView.column(withIdentifier: col.identifier)
             var width = outlineView.tableColumns[column].width
             
             if (col.identifier == "AutomaticTableColumnIdentifier.0") {
@@ -279,34 +292,34 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             
             return height
         }
-        return heights.maxElement()!
+        return heights.max()!
     }
     
-    func outlineView(outlineView: NSOutlineView, viewForTableColumn tableColumn: NSTableColumn?, item: AnyObject) -> NSView? {
-        let cell = outlineView.makeViewWithIdentifier(tableColumn == nil ? "GroupedItemCellIdentifier" : tableColumn!.identifier, owner: self) as! NSTableCellView
+    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        let cell = outlineView.make(withIdentifier: tableColumn == nil ? "GroupedItemCellIdentifier" : tableColumn!.identifier, owner: self) as! NSTableCellView
         
         // configure the cell
         if let file = item as? XliffFile.File {
             configureGroupCell(cell, file: file)
-        } else if let xmlElement = item as? NSXMLElement {
+        } else if let xmlElement = item as? XMLElement {
             configureContentCell(cell, columnIdentifier: tableColumn!.identifier, xmlElement: xmlElement)
         }
 
         return cell
     }
     
-    func outlineView(outlineView: NSOutlineView, isGroupItem item: AnyObject) -> Bool {
+    func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
         return item is XliffFile.File
     }
     
-    func outlineView(outlineView: NSOutlineView, heightOfRowByItem item: AnyObject) -> CGFloat {
+    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
         if item is XliffFile.File { return outlineView.rowHeight }
         if dynamicRowHeight {
-            return heightForItem(item)
+            return heightForItem(item as AnyObject)
         } else {
-            if let selectedItem = outlineView.itemAtRow(outlineView.selectedRow) {
+            if let selectedItem = outlineView.item(atRow: outlineView.selectedRow) {
                 if item === selectedItem {
-                    return heightForItem(item)
+                    return heightForItem(item as AnyObject)
                 }
             }
             return outlineView.rowHeight

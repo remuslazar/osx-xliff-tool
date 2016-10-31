@@ -18,9 +18,9 @@ class XliffFile {
         let name: String
         let sourceLanguage: String?
         let targetLanguage: String?
-        let items: [NSXMLElement]
+        let items: [XMLElement]
         
-        init(name: String, items: [NSXMLElement], sourceLanguage: String?, targetLanguage: String?) {
+        init(name: String, items: [XMLElement], sourceLanguage: String?, targetLanguage: String?) {
             self.name = name
             self.items = items
             self.sourceLanguage = sourceLanguage
@@ -28,21 +28,21 @@ class XliffFile {
         }
     }
     
-    private let xliff: NSXMLDocument
+    fileprivate let xliff: XMLDocument
 
     /** Array of file containers available in the xliff container */
     let files: [File]
     
-    init(xliffDocument: NSXMLDocument, searchString: String? = nil) {
+    init(xliffDocument: XMLDocument, searchString: String? = nil) {
         self.xliff = xliffDocument
         var files = [File]()
         if let root = xliffDocument.rootElement() {
-            for file in root.elementsForName("file") {
-                var items = try! file.nodesForXPath("body/trans-unit") as! [NSXMLElement]
+            for file in root.elements(forName: "file") {
+                var items = try! file.nodes(forXPath: "body/trans-unit") as! [XMLElement]
                 if let search = searchString {
                     items = items.filter({ (elem) -> Bool in
                         for elementName in ["original", "target", "note"] {
-                            if let s = elem.elementsForName(elementName).first?.stringValue {
+                            if let s = elem.elements(forName: elementName).first?.stringValue {
                                 if s.localizedCaseInsensitiveContainsString(search) { return true }
                             }
                         }
@@ -50,10 +50,10 @@ class XliffFile {
                     })
                 }
                 files.append(File(
-                    name: file.attributeForName("original")!.stringValue!,
+                    name: file.attribute(forName: "original")!.stringValue!,
                     items: items.map { return $0 }, // dont use the items array directly to avoid memory leaks
-                    sourceLanguage: file.attributeForName("source-language")?.stringValue,
-                    targetLanguage: file.attributeForName("target-language")?.stringValue))
+                    sourceLanguage: file.attribute(forName: "source-language")?.stringValue,
+                    targetLanguage: file.attribute(forName: "target-language")?.stringValue))
             }
         }
         
@@ -63,7 +63,7 @@ class XliffFile {
     var totalCount: Int {
         return files.map({ (file) -> Int in
             return file.items.count
-        }).reduce(0, combine: +)
+        }).reduce(0, +)
     }
     
 }

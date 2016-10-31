@@ -41,7 +41,7 @@ class XliffFile {
                 var items = try! file.nodes(forXPath: "body/trans-unit") as! [XMLElement]
                 if let search = searchString {
                     items = items.filter({ (elem) -> Bool in
-                        for elementName in ["original", "target", "note"] {
+                        for elementName in ["source", "target", "note"] {
                             if let s = elem.elements(forName: elementName).first?.stringValue {
                                 if s.localizedCaseInsensitiveContains(search) { return true }
                             }

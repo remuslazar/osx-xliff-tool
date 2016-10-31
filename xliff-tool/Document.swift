@@ -40,19 +40,22 @@ class Document: NSDocument {
 //        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
-    override func read(from data: Data, ofType typeName: String) throws {
-        // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
-        // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
-        // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
+    class func getXMLDocument(from data: Data) throws -> XMLDocument {
         do {
-            self.xliffDocument = try XMLDocument(data: data, options: 0)
+            return try XMLDocument(data: data, options: Int(XMLNode.Options.documentTidyXML.rawValue))
         } catch (let error as NSError) {
             throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
                 NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),
                 NSLocalizedFailureReasonErrorKey: error.localizedDescription
                 ])
         }
-        
+    }
+    
+    override func read(from data: Data, ofType typeName: String) throws {
+        // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
+        // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
+        // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
+        self.xliffDocument = try Document.getXMLDocument(from: data)
     }
     
     @IBAction func reloadDocument(_ sender: AnyObject?) {

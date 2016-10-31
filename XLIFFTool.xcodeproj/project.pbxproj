@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80784791DC7491F009582E0 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2EB1C3D851400660308 /* Document.swift */; };
 		D888B2E81C3D851400660308 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2E71C3D851400660308 /* AppDelegate.swift */; };
 		D888B2EA1C3D851400660308 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2E91C3D851400660308 /* ViewController.swift */; };
 		D888B2EC1C3D851400660308 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2EB1C3D851400660308 /* Document.swift */; };
@@ -278,6 +279,7 @@
 			files = (
 				D8C0DBAA1C46EF2A00320C2C /* xliff_toolTests.swift in Sources */,
 				D8C0DBB41C46F5DC00320C2C /* XliffFile.swift in Sources */,
+				D80784791DC7491F009582E0 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,11 +11,19 @@ import XCTest
 class xliff_toolTests: XCTestCase {
     
     var testBundle: Bundle!
+    var xliffFile: XliffFile!
+    var xliffDocument: XMLDocument!
+    var xliffData: Data!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         testBundle = Bundle(for: type(of: self))
+        let url = testBundle.url(forResource: "de", withExtension: "xliff")!
+        xliffData = try! Data(contentsOf: url)
+        
+        xliffDocument = try! Document.getXMLDocument(from: xliffData)
+        xliffFile = XliffFile(xliffDocument: xliffDocument)
     }
     
     override func tearDown() {
@@ -25,10 +33,6 @@ class xliff_toolTests: XCTestCase {
     
     func testXliffParsing() {
         // get the URL of the XML test file
-        let url = testBundle.url(forResource: "de", withExtension: "xliff")!
-        let xliffData = try! Data(contentsOf: url)
-        let document = try! XMLDocument(data: xliffData, options: NSXMLDocumentTidyHTML)
-        let xliffFile = XliffFile(xliffDocument: document)
         
         XCTAssertEqual(xliffFile.files.count, 4)
         XCTAssertEqual(xliffFile.totalCount, 70)

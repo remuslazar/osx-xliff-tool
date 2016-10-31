@@ -45,12 +45,11 @@ class Document: NSDocument {
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
         do {
-            self.xliffDocument = try XMLDocument(data: data, options: NSXMLDocumentTidyHTML)
+            self.xliffDocument = try XMLDocument(data: data, options: 0)
         } catch (let error as NSError) {
             throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
                 NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),
-                NSLocalizedFailureReasonErrorKey: error.localizedDescription ??
-                    NSLocalizedString("File was in an invalid format.", comment: "Read failure reason")
+                NSLocalizedFailureReasonErrorKey: error.localizedDescription
                 ])
         }
         

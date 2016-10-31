@@ -28,7 +28,7 @@ class XliffFile {
         }
     }
     
-    fileprivate let xliff: XMLDocument
+    private let xliff: XMLDocument
 
     /** Array of file containers available in the xliff container */
     let files: [File]
@@ -43,7 +43,7 @@ class XliffFile {
                     items = items.filter({ (elem) -> Bool in
                         for elementName in ["original", "target", "note"] {
                             if let s = elem.elements(forName: elementName).first?.stringValue {
-                                if s.localizedCaseInsensitiveContainsString(search) { return true }
+                                if s.localizedCaseInsensitiveContains(search) { return true }
                             }
                         }
                         return false

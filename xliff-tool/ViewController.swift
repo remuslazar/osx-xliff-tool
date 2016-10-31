@@ -7,30 +7,17 @@
 //
 
 import Cocoa
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
 
 class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
 
-    fileprivate struct Configuration {
+    private struct Configuration {
         // max number of items in the XLIFF file to allow dynamic row height for all table rows
         // else we will re-tile just the selected row after selection, the remaining cells remaining single lined
         static let maxItemsForDynamicRowHeight = 150
     }
 
     // MARK: private data
-    fileprivate var xliffFile: XliffFile? {
+    private var xliffFile: XliffFile? {
         didSet {
             updateStatusBar()
         }
@@ -46,7 +33,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         return true
     }
     
-    fileprivate var dynamicRowHeight = false {
+    private var dynamicRowHeight = false {
         didSet { reloadUI()}
     }
     
@@ -54,7 +41,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         didSet {
             if let xliffDocument = document?.xliffDocument {
                 xliffFile = XliffFile(xliffDocument: xliffDocument)
-                if xliffFile?.totalCount < Configuration.maxItemsForDynamicRowHeight { dynamicRowHeight = true }
+                if xliffFile != nil && xliffFile!.totalCount < Configuration.maxItemsForDynamicRowHeight { dynamicRowHeight = true }
             } else {
                 xliffFile = nil
             }
@@ -65,9 +52,9 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     // MARK: rowHeight Cache
     
-    fileprivate var rowHeightsCache = [NSTableColumn: [XMLElement: CGFloat]]()
+    private var rowHeightsCache = [NSTableColumn: [XMLElement: CGFloat]]()
 
-    fileprivate func purgeCachedHeightForItem(_ item: XMLElement) {
+    private func purgeCachedHeightForItem(_ item: XMLElement) {
         for col in rowHeightsCache.keys {
             rowHeightsCache[col]!.removeValue(forKey: item)
         }
@@ -79,7 +66,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         outlineView?.reloadData()
     }
     
-    fileprivate func updateStatusBar() {
+    private func updateStatusBar() {
         if let file = xliffFile {
             infoLabel?.stringValue = String.localizedStringWithFormat(
                 NSLocalizedString("%d file(s), %d localizable string(s) available", comment: "Status bar label"),
@@ -200,7 +187,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     // MARK: NSOutlineView Delegate and Datasource
     
-    fileprivate var lastSelectedRow: Int?
+    private var lastSelectedRow: Int?
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
         if !dynamicRowHeight {
@@ -239,7 +226,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    fileprivate func configureContentCell(_ cell: NSTableCellView, columnIdentifier identifier: String, xmlElement: XMLElement) {
+    private func configureContentCell(_ cell: NSTableCellView, columnIdentifier identifier: String, xmlElement: XMLElement) {
         switch identifier {
         case "AutomaticTableColumnIdentifier.0":
             cell.textField!.stringValue = xmlElement.elements(forName: "source").first?.stringValue ?? ""
@@ -254,7 +241,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    fileprivate func configureGroupCell(_ cell: NSTableCellView, file: XliffFile.File) {
+    private func configureGroupCell(_ cell: NSTableCellView, file: XliffFile.File) {
         cell.textField!.stringValue = String.localizedStringWithFormat(
             NSLocalizedString("%@ (source=%@, target=%@)", comment: "Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container."),
             file.name,
@@ -264,7 +251,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     
-    fileprivate func heightForItem(_ item: AnyObject) -> CGFloat {
+    private func heightForItem(_ item: AnyObject) -> CGFloat {
         let heights = outlineView.tableColumns.map { (col) -> CGFloat in
             let xmlElement = item as! XMLElement
             if let height = rowHeightsCache[col]?[xmlElement] { return height }
@@ -316,14 +303,12 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         if item is XliffFile.File { return outlineView.rowHeight }
         if dynamicRowHeight {
             return heightForItem(item as AnyObject)
-        } else {
-            if let selectedItem = outlineView.item(atRow: outlineView.selectedRow) {
-                if item === selectedItem {
-                    return heightForItem(item as AnyObject)
-                }
+        } else if let item = item as? XMLElement, let selectedItem = outlineView.item(atRow: outlineView.selectedRow) as? XMLElement {
+            if item === selectedItem {
+                return heightForItem(item as AnyObject)
             }
-            return outlineView.rowHeight
         }
+        return outlineView.rowHeight
     }
     
 }

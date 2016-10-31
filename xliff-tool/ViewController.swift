@@ -46,6 +46,9 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
                 xliffFile = nil
             }
             outlineView.reloadData()
+            for item in xliffFile!.files {
+                outlineView?.expandItem(item)
+            }
         }
     }
     
@@ -125,11 +128,6 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             xliffFile = XliffFile(xliffDocument: xliffDocument, filter: filter)
             reloadUI()
             updateStatusBar()
-            if !filter.searchString.isEmpty {
-                for item in xliffFile!.files {
-                    outlineView?.expandItem(item)
-                }
-            }
         }
     }
     

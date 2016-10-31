@@ -24,12 +24,26 @@ class XliffFile {
         let sourceLanguage: String?
         let targetLanguage: String?
         let items: [XMLElement]
+        let file: XMLElement
         
-        init(name: String, items: [XMLElement], sourceLanguage: String?, targetLanguage: String?) {
+        init(name: String, items: [XMLElement], sourceLanguage: String?, targetLanguage: String?, transUnit: XMLElement) {
             self.name = name
             self.items = items
             self.sourceLanguage = sourceLanguage
             self.targetLanguage = targetLanguage
+            self.file = transUnit
+        }
+        
+        // tweak the hash and isEqual for preserving the expanded state on NSOutlineView later on
+        override var hash: Int {
+            return self.file.hash
+        }
+        
+        override func isEqual(_ object: Any?) -> Bool {
+            if let otherFile = object as? File {
+                return name == otherFile.name
+            }
+            return false
         }
     }
     
@@ -38,7 +52,7 @@ class XliffFile {
     /** Array of file containers available in the xliff container */
     let files: [File]
     
-    init(xliffDocument: XMLDocument, searchString: String? = nil) {
+    init(xliffDocument: XMLDocument, filter: Filter = Filter()) {
         self.xliff = xliffDocument
         var files = [File]()
         if let root = xliffDocument.rootElement() {
@@ -69,7 +83,9 @@ class XliffFile {
                     name: file.attribute(forName: "original")!.stringValue!,
                     items: items.map { return $0 }, // dont use the items array directly to avoid memory leaks
                     sourceLanguage: file.attribute(forName: "source-language")?.stringValue,
-                    targetLanguage: file.attribute(forName: "target-language")?.stringValue))
+                    targetLanguage: file.attribute(forName: "target-language")?.stringValue,
+                    transUnit: file
+                    ))
             }
         }
         

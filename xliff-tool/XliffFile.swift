@@ -47,13 +47,19 @@ class XliffFile {
         let source: String
         var target: String? {
             didSet {
-                // create the XML tag if needed
-                if xmlElement.elements(forName: "target").count == 0 {
-                    xmlElement.addChild(XMLElement(name: "target", stringValue: ""))
+                if target != nil {
+                    // create the XML tag if needed
+                    if xmlElement.elements(forName: "target").count == 0 {
+                        xmlElement.addChild(XMLElement(name: "target", stringValue: ""))
+                    }
+                    // update the value in the XML document as well
+                    let targetXMLElement = xmlElement.elements(forName: "target").first!
+                    targetXMLElement.stringValue = target
+                } else {
+                    if let targetTag = xmlElement.elements(forName: "target").first {
+                        xmlElement.removeChild(at: targetTag.index)
+                    }
                 }
-                // update the value in the XML document as well
-                let targetXMLElement = xmlElement.elements(forName: "target").first!
-                targetXMLElement.stringValue = target
             }
         }
         let note: String?

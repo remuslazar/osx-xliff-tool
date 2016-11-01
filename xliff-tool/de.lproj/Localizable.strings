@@ -14,6 +14,9 @@
 /* Read error description */
 "Could not read file." = "Die Datei kann nicht gelesen werden.";
 
+/* Placeholder String when no translation is available */
+"No translation" = "Nicht übersetzt";
+
 /* Status bar label when no xliff file is loaded */
 "No xliff file loaded" = "Keine XLIFF Datei geladen";
 

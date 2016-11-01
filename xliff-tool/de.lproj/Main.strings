@@ -94,9 +94,6 @@
 /* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
 "Td7-aD-5lo.title" = "Fenster";
 
-/* Class = "NSTextFieldCell"; placeholderString = "Not translated"; ObjectID = "VLe-zm-rdx"; */
-"VLe-zm-rdx.placeholderString" = "Keine Übersetzung vorhanden";
-
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "VLe-zm-rdx"; */
 "VLe-zm-rdx.title" = "Table View Cell";
 

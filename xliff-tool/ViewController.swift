@@ -139,6 +139,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
                 updateTranslationForElement(elem, newValue: sender.stringValue)
                 purgeCachedHeightForItem(elem)
                 outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: row))
+                outlineView.reloadItem(elem)
             }
         }
     }
@@ -170,7 +171,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBAction func deleteTranslationForSelectedRow(_ sender: AnyObject) {
         if outlineView.selectedRow != -1 {
             if let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
-                updateTranslationForElement(elem, newValue: "")
+                updateTranslationForElement(elem, newValue: nil)
                 outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
                     columnIndexes: IndexSet(integer: outlineView.column(withIdentifier: "AutomaticTableColumnIdentifier.1")))
             }
@@ -241,7 +242,13 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             cell.textField!.stringValue = transUnit.source
             break
         case "AutomaticTableColumnIdentifier.1":
-            cell.textField!.stringValue = transUnit.target ?? ""
+            if let content = transUnit.target {
+                cell.textField!.stringValue = content
+                cell.textField?.placeholderString = nil
+            } else {
+                cell.textField?.placeholderString = NSLocalizedString("No translation", comment: "Placeholder String when no translation is available")
+                cell.textField?.stringValue = ""
+            }
             break
         case "AutomaticTableColumnIdentifier.2":
             cell.textField!.stringValue = transUnit.note ?? ""

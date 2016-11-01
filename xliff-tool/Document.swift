@@ -40,7 +40,7 @@ class Document: NSDocument {
 //        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
-    class func getXMLDocument(from data: Data) throws -> XMLDocument {
+    private class func getXMLDocument(from data: Data) throws -> XMLDocument {
         do {
             return try XMLDocument(data: data, options: Int(
                 XMLNode.Options.nodePreserveWhitespace.rawValue

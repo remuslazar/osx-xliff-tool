@@ -19,32 +19,27 @@ class XliffFile {
         var onlyNonTranslated = true
     }
 
-    class File : NSObject {
+    struct File: Hashable {
         let name: String
         let sourceLanguage: String?
         let targetLanguage: String?
         let items: [XMLElement]
-        let file: XMLElement
         
-        init(name: String, items: [XMLElement], sourceLanguage: String?, targetLanguage: String?, transUnit: XMLElement) {
+        init(name: String, items: [XMLElement], sourceLanguage: String?, targetLanguage: String?) {
             self.name = name
             self.items = items
             self.sourceLanguage = sourceLanguage
             self.targetLanguage = targetLanguage
-            self.file = transUnit
         }
         
-        // tweak the hash and isEqual for preserving the expanded state on NSOutlineView later on
-        override var hash: Int {
-            return self.file.hash
+        static func == (lhs: File, rhs: File) -> Bool {
+            return lhs.name == rhs.name
         }
         
-        override func isEqual(_ object: Any?) -> Bool {
-            if let otherFile = object as? File {
-                return name == otherFile.name
-            }
-            return false
+        var hashValue: Int {
+            return self.name.hashValue
         }
+        
     }
     
     private let xliff: XMLDocument
@@ -83,8 +78,7 @@ class XliffFile {
                     name: file.attribute(forName: "original")!.stringValue!,
                     items: items.map { return $0 }, // dont use the items array directly to avoid memory leaks
                     sourceLanguage: file.attribute(forName: "source-language")?.stringValue,
-                    targetLanguage: file.attribute(forName: "target-language")?.stringValue,
-                    transUnit: file
+                    targetLanguage: file.attribute(forName: "target-language")?.stringValue
                     ))
             }
         }

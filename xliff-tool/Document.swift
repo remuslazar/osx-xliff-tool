@@ -59,6 +59,9 @@ class Document: NSDocument {
         // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
         // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
         self.xliffDocument = try Document.getXMLDocument(from: data)
+
+        // try to read/parse the full document (without filtering) to potentially throw an error prior to opening it
+        try _ = XliffFile(xliffDocument: xliffDocument, filter: nil)
     }
     
     @IBAction func reloadDocument(_ sender: AnyObject?) {

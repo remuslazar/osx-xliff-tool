@@ -40,8 +40,12 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     weak var document: Document? {
         didSet {
             if let xliffDocument = document?.xliffDocument {
-                xliffFile = XliffFile(xliffDocument: xliffDocument)
-                if xliffFile != nil && xliffFile!.totalCount < Configuration.maxItemsForDynamicRowHeight { dynamicRowHeight = true }
+                // already validated, this should never fail
+                try! xliffFile = XliffFile(xliffDocument: xliffDocument, filter: filter)
+                
+                if let file = xliffFile, file.totalCount < Configuration.maxItemsForDynamicRowHeight {
+                    dynamicRowHeight = true
+                }
             } else {
                 xliffFile = nil
             }
@@ -118,7 +122,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     private func reloadFilter() {
         if let xliffDocument = document?.xliffDocument {
-            xliffFile = XliffFile(xliffDocument: xliffDocument, filter: filter)
+            try! xliffFile = XliffFile(xliffDocument: xliffDocument, filter: filter)
             reloadUI()
             updateStatusBar()
         }
@@ -176,8 +180,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     /** Copy the source string to target for further editing. If no row is selected, this method does nothing */
     @IBAction func copySourceToTargetForSelectedRow(_ sender: AnyObject) {
         if outlineView.selectedRow != -1 {
-            if let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit,
-                let newValue = elem.source {
+            if let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
+                let newValue = elem.source
                 updateTranslationForElement(elem, newValue: newValue )
                 outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
                     columnIndexes: IndexSet(integer: outlineView.column(withIdentifier: "AutomaticTableColumnIdentifier.1")))
@@ -234,7 +238,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     private func configureContentCell(_ cell: NSTableCellView, columnIdentifier identifier: String, transUnit: XliffFile.TransUnit) {
         switch identifier {
         case "AutomaticTableColumnIdentifier.0":
-            cell.textField!.stringValue = transUnit.source ?? ""
+            cell.textField!.stringValue = transUnit.source
             break
         case "AutomaticTableColumnIdentifier.1":
             cell.textField!.stringValue = transUnit.target ?? ""

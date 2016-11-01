@@ -8,9 +8,18 @@
    Placeholder telling the user that the target language for a specific file is unavailable in the source xliff file */
 "?" = "?";
 
+/* XliffFile Parse Error: Failure Reason */
+"Could not parse the XLIFF XML file at: \"%@\"" = "XLIFF XML Datei konnte nicht verarbeitet werden an der Stelle: \"%@\"";
+
 /* Read error description */
 "Could not read file." = "Die Datei kann nicht gelesen werden.";
 
 /* Status bar label when no xliff file is loaded */
 "No xliff file loaded" = "Keine XLIFF Datei geladen";
+
+/* XliffFile Parse Error: Recovery Suggestion */
+"Try to re-generate the XLIFF file with Xcode using \"Editor > Export For Localization\" Menu Action and re-open it." = "Die XLIFF Datei mit Xcode \"Editor > Export for Localization\" neu erzeugen und anschließend erneut öffnen.";
+
+/* XliffFile Parse Error: Description */
+"XLIFF format error" = "XLIFF Formatierungsfehler";
 

@@ -18,11 +18,33 @@ class XliffFile {
         var searchString: String = ""
         var onlyNonTranslated = true
     }
-
+    
+    private static let ErrorDomain = "lazar.info.xliff-tool.xliff-file"
+    
+    private static func parseError(in xmlElement: XMLElement) -> NSError {
+        return NSError(
+            domain: XliffFile.ErrorDomain,
+            code: -1,
+            userInfo: [
+                NSLocalizedDescriptionKey: NSLocalizedString(
+                    "XLIFF format error",
+                    comment: "XliffFile Parse Error: Description" ),
+                NSLocalizedFailureReasonErrorKey: String.localizedStringWithFormat(
+                    NSLocalizedString(
+                        "Could not parse the XLIFF XML file at: \"%@\"",
+                        comment: "XliffFile Parse Error: Failure Reason" ),
+                    xmlElement.xPath!),
+                    NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(
+                    "Try to re-generate the XLIFF file with Xcode using \"Editor > Export For Localization\" Menu Action and re-open it.",
+                    comment: "XliffFile Parse Error: Recovery Suggestion" ),
+                ]
+        )
+    }
+    
     // TransUnit must be an @objc class because we're using it in the UndoManager
     @objc class TransUnit: NSObject {
         let id: String
-        let source: String?
+        let source: String
         var target: String? {
             didSet {
                 // create the XML tag if needed
@@ -37,13 +59,19 @@ class XliffFile {
         let note: String?
         private let xmlElement: XMLElement
         
-        init(xml: XMLElement) {
+        init(xml: XMLElement) throws {
             xmlElement = xml
-            self.id = xml.attribute(forName: "id")!.stringValue!
-            self.source = xml.elements(forName: "source").first?.stringValue
+            
+            guard let id = xml.attribute(forName: "id")?.stringValue,
+                let source = xml.elements(forName: "source").first?.stringValue
+                else { throw XliffFile.parseError(in: xml) }
+            
+            self.id = id
+            self.source = source
             self.target = xml.elements(forName: "target").first?.stringValue
             self.note = xml.elements(forName: "note").first?.stringValue
         }
+        
     }
     
     struct File: Hashable {
@@ -69,38 +97,41 @@ class XliffFile {
         
     }
     
-    private let xliff: XMLDocument
-
     /** Array of file containers available in the xliff container */
     let files: [File]
     
-    init(xliffDocument: XMLDocument, filter: Filter = Filter()) {
-        self.xliff = xliffDocument
+    init(xliffDocument: XMLDocument, filter: Filter? = Filter()) throws {
         var files = [File]()
         if let root = xliffDocument.rootElement() {
             for file in root.elements(forName: "file") {
-                var items = (try! file.nodes(forXPath: "body/trans-unit") as! [XMLElement])
-                    .map { TransUnit(xml: $0) }
                 
-                if filter.onlyNonTranslated {
-                    items = items.filter({
-                        if let targetString = $0.target {
-                            return targetString.isEmpty
-                        }
-                        return true
-                    })
-                }
+                guard let name = file.attribute(forName: "original")?.stringValue
+                    else { throw XliffFile.parseError(in: file) }
                 
-                if !filter.searchString.isEmpty {
-                    items = items.filter({
-                        return ($0.source?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
-                            || ($0.target?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
-                            || ($0.note?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
-                    })
+                var items = try ( file.nodes(forXPath: "body/trans-unit") as! [XMLElement])
+                    .map { try TransUnit(xml: $0) }
+                
+                if let filter = filter {
+                    if filter.onlyNonTranslated {
+                        items = items.filter({
+                            if let targetString = $0.target {
+                                return targetString.isEmpty
+                            }
+                            return true
+                        })
+                    }
+                    
+                    if !filter.searchString.isEmpty {
+                        items = items.filter({
+                            return $0.source.localizedCaseInsensitiveContains(filter.searchString)
+                                || ($0.target?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
+                                || ($0.note?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
+                        })
+                    }
                 }
 
                 files.append(File(
-                    name: file.attribute(forName: "original")!.stringValue!,
+                    name: name,
                     items: items,
                     sourceLanguage: file.attribute(forName: "source-language")?.stringValue,
                     targetLanguage: file.attribute(forName: "target-language")?.stringValue

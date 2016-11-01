@@ -14,14 +14,23 @@
 /* Read error description */
 "Could not read file." = "Die Datei kann nicht gelesen werden.";
 
+/* TransUnit Validation Error: Failure Reason */
+"Missing format chars" = "Fehlende Formatelemente";
+
 /* Placeholder String when no translation is available */
 "No translation" = "Nicht übersetzt";
 
 /* Status bar label when no xliff file is loaded */
 "No xliff file loaded" = "Keine XLIFF Datei geladen";
 
+/* TransUnit Validation Error: Recovery Suggestion */
+"Target does not contain all format characters from the source, missing \"%@\"." = "Folgende Formatelemente fehlen in der Eingabe: \"%@\".";
+
 /* XliffFile Parse Error: Recovery Suggestion */
 "Try to re-generate the XLIFF file with Xcode using \"Editor > Export For Localization\" Menu Action and re-open it." = "Die XLIFF Datei mit Xcode \"Editor > Export for Localization\" neu erzeugen und anschließend erneut öffnen.";
+
+/* TransUnit Validation Error: Description */
+"Validation Error" = "Validierungsfehler";
 
 /* XliffFile Parse Error: Description */
 "XLIFF format error" = "XLIFF Formatierungsfehler";

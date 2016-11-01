@@ -78,6 +78,28 @@ class XliffFile {
             self.note = xml.elements(forName: "note").first?.stringValue
         }
         
+        func validate(targetString: String) throws -> Void {
+            let regex = try! NSRegularExpression(
+                pattern: "\\%(\\d\\$)?[\\-+ #0]*\\d*(hh|h|l|lell|ll|lell-lell|j|z|t|L)?(\\.\\d+)?.", options: []
+            )
+            let matches = regex.matches(in: source, options: [], range: NSMakeRange(0,source.characters.count))
+            let formatStrings = matches.map { (source as NSString).substring(with: $0.range) }
+            let missingFormatStrings = formatStrings.filter { (targetString as NSString).range(of: $0).location == NSNotFound }
+            
+            if !missingFormatStrings.isEmpty {
+                throw NSError(domain: XliffFile.ErrorDomain, code: -1, userInfo: [
+                    NSLocalizedDescriptionKey: NSLocalizedString(
+                        "Validation Error",
+                        comment: "TransUnit Validation Error: Description" ),
+                    NSLocalizedFailureReasonErrorKey: NSLocalizedString(
+                        "Missing format chars",
+                        comment: "TransUnit Validation Error: Failure Reason" ),
+                    NSLocalizedRecoverySuggestionErrorKey: String.localizedStringWithFormat(NSLocalizedString("Target does not contain all format characters from the source, missing \"%@\".", comment: "TransUnit Validation Error: Recovery Suggestion"), missingFormatStrings.joined(separator: ",")),
+                    ]
+                )
+            }
+        }
+        
     }
     
     struct File: Hashable {

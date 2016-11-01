@@ -375,6 +375,7 @@ CA
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <action selector="textFieldEndEditing:" target="5gI-5U-AMq" id="Zug-yc-muK"/>
+                                                                        <outlet property="delegate" destination="5gI-5U-AMq" id="Ctl-qF-UiI"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>

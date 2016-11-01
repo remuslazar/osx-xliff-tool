@@ -144,6 +144,22 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+        let selectedRow = outlineView.selectedRow
+        if let newValue = fieldEditor.string, selectedRow > -1 {
+            if let selectedElement = outlineView.item(atRow: selectedRow) as? XliffFile.TransUnit {
+                do {
+                    try selectedElement.validate(targetString: newValue)
+                } catch {
+                    presentError(error)
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+    
     @IBAction func filter(_ sender: NSSearchField) {
         filter.searchString = sender.stringValue
         reloadFilter()

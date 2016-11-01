@@ -19,13 +19,40 @@ class XliffFile {
         var onlyNonTranslated = true
     }
 
+    // TransUnit must be an @objc class because we're using it in the UndoManager
+    @objc class TransUnit: NSObject {
+        let id: String
+        let source: String?
+        var target: String? {
+            didSet {
+                // create the XML tag if needed
+                if xmlElement.elements(forName: "target").count == 0 {
+                    xmlElement.addChild(XMLElement(name: "target", stringValue: ""))
+                }
+                // update the value in the XML document as well
+                let targetXMLElement = xmlElement.elements(forName: "target").first!
+                targetXMLElement.stringValue = target
+            }
+        }
+        let note: String?
+        private let xmlElement: XMLElement
+        
+        init(xml: XMLElement) {
+            xmlElement = xml
+            self.id = xml.attribute(forName: "id")!.stringValue!
+            self.source = xml.elements(forName: "source").first?.stringValue
+            self.target = xml.elements(forName: "target").first?.stringValue
+            self.note = xml.elements(forName: "note").first?.stringValue
+        }
+    }
+    
     struct File: Hashable {
         let name: String
         let sourceLanguage: String?
         let targetLanguage: String?
-        let items: [XMLElement]
+        let items: [TransUnit]
         
-        init(name: String, items: [XMLElement], sourceLanguage: String?, targetLanguage: String?) {
+        init(name: String, items: [TransUnit], sourceLanguage: String?, targetLanguage: String?) {
             self.name = name
             self.items = items
             self.sourceLanguage = sourceLanguage
@@ -52,11 +79,12 @@ class XliffFile {
         var files = [File]()
         if let root = xliffDocument.rootElement() {
             for file in root.elements(forName: "file") {
-                var items = try! file.nodes(forXPath: "body/trans-unit") as! [XMLElement]
-
+                var items = (try! file.nodes(forXPath: "body/trans-unit") as! [XMLElement])
+                    .map { TransUnit(xml: $0) }
+                
                 if filter.onlyNonTranslated {
-                    items = items.filter({ (elem) -> Bool in
-                        if let targetString = elem.elements(forName: "target").first?.stringValue {
+                    items = items.filter({
+                        if let targetString = $0.target {
                             return targetString.isEmpty
                         }
                         return true
@@ -64,19 +92,16 @@ class XliffFile {
                 }
                 
                 if !filter.searchString.isEmpty {
-                    items = items.filter({ (elem) -> Bool in
-                        for elementName in ["source", "target", "note"] {
-                            if let s = elem.elements(forName: elementName).first?.stringValue {
-                                if s.localizedCaseInsensitiveContains(filter.searchString) { return true }
-                            }
-                        }
-                        return false
+                    items = items.filter({
+                        return ($0.source?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
+                            || ($0.target?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
+                            || ($0.note?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
                     })
                 }
 
                 files.append(File(
                     name: file.attribute(forName: "original")!.stringValue!,
-                    items: items.map { return $0 }, // dont use the items array directly to avoid memory leaks
+                    items: items,
                     sourceLanguage: file.attribute(forName: "source-language")?.stringValue,
                     targetLanguage: file.attribute(forName: "target-language")?.stringValue
                     ))

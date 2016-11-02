@@ -19,7 +19,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     // MARK: private data
     private var xliffFile: XliffFile? {
         didSet {
-            updateStatusBar()
+            reloadUI()
         }
     }
     
@@ -49,7 +49,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             } else {
                 xliffFile = nil
             }
-            outlineView.reloadData()
+            outlineView?.reloadData()
             xliffFile?.files.forEach { outlineView?.expandItem($0) }
         }
     }
@@ -69,6 +69,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     func reloadUI() {
         outlineView?.reloadData()
+        updateStatusBar()
     }
     
     private func updateStatusBar() {
@@ -123,8 +124,6 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     private func reloadFilter() {
         if let xliffDocument = document?.xliffDocument {
             try! xliffFile = XliffFile(xliffDocument: xliffDocument, filter: filter)
-            reloadUI()
-            updateStatusBar()
         }
     }
     
@@ -134,26 +133,24 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     @IBAction func textFieldEndEditing(_ sender: NSTextField) {
         let row = outlineView.row(for: sender)
-        if row != -1 {
-            if let elem = outlineView.item(atRow: row) as? XliffFile.TransUnit {
-                updateTranslationForElement(elem, newValue: sender.stringValue)
-                purgeCachedHeightForItem(elem)
-                outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: row))
-                outlineView.reloadItem(elem)
-            }
+        if row != -1, let elem = outlineView.item(atRow: row) as? XliffFile.TransUnit {
+            updateTranslationForElement(elem, newValue: sender.stringValue)
+            purgeCachedHeightForItem(elem)
+            outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: row))
+            outlineView.reloadItem(elem)
         }
     }
     
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         let selectedRow = outlineView.selectedRow
-        if let newValue = fieldEditor.string, selectedRow > -1 {
-            if let selectedElement = outlineView.item(atRow: selectedRow) as? XliffFile.TransUnit {
-                do {
-                    try selectedElement.validate(targetString: newValue)
-                } catch {
-                    presentError(error)
-                    return false
-                }
+        if let newValue = fieldEditor.string,
+            selectedRow > -1,
+            let selectedElement = outlineView.item(atRow: selectedRow) as? XliffFile.TransUnit {
+            do {
+                try selectedElement.validate(targetString: newValue)
+            } catch {
+                presentError(error)
+                return false
             }
         }
         
@@ -185,24 +182,24 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     // MARK: Menu actions
     @IBAction func deleteTranslationForSelectedRow(_ sender: AnyObject) {
-        if outlineView.selectedRow != -1 {
-            if let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
-                updateTranslationForElement(elem, newValue: nil)
-                outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
-                    columnIndexes: IndexSet(integer: outlineView.column(withIdentifier: "AutomaticTableColumnIdentifier.1")))
-            }
+        if outlineView.selectedRow != -1,
+            let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
+            updateTranslationForElement(elem, newValue: nil)
+            outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
+                                   columnIndexes: IndexSet(integer: outlineView.column(
+                                    withIdentifier: "AutomaticTableColumnIdentifier.1")))
         }
     }
     
     /** Copy the source string to target for further editing. If no row is selected, this method does nothing */
     @IBAction func copySourceToTargetForSelectedRow(_ sender: AnyObject) {
-        if outlineView.selectedRow != -1 {
-            if let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
-                let newValue = elem.source
-                updateTranslationForElement(elem, newValue: newValue )
-                outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
-                    columnIndexes: IndexSet(integer: outlineView.column(withIdentifier: "AutomaticTableColumnIdentifier.1")))
-            }
+        if outlineView.selectedRow != -1,
+            let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
+            let newValue = elem.source
+            updateTranslationForElement(elem, newValue: newValue )
+            outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
+                                   columnIndexes: IndexSet(integer: outlineView.column(
+                                    withIdentifier: "AutomaticTableColumnIdentifier.1")))
         }
     }
     
@@ -227,12 +224,10 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if item == nil { // top level item
-            return xliffFile != nil ? xliffFile!.files.count : 0
-        } else {
-            if let file = item as? XliffFile.File {
-                return file.items.count
-            }
+        if item == nil, let xliffFile = xliffFile { // top level item
+            return xliffFile.files.count
+        } else if let file = item as? XliffFile.File {
+            return file.items.count
         }
         
         return 0
@@ -345,4 +340,3 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
 }
-

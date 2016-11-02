@@ -81,7 +81,7 @@ class xliff_toolTests: XCTestCase {
         }
     }
     
-    func testPerformanceExample() {
+    func testParsingPerformance() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
@@ -90,6 +90,7 @@ class xliff_toolTests: XCTestCase {
                 try self.document.read(from: url, ofType: "")
             } catch {
                 print(error)
+                XCTFail()
             }
         }
     }

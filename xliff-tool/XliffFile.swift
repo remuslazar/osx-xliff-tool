@@ -139,8 +139,8 @@ class XliffFile {
                     if !filter.searchString.isEmpty {
                         items = items.filter({
                             return $0.source.localizedCaseInsensitiveContains(filter.searchString)
-                                || ($0.target?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
-                                || ($0.note?.localizedCaseInsensitiveContains(filter.searchString) ?? true)
+                                || ($0.target?.localizedCaseInsensitiveContains(filter.searchString) ?? false)
+                                || ($0.note?.localizedCaseInsensitiveContains(filter.searchString) ?? false)
                         })
                     }
                 }

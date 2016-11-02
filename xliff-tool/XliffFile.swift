@@ -102,14 +102,27 @@ class XliffFile {
         
     }
     
-    struct File: Hashable {
+    class File: NSObject {
         let name: String
         let items: [TransUnit]
         let sourceLanguage: String?
         let targetLanguage: String?
         
-        static func == (lhs: File, rhs: File) -> Bool { return lhs.name == rhs.name }
-        var hashValue: Int { return self.name.hashValue }
+        override var hash: Int { return name.hash }
+
+        override func isEqual(_ object: Any?) -> Bool {
+            if let rhs = object as? File {
+                return rhs.name == name
+            }
+            return false
+        }
+        
+        init(name: String, items: [TransUnit], sourceLanguage: String?, targetLanguage: String?) {
+            self.name = name
+            self.items = items
+            self.sourceLanguage = sourceLanguage
+            self.targetLanguage = targetLanguage
+        }
     }
     
     /** Array of file containers available in the xliff container */

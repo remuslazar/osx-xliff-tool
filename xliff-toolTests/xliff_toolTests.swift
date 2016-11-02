@@ -20,19 +20,24 @@ extension String {
 class xliff_toolTests: XCTestCase {
     
     var testBundle: Bundle!
+    var document: Document!
+    
+    var xliffData: Data!
     var xliffFile: XliffFile!
     var xliffDocument: XMLDocument!
-    var xliffData: Data!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+
         testBundle = Bundle(for: type(of: self))
+        document = try! Document(type: "XLIFF Localization File")
         let url = testBundle.url(forResource: "de", withExtension: "xliff")!
         xliffData = try! Data(contentsOf: url)
         
-        xliffDocument = try! Document.getXMLDocument(from: xliffData)
-        xliffFile = XliffFile(xliffDocument: xliffDocument)
+        try! document.read(from: url, ofType: "")
+        xliffDocument = document.xliffDocument
+        xliffFile = try! XliffFile(xliffDocument: xliffDocument, filter: nil)
     }
     
     override func tearDown() {
@@ -49,14 +54,15 @@ class xliff_toolTests: XCTestCase {
         XCTAssertEqual(xliffFile.files[0].sourceLanguage!, "en")
         XCTAssertEqual(xliffFile.files[0].targetLanguage!, "de")
 
-        XCTAssertEqual(xliffFile.files[0].items.first!.elements(forName: "source").first!.stringValue, "Text Cell")
+        XCTAssertEqual(xliffFile.files[0].items.first!.source, "Text Cell")
     }
     
     // check if the saved XML XLIFF file is valid XML
     func testXliffValidAfterSave() {
         let data = xliffDocument.xmlData
+        let document = try! Document(type: "XLIFF Localization File")
         do {
-            let _ = try Document.getXMLDocument(from: data)
+            let _ = try document.read(from: data, ofType: "")
         } catch {
             print (error.localizedDescription)
             XCTFail()
@@ -79,6 +85,12 @@ class xliff_toolTests: XCTestCase {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
+            let url = self.testBundle.url(forResource: "bigfile", withExtension: "xliff")!
+            do {
+                try self.document.read(from: url, ofType: "")
+            } catch {
+                print(error)
+            }
         }
     }
     

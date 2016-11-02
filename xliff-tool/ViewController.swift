@@ -35,7 +35,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         didSet {
             if let xliffDocument = document?.xliffDocument {
                 // already validated, this should never fail
-                try! xliffFile = XliffFile(xliffDocument: xliffDocument, filter: filter)
+                try! xliffFile = XliffFile(xliffDocument: xliffDocument)
+                xliffFile!.filter = filter
                 
                 if let file = xliffFile, file.totalCount < Configuration.maxItemsForDynamicRowHeight {
                     dynamicRowHeight = true
@@ -116,8 +117,9 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     private var filter = XliffFile.Filter()
     
     private func reloadFilter() {
-        if let xliffDocument = document?.xliffDocument {
-            try! xliffFile = XliffFile(xliffDocument: xliffDocument, filter: filter)
+        if let xliffFile = xliffFile {
+            xliffFile.filter = filter
+            reloadUI()
         }
     }
     

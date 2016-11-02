@@ -37,7 +37,7 @@ class xliff_toolTests: XCTestCase {
         
         try! document.read(from: url, ofType: "")
         xliffDocument = document.xliffDocument
-        xliffFile = try! XliffFile(xliffDocument: xliffDocument, filter: nil)
+        xliffFile = try! XliffFile(xliffDocument: xliffDocument)
     }
     
     override func tearDown() {

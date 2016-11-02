@@ -61,7 +61,7 @@ class Document: NSDocument {
         self.xliffDocument = try Document.getXMLDocument(from: data)
 
         // try to read/parse the full document (without filtering) to potentially throw an error prior to opening it
-        try _ = XliffFile(xliffDocument: xliffDocument, filter: nil)
+        try _ = XliffFile(xliffDocument: xliffDocument)
     }
     
     @IBAction func reloadDocument(_ sender: AnyObject?) {

@@ -102,24 +102,17 @@ class XliffFile {
         
     }
     
-    class File: NSObject {
+    class File {
         let name: String
-        let items: [TransUnit]
+        var items: [TransUnit]
+        fileprivate let allItems: [TransUnit]
         let sourceLanguage: String?
         let targetLanguage: String?
-        
-        override var hash: Int { return name.hash }
-
-        override func isEqual(_ object: Any?) -> Bool {
-            if let rhs = object as? File {
-                return rhs.name == name
-            }
-            return false
-        }
         
         init(name: String, items: [TransUnit], sourceLanguage: String?, targetLanguage: String?) {
             self.name = name
             self.items = items
+            self.allItems = items
             self.sourceLanguage = sourceLanguage
             self.targetLanguage = targetLanguage
         }
@@ -128,7 +121,32 @@ class XliffFile {
     /** Array of file containers available in the xliff container */
     let files: [File]
     
-    init(xliffDocument: XMLDocument, filter: Filter? = Filter()) throws {
+    var filter: Filter? {
+        didSet {
+            for file in files {
+                file.items = file.allItems
+                if let filter = filter {
+                    if filter.onlyNonTranslated {
+                        file.items = file.items.filter({
+                            if let targetString = $0.target {
+                                return targetString.isEmpty
+                            }
+                            return true
+                        })
+                    }
+                    if !filter.searchString.isEmpty {
+                        file.items = file.items.filter({
+                            return $0.source.localizedCaseInsensitiveContains(filter.searchString)
+                                || ($0.target?.localizedCaseInsensitiveContains(filter.searchString) ?? false)
+                                || ($0.note?.localizedCaseInsensitiveContains(filter.searchString) ?? false)
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
+    init(xliffDocument: XMLDocument) throws {
         var files = [File]()
         if let root = xliffDocument.rootElement() {
             for file in root.elements(forName: "file") {
@@ -136,28 +154,9 @@ class XliffFile {
                 guard let name = file.attribute(forName: "original")?.stringValue
                     else { throw XliffFile.parseError(in: file) }
                 
-                var items = try ( file.nodes(forXPath: "body/trans-unit") as! [XMLElement])
+                let items = try ( file.nodes(forXPath: "body/trans-unit") as! [XMLElement])
                     .map { try TransUnit(xml: $0) }
                 
-                if let filter = filter {
-                    if filter.onlyNonTranslated {
-                        items = items.filter({
-                            if let targetString = $0.target {
-                                return targetString.isEmpty
-                            }
-                            return true
-                        })
-                    }
-                    
-                    if !filter.searchString.isEmpty {
-                        items = items.filter({
-                            return $0.source.localizedCaseInsensitiveContains(filter.searchString)
-                                || ($0.target?.localizedCaseInsensitiveContains(filter.searchString) ?? false)
-                                || ($0.note?.localizedCaseInsensitiveContains(filter.searchString) ?? false)
-                        })
-                    }
-                }
-
                 files.append(File(
                     name: name,
                     items: items,

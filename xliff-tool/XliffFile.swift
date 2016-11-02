@@ -104,25 +104,12 @@ class XliffFile {
     
     struct File: Hashable {
         let name: String
+        let items: [TransUnit]
         let sourceLanguage: String?
         let targetLanguage: String?
-        let items: [TransUnit]
         
-        init(name: String, items: [TransUnit], sourceLanguage: String?, targetLanguage: String?) {
-            self.name = name
-            self.items = items
-            self.sourceLanguage = sourceLanguage
-            self.targetLanguage = targetLanguage
-        }
-        
-        static func == (lhs: File, rhs: File) -> Bool {
-            return lhs.name == rhs.name
-        }
-        
-        var hashValue: Int {
-            return self.name.hashValue
-        }
-        
+        static func == (lhs: File, rhs: File) -> Bool { return lhs.name == rhs.name }
+        var hashValue: Int { return self.name.hashValue }
     }
     
     /** Array of file containers available in the xliff container */
@@ -171,9 +158,7 @@ class XliffFile {
     }
     
     var totalCount: Int {
-        return files.map({ (file) -> Int in
-            return file.items.count
-        }).reduce(0, +)
+        return files.map({ $0.items.count }).reduce(0, +)
     }
     
 }

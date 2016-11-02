@@ -17,11 +17,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
 
     // MARK: private data
-    private var xliffFile: XliffFile? {
-        didSet {
-            reloadUI()
-        }
-    }
+    private var xliffFile: XliffFile? { didSet { reloadUI() } }
     
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         if menuItem.action == #selector(ViewController.toggleCompactRowsMode(_:)) { // "Compact Rows" Setting
@@ -33,9 +29,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         return true
     }
     
-    private var dynamicRowHeight = false {
-        didSet { reloadUI()}
-    }
+    private var dynamicRowHeight = false { didSet { outlineView?.reloadData() } }
     
     weak var document: Document? {
         didSet {
@@ -65,8 +59,6 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    // MARK: VC Lifecycle
-    
     func reloadUI() {
         outlineView?.reloadData()
         updateStatusBar()
@@ -90,6 +82,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: NSRange(location: 0,length: outlineView.numberOfRows).toRange() ?? 0..<0))
     }
     
+    // MARK: VC Lifecycle
+    
     override func viewDidAppear() {
         super.viewDidAppear()
         
@@ -106,14 +100,14 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         NotificationCenter.default.removeObserver(self)
     }
     
-    func updateTranslationForElement(_ elem: XliffFile.TransUnit, newValue: String?) {
+    func updateTranslation(for elem: XliffFile.TransUnit, newValue: String?) {
         
         // no change, bail out
         if elem.target == newValue { return }
         
         // register undo/redo operation
         (document?.undoManager?.prepare(withInvocationTarget: self) as AnyObject)
-            .updateTranslationForElement(elem, newValue: elem.target)
+            .updateTranslation(for: elem, newValue: elem.target)
         
         // update the value in place
         elem.target = newValue
@@ -134,7 +128,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBAction func textFieldEndEditing(_ sender: NSTextField) {
         let row = outlineView.row(for: sender)
         if row != -1, let elem = outlineView.item(atRow: row) as? XliffFile.TransUnit {
-            updateTranslationForElement(elem, newValue: sender.stringValue)
+            updateTranslation(for: elem, newValue: sender.stringValue)
             purgeCachedHeightForItem(elem)
             outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integer: row))
             outlineView.reloadItem(elem)
@@ -184,7 +178,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBAction func deleteTranslationForSelectedRow(_ sender: AnyObject) {
         if outlineView.selectedRow != -1,
             let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
-            updateTranslationForElement(elem, newValue: nil)
+            updateTranslation(for: elem, newValue: nil)
             outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
                                    columnIndexes: IndexSet(integer: outlineView.column(
                                     withIdentifier: "AutomaticTableColumnIdentifier.1")))
@@ -196,7 +190,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         if outlineView.selectedRow != -1,
             let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
             let newValue = elem.source
-            updateTranslationForElement(elem, newValue: newValue )
+            updateTranslation(for: elem, newValue: newValue )
             outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
                                    columnIndexes: IndexSet(integer: outlineView.column(
                                     withIdentifier: "AutomaticTableColumnIdentifier.1")))

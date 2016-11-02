@@ -107,8 +107,9 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         if elem.target == newValue { return }
         
         // register undo/redo operation
-        (document?.undoManager?.prepare(withInvocationTarget: self) as AnyObject)
-            .updateTranslation(for: elem, newValue: elem.target)
+        if let undoTarget = document?.undoManager?.prepare(withInvocationTarget: self) {
+            (undoTarget as AnyObject).updateTranslation(for: elem, newValue: elem.target)
+        }
         
         // update the value in place
         elem.target = newValue

@@ -64,3 +64,9 @@ New Features:
 - Better error handling and reporting when the XLIFF file cannot be parsed, also
   reporting the XPath where the first error occurred.
 - Preserve the expanded-state of all the sections in the Outline View, especially when using the filter tool.
+
+Build 9
+
+- Fixes a crash on OS X 10.11.6 while opening the .xliff file within the app #17
+- Refactoring for better performance while using the filter
+- Fixes an exception on save #14

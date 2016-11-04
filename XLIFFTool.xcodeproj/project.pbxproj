@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D807847B1DC758EF009582E0 /* xliff_toolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */; };
 		D888B2E81C3D851400660308 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2E71C3D851400660308 /* AppDelegate.swift */; };
 		D888B2EA1C3D851400660308 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2E91C3D851400660308 /* ViewController.swift */; };
 		D888B2EC1C3D851400660308 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2EB1C3D851400660308 /* Document.swift */; };
@@ -18,9 +19,7 @@
 		D8C0DB971C44329700320C2C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DB991C44329700320C2C /* Localizable.strings */; };
 		D8C0DB9B1C44F9D400320C2C /* EditableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DB9A1C44F9D400320C2C /* EditableTextField.swift */; };
 		D8C0DB9E1C45410B00320C2C /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DBA01C45410B00320C2C /* Localizable.stringsdict */; };
-		D8C0DBAA1C46EF2A00320C2C /* xliff_toolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */; };
 		D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DBB21C46F35C00320C2C /* de.xliff */; };
-		D8C0DBB41C46F5DC00320C2C /* XliffFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2FE1C417ACD00660308 /* XliffFile.swift */; };
 		D8CB82CD1C48E83E005ADDD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82CF1C48E83E005ADDD3 /* InfoPlist.strings */; };
 		D8CB82D11C4911EA005ADDD3 /* dummy.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82D01C4911EA005ADDD3 /* dummy.xliff */; };
 		D8CB82D31C4929F1005ADDD3 /* bigfile.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82D21C4929F1005ADDD3 /* bigfile.xliff */; };
@@ -53,7 +52,7 @@
 		D8C0DB9F1C45410B00320C2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		D8C0DBA11C45410E00320C2C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		D8C0DBA21C45785700320C2C /* xliff-tool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "xliff-tool.entitlements"; sourceTree = "<group>"; };
-		D8C0DBA71C46EF2A00320C2C /* XLIFFTool.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XLIFFTool.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8C0DBA71C46EF2A00320C2C /* XLIFFToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XLIFFToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xliff_toolTests.swift; sourceTree = "<group>"; };
 		D8C0DBAB1C46EF2A00320C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8C0DBB21C46F35C00320C2C /* de.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = de.xliff; sourceTree = "<group>"; };
@@ -93,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				D888B2E41C3D851400660308 /* XLIFFTool.app */,
-				D8C0DBA71C46EF2A00320C2C /* XLIFFTool.xctest */,
+				D8C0DBA71C46EF2A00320C2C /* XLIFFToolTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,7 +181,7 @@
 			);
 			name = XLIFFToolTests;
 			productName = "xliff-toolTests";
-			productReference = D8C0DBA71C46EF2A00320C2C /* XLIFFTool.xctest */;
+			productReference = D8C0DBA71C46EF2A00320C2C /* XLIFFToolTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -192,12 +191,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Remus Lazar";
 				TargetAttributes = {
 					D888B2E31C3D851400660308 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 5MR244XF46;
+						LastSwiftMigration = 0810;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -206,6 +206,7 @@
 					};
 					D8C0DBA61C46EF2A00320C2C = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0810;
 						TestTargetID = D888B2E31C3D851400660308;
 					};
 				};
@@ -274,8 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8C0DBAA1C46EF2A00320C2C /* xliff_toolTests.swift in Sources */,
-				D8C0DBB41C46F5DC00320C2C /* XliffFile.swift in Sources */,
+				D807847B1DC758EF009582E0 /* xliff_toolTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -348,8 +349,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -383,6 +386,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -392,8 +396,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
@@ -412,6 +418,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -426,6 +433,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
 				PRODUCT_NAME = XLIFFTool;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -440,6 +448,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
 				PRODUCT_NAME = XLIFFTool;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -452,7 +461,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
-				PRODUCT_NAME = XLIFFTool;
+				PRODUCT_NAME = XLIFFToolTests;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLIFFTool.app/Contents/MacOS/XLIFFTool";
 			};
 			name = Debug;
@@ -466,7 +476,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
-				PRODUCT_NAME = XLIFFTool;
+				PRODUCT_NAME = XLIFFToolTests;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLIFFTool.app/Contents/MacOS/XLIFFTool";
 			};
 			name = Release;

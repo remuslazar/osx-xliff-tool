@@ -1,8 +1,11 @@
+/* Class = "NSButtonCell"; title = "Only non-translated"; ObjectID = "1Bx-t2-PuN"; */
+"1Bx-t2-PuN.title" = "Ohne Übersetzung";
+
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "1UJ-Zu-uKl"; */
 "1UJ-Zu-uKl.title" = "Text Cell";
 
 /* Class = "NSMenuItem"; title = "XLIFFTool"; ObjectID = "1Xt-HY-uBw"; */
-"1Xt-HY-uBw.title" = "";
+"1Xt-HY-uBw.title" = "XLIFFTool";
 
 /* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "2mk-yb-eet"; */
 "2mk-yb-eet.placeholderString" = "Filter";
@@ -91,9 +94,6 @@
 /* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
 "Td7-aD-5lo.title" = "Fenster";
 
-/* Class = "NSTextFieldCell"; placeholderString = "Not translated"; ObjectID = "VLe-zm-rdx"; */
-"VLe-zm-rdx.placeholderString" = "Keine Übersetzung vorhanden";
-
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "VLe-zm-rdx"; */
 "VLe-zm-rdx.title" = "Table View Cell";
 
@@ -111,6 +111,9 @@
 
 /* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
 "aUF-d1-5bR.title" = "Window";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Filter out already translated items"; ObjectID = "bHj-A8-g1n"; */
+"bHj-A8-g1n.ibShadowedToolTip" = "Bereits übersetzte Einträge ausfiltern";
 
 /* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
 "bib-Uj-vzu.title" = "Datei";
@@ -161,7 +164,7 @@
 "tXI-mr-wws.title" = "Benutzte Dateien";
 
 /* Class = "NSMenu"; title = "XLIFFTool"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "";
+"uQy-DD-JDr.title" = "XLIFFTool";
 
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
 "uRl-iY-unG.title" = "Ausschneiden";

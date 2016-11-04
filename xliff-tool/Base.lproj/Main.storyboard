@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -367,13 +368,14 @@ CA
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPH-8d-M9V" customClass="EditableTextField" customModule="XLIFFTool" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="1" width="256" height="15"/>
-                                                                    <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" placeholderString="Not translated" id="VLe-zm-rdx">
+                                                                    <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Table View Cell" placeholderString="" id="VLe-zm-rdx">
                                                                         <font key="font" metaFont="user"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <action selector="textFieldEndEditing:" target="5gI-5U-AMq" id="Zug-yc-muK"/>
+                                                                        <outlet property="delegate" destination="5gI-5U-AMq" id="Ctl-qF-UiI"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -434,7 +436,6 @@ CA
                                             </connections>
                                         </outlineView>
                                     </subviews>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Ft8-t6-lCk">
                                     <rect key="frame" x="1" y="463" width="841" height="16"/>
@@ -450,7 +451,7 @@ CA
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="230" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cir-3R-FSA">
-                                <rect key="frame" x="193" y="8" width="632" height="15"/>
+                                <rect key="frame" x="354" y="8" width="471" height="15"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Info-Label" id="rWk-0W-esM">
                                     <font key="font" metaFont="user"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -458,7 +459,7 @@ CA
                                 </textFieldCell>
                             </textField>
                             <searchField wantsLayer="YES" horizontalHuggingPriority="260" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hae-41-XCH">
-                                <rect key="frame" x="6" y="6" width="181" height="22"/>
+                                <rect key="frame" x="167" y="6" width="181" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="181" id="WC2-3o-hcD"/>
                                 </constraints>
@@ -471,21 +472,34 @@ CA
                                     <action selector="filter:" target="5gI-5U-AMq" id="LUu-65-KcY"/>
                                 </connections>
                             </searchField>
+                            <button toolTip="Filter out already translated items" translatesAutoresizingMaskIntoConstraints="NO" id="bHj-A8-g1n">
+                                <rect key="frame" x="18" y="7" width="143" height="18"/>
+                                <buttonCell key="cell" type="check" title="Only non-translated" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1Bx-t2-PuN">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleNonTranslatedFilterMode:" target="5gI-5U-AMq" id="ywy-GV-eMl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="cir-3R-FSA" firstAttribute="leading" secondItem="hae-41-XCH" secondAttribute="trailing" constant="8" symbolic="YES" id="2Oa-9z-hJo"/>
-                            <constraint firstItem="hae-41-XCH" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" constant="6" id="2Os-cL-uN0"/>
                             <constraint firstAttribute="trailing" secondItem="cir-3R-FSA" secondAttribute="trailing" constant="20" id="6Dr-Tk-CjC"/>
                             <constraint firstAttribute="trailing" secondItem="tz2-Xb-90U" secondAttribute="trailing" id="Ah0-Jp-Er1"/>
                             <constraint firstItem="tz2-Xb-90U" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" id="Dd9-h1-ipv"/>
                             <constraint firstAttribute="bottom" secondItem="hae-41-XCH" secondAttribute="bottom" constant="6" id="Dfz-ay-rU8"/>
+                            <constraint firstItem="hae-41-XCH" firstAttribute="leading" secondItem="bHj-A8-g1n" secondAttribute="trailing" constant="8" id="JhL-3d-tdS"/>
+                            <constraint firstItem="bHj-A8-g1n" firstAttribute="baseline" secondItem="hae-41-XCH" secondAttribute="baseline" id="KEE-QJ-73T"/>
                             <constraint firstItem="tz2-Xb-90U" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" id="aAH-Bl-I2y"/>
                             <constraint firstItem="hae-41-XCH" firstAttribute="top" secondItem="tz2-Xb-90U" secondAttribute="bottom" constant="6" id="h4d-ku-j0z"/>
+                            <constraint firstItem="bHj-A8-g1n" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" constant="20" id="laz-vt-pQj"/>
                             <constraint firstItem="hae-41-XCH" firstAttribute="baseline" secondItem="cir-3R-FSA" secondAttribute="baseline" id="miD-6V-KHb"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="infoLabel" destination="cir-3R-FSA" id="PeI-XM-TWh"/>
+                        <outlet property="onlyNonTranslated" destination="bHj-A8-g1n" id="Yzo-SO-R7E"/>
                         <outlet property="outlineView" destination="Y8P-hs-l3X" id="4qj-jV-EJb"/>
                         <outlet property="searchField" destination="hae-41-XCH" id="3li-Dd-i33"/>
                     </connections>

@@ -190,14 +190,16 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     /** Copy the source string to target for further editing. If no row is selected, this method does nothing */
     @IBAction func copySourceToTargetForSelectedRow(_ sender: AnyObject) {
-        if outlineView.selectedRow != -1,
-            let elem = outlineView.item(atRow: outlineView.selectedRow) as? XliffFile.TransUnit {
-            let newValue = elem.source
-            updateTranslation(for: elem, newValue: newValue )
-            outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
-                                   columnIndexes: IndexSet(integer: outlineView.column(
-                                    withIdentifier: "AutomaticTableColumnIdentifier.1")))
+      for (_,row) in outlineView.selectedRowIndexes.enumerated() {
+        if row != -1,
+          let elem = outlineView.item(atRow: row) as? XliffFile.TransUnit {
+          let newValue = elem.source
+          updateTranslation(for: elem, newValue: newValue )
         }
+      }
+      outlineView.reloadData(forRowIndexes: outlineView.selectedRowIndexes,
+                             columnIndexes: IndexSet(integer: outlineView.column(
+                              withIdentifier: "AutomaticTableColumnIdentifier.1")))
     }
     
     /** Activates the search/filter field in the UI so that the user can begin typing */

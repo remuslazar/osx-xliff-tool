@@ -22,7 +22,7 @@ class Document: NSDocument {
         // Add any code here that needs to be executed once the windowController has loaded the document's window.
     }
 
-    override class func autosavesInPlace() -> Bool {
+    override class var autosavesInPlace: Bool {
         return true
     }
 
@@ -42,10 +42,10 @@ class Document: NSDocument {
 
     private class func getXMLDocument(from data: Data) throws -> XMLDocument {
         do {
-            return try XMLDocument(data: data, options: Int(
+            return try XMLDocument(data: data, options: convertToXMLNodeOptions(Int(
                 XMLNode.Options.nodePreserveWhitespace.rawValue
                     | XMLNode.Options.nodeCompactEmptyElement.rawValue
-            ))
+            )))
         } catch (let error as NSError) {
             throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
                 NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),
@@ -65,7 +65,7 @@ class Document: NSDocument {
     }
     
     @IBAction func reloadDocument(_ sender: AnyObject?) {
-        let controller = NSDocumentController.shared()
+        let controller = NSDocumentController.shared
         controller.currentDocument?.savePresentedItemChanges() { (error) in
         self.close()
             controller.reopenDocument(for: self.fileURL!, withContentsOf: self.fileURL!, display: true) { _,_,_ in }
@@ -74,3 +74,8 @@ class Document: NSDocument {
 
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToXMLNodeOptions(_ input: Int) -> XMLNode.Options {
+	return XMLNode.Options(rawValue: UInt(input))
+}

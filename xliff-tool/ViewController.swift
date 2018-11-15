@@ -19,7 +19,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     // MARK: private data
     private var xliffFile: XliffFile? { didSet { reloadUI() } }
     
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         if menuItem.action == #selector(ViewController.toggleCompactRowsMode(_:)) { // "Compact Rows" Setting
             // update the menu item state to match the current dynamicRowHeight setting
             if document == nil { return false }
@@ -60,7 +60,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    func reloadUI() {
+    @objc func reloadUI() {
         outlineView?.reloadData()
         updateStatusBar()
     }
@@ -75,7 +75,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
-    func resizeTable(_ notification: Notification) {
+    @objc func resizeTable(_ notification: Notification) {
         if let col = notification.userInfo?["NSTableColumn"] as? NSTableColumn {
             // invalidate cache for the specific row
             rowHeightsCache.removeValue(forKey: col)
@@ -93,7 +93,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reloadUI),
             name: NSNotification.Name.NSUndoManagerDidRedoChange, object: document!.undoManager)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.resizeTable(_:)),
-            name: NSNotification.Name.NSOutlineViewColumnDidResize, object: outlineView)
+            name: NSOutlineView.columnDidResizeNotification, object: outlineView)
     }
    
     override func viewWillDisappear() {
@@ -101,7 +101,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         NotificationCenter.default.removeObserver(self)
     }
     
-    func updateTranslation(for elem: XliffFile.TransUnit, newValue: String?) {
+    @objc func updateTranslation(for elem: XliffFile.TransUnit, newValue: String?) {
         
         // no change, bail out
         if elem.target == newValue { return }
@@ -184,7 +184,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             updateTranslation(for: elem, newValue: nil)
             outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
                                    columnIndexes: IndexSet(integer: outlineView.column(
-                                    withIdentifier: "AutomaticTableColumnIdentifier.1")))
+                                    withIdentifier: convertToNSUserInterfaceItemIdentifier("AutomaticTableColumnIdentifier.1"))))
         }
     }
     
@@ -196,7 +196,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             updateTranslation(for: elem, newValue: newValue )
             outlineView.reloadData(forRowIndexes: IndexSet(integer: outlineView.selectedRow),
                                    columnIndexes: IndexSet(integer: outlineView.column(
-                                    withIdentifier: "AutomaticTableColumnIdentifier.1")))
+                                    withIdentifier: convertToNSUserInterfaceItemIdentifier("AutomaticTableColumnIdentifier.1"))))
         }
     }
     
@@ -280,14 +280,14 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             let item = item as! XliffFile.TransUnit
             if let height = rowHeightsCache[col]?[item.id] { return height }
             
-            let cell = outlineView.make(withIdentifier: col.identifier, owner: nil) as! NSTableCellView
+            let cell = outlineView.makeView(withIdentifier: col.identifier, owner: nil) as! NSTableCellView
             
-            configureContentCell(cell, columnIdentifier: col.identifier, transUnit: item)
+            configureContentCell(cell, columnIdentifier: convertFromNSUserInterfaceItemIdentifier(col.identifier), transUnit: item)
             cell.layoutSubtreeIfNeeded()
             let column = outlineView.column(withIdentifier: col.identifier)
             var width = outlineView.tableColumns[column].width
             
-            if (col.identifier == "AutomaticTableColumnIdentifier.0") {
+            if (convertFromNSUserInterfaceItemIdentifier(col.identifier) == "AutomaticTableColumnIdentifier.0") {
                 // because we're using NSOutliveView, the first level is indended by this amount
                 width -= outlineView.indentationPerLevel + 14.0
             }
@@ -307,13 +307,13 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        let cell = outlineView.make(withIdentifier: tableColumn == nil ? "GroupedItemCellIdentifier" : tableColumn!.identifier, owner: self) as! NSTableCellView
+        let cell = outlineView.makeView(withIdentifier: convertToNSUserInterfaceItemIdentifier(tableColumn == nil ? "GroupedItemCellIdentifier" : convertFromNSUserInterfaceItemIdentifier(tableColumn!.identifier)), owner: self) as! NSTableCellView
         
         // configure the cell
         if let file = item as? XliffFile.File {
             configureGroupCell(cell, file: file)
         } else if let unit = item as? XliffFile.TransUnit {
-            configureContentCell(cell, columnIdentifier: tableColumn!.identifier, transUnit: unit)
+            configureContentCell(cell, columnIdentifier: convertFromNSUserInterfaceItemIdentifier(tableColumn!.identifier), transUnit: unit)
         }
 
         return cell
@@ -336,4 +336,14 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         return outlineView.rowHeight
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSUserInterfaceItemIdentifier(_ input: String) -> NSUserInterfaceItemIdentifier {
+	return NSUserInterfaceItemIdentifier(rawValue: input)
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSUserInterfaceItemIdentifier(_ input: NSUserInterfaceItemIdentifier) -> String {
+	return input.rawValue
 }

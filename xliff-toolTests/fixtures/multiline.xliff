@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+    <file original="MultilineTest/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
+        <header>
+            <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
+        </header>
+        <body>
+            <trans-unit id="Iuo-Sl-nQh.text">
+                <source>Line 1
+                    Line 2
+                    Line 3</source>
+                <target>Line 1 (german)
+                    Line 2
+                    Line 3</target>
+                <note>Class = "UITextView"; text = "Line 1\nLine 2\nLine 3"; ObjectID = "Iuo-Sl-nQh";</note>
+            </trans-unit>
+            <trans-unit id="jCm-FH-98X.text">
+                <source>Label2</source>
+                <target>Label</target>
+                <note>Class = "UILabel"; text = "Label2"; ObjectID = "jCm-FH-98X";</note>
+            </trans-unit>
+            <trans-unit id="wCN-L1-f8O.text">
+                <source>Label3</source>
+                <note>Class = "UILabel"; text = "Label3"; ObjectID = "wCN-L1-f8O";</note>
+            </trans-unit>
+        </body>
+    </file>
+    <file original="MultilineTest/en.lproj/InfoPlist.strings" datatype="plaintext" source-language="en" target-language="de">
+        <header>
+            <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
+        </header>
+        <body>
+            <trans-unit id="CFBundleName">
+                <source>$(PRODUCT_NAME)</source>
+                <note>Bundle name</note>
+            </trans-unit>
+        </body>
+    </file>
+    <file original="MultilineTest/en.lproj/Localizable.strings" datatype="plaintext" source-language="en" target-language="de">
+        <header>
+            <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="10.1" build-num="10B61"/>
+        </header>
+        <body>
+            <trans-unit id="Label 3 Line1&#10;Line2&#10;Line3">
+                <source>Label 3 Line1
+                    Line2
+                    Line3</source>
+                <note>My Label3 Text</note>
+            </trans-unit>
+            <trans-unit id="Label Text&#10;Line2">
+                <source>Label Text
+                    Line2</source>
+                <note>My Label Text</note>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -42,10 +42,11 @@ class Document: NSDocument {
 
     private class func getXMLDocument(from data: Data) throws -> XMLDocument {
         do {
-            return try XMLDocument(data: data, options: convertToXMLNodeOptions(Int(
-                XMLNode.Options.nodePreserveWhitespace.rawValue
-                    | XMLNode.Options.nodeCompactEmptyElement.rawValue
-            )))
+            return try XMLDocument(data: data, options: [
+                .nodePreserveWhitespace,
+                .nodeCompactEmptyElement,
+                ]
+            )
         } catch (let error as NSError) {
             throw NSError(domain: NSCocoaErrorDomain, code: NSFileReadCorruptFileError, userInfo: [
                 NSLocalizedDescriptionKey: NSLocalizedString("Could not read file.", comment: "Read error description"),
@@ -72,10 +73,4 @@ class Document: NSDocument {
         }
     }
 
-}
-
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToXMLNodeOptions(_ input: Int) -> XMLNode.Options {
-	return XMLNode.Options(rawValue: UInt(input))
 }

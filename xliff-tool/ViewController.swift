@@ -23,7 +23,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         if menuItem.action == #selector(ViewController.toggleCompactRowsMode(_:)) { // "Compact Rows" Setting
             // update the menu item state to match the current dynamicRowHeight setting
             if document == nil { return false }
-            menuItem.state = dynamicRowHeight ? NSOffState : NSOnState
+            menuItem.state = dynamicRowHeight ? .off : .on
         }
         
         return true
@@ -80,7 +80,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
             // invalidate cache for the specific row
             rowHeightsCache.removeValue(forKey: col)
         }
-        outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: NSRange(location: 0,length: outlineView.numberOfRows).toRange() ?? 0..<0))
+        outlineView.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: Range(NSRange(location: 0,length: outlineView.numberOfRows)) ?? 0..<0))
     }
     
     // MARK: VC Lifecycle
@@ -140,11 +140,10 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         let selectedRow = outlineView.selectedRow
-        if let newValue = fieldEditor.string,
-            selectedRow > -1,
+        if selectedRow > -1,
             let selectedElement = outlineView.item(atRow: selectedRow) as? XliffFile.TransUnit {
             do {
-                try selectedElement.validate(targetString: newValue)
+                try selectedElement.validate(targetString: fieldEditor.string)
             } catch {
                 presentError(error)
                 return false
@@ -161,8 +160,8 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
 
     @IBAction func toggleCompactRowsMode(_ sender: AnyObject) {
         if let menuItem = sender as? NSMenuItem {
-            menuItem.state = menuItem.state == NSOnState ? NSOffState : NSOnState
-            dynamicRowHeight = menuItem.state == NSOffState
+            menuItem.state = menuItem.state == .on ? .off : .on
+            dynamicRowHeight = menuItem.state == .off
         }
     }
     
@@ -173,7 +172,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBOutlet weak var onlyNonTranslated: NSButton!
     
     @IBAction func toggleNonTranslatedFilterMode(_ sender: Any) {
-        filter.onlyNonTranslated  = onlyNonTranslated.state == NSOnState
+        filter.onlyNonTranslated  = onlyNonTranslated.state == .on
         reloadFilter()
     }
     

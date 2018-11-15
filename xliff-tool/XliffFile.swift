@@ -82,7 +82,7 @@ class XliffFile {
             let regex = try! NSRegularExpression(
                 pattern: "\\%(\\d\\$)?[\\-+ #0]*\\d*(hh|h|l|lell|ll|lell-lell|j|z|t|L)?(\\.\\d+)?.", options: []
             )
-            let matches = regex.matches(in: source, options: [], range: NSMakeRange(0,source.characters.count))
+            let matches = regex.matches(in: source, options: [], range: NSMakeRange(0,source.count))
             let formatStrings = matches.map { (source as NSString).substring(with: $0.range) }
             let missingFormatStrings = formatStrings.filter { (targetString as NSString).range(of: $0).location == NSNotFound }
             

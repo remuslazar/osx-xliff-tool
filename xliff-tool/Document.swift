@@ -36,8 +36,20 @@ class Document: NSDocument {
     override func data(ofType typeName: String) throws -> Data {
         // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
         // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-        return xliffDocument.xmlData
-//        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        
+        let xmlString = xliffDocument.xmlString.replacingOccurrences(of: XliffFile.idAttrLineBraakEscapeSequence,
+                                                                     with: "&#10;")
+        guard let data = xmlString.data(using: .utf8) else {
+            throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        }
+        return data
+        
+        // Note: this (.nodePreserveCharacterReferences) does not work as expected..
+        //        return xliffDocument.xmlData(options: [
+        //            .nodePreserveCharacterReferences,
+        //            ])
+
+        //        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
     private class func getXMLDocument(from data: Data) throws -> XMLDocument {
@@ -45,6 +57,7 @@ class Document: NSDocument {
             return try XMLDocument(data: data, options: [
                 .nodePreserveWhitespace,
                 .nodeCompactEmptyElement,
+                .nodePreserveCharacterReferences,
                 ]
             )
         } catch (let error as NSError) {

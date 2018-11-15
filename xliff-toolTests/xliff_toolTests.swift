@@ -102,18 +102,26 @@ class xliff_toolTests: XCTestCase {
         do {
             let inputData = try Data(contentsOf: url)
             try document.read(from: url, ofType: "")
-            let xliffDocument = document.xliffDocument!
             let outputData = try document.data(ofType: "xml")
             
             let inputXML = String(data: inputData, encoding: .utf8)!
             let outputXML = String(data: outputData, encoding: .utf8)!
-            print(outputXML)
+            print(inputXML.grep("trans-unit id"))
+            print(outputXML.grep("trans-unit id"))
 
-//            XCTAssertEqual(inputXML, outputXML)
+            XCTAssertEqual(inputXML.grep("trans-unit id"), outputXML.grep("trans-unit id"))
         } catch {
             print(error)
             XCTFail()
         }
     }
     
+}
+
+extension String {
+    func grep(_ search: String) -> String {
+        return self.lines
+            .filter { $0.contains(search) }
+            .joined(separator: "\n")
+    }
 }

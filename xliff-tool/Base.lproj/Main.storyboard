@@ -158,6 +158,11 @@ CA
                                                 <action selector="copySourceToTargetForSelectedRow:" target="Ady-hI-5gd" id="TND-FZ-VwE"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Select All" keyEquivalent="a" id="A2y-ll-dD6">
+                                            <connections>
+                                                <action selector="selectAll:" target="Ady-hI-5gd" id="KBB-yf-5Op"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="uyl-h8-XO2"/>
                                         <menuItem title="Find…" tag="1" keyEquivalent="f" id="Xz5-n4-O0W">
                                             <connections>
@@ -248,7 +253,7 @@ CA
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="XLIFFTool" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="380" y="-171"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">

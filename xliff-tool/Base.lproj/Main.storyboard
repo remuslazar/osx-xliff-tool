@@ -200,6 +200,29 @@ CA
                                                 <action selector="toggleCompactRowsMode:" target="Ady-hI-5gd" id="n5c-pf-OuA"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="4jJ-7a-ZVS"/>
+                                        <menuItem title="Original Size" keyEquivalent="0" id="2AM-OR-v6N">
+                                            <connections>
+                                                <action selector="makeTextStandardSize:" target="Ady-hI-5gd" id="sxN-xt-KNT"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Increase Size" keyEquivalent="+" id="b5V-rw-zH8">
+                                            <connections>
+                                                <action selector="makeTextLarger:" target="Ady-hI-5gd" id="mNw-2I-o5u"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Decrease Size" keyEquivalent="-" id="wzG-4j-LgL">
+                                            <connections>
+                                                <action selector="makeTextSmaller:" target="Ady-hI-5gd" id="aqY-ZD-hjF"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="y7t-7O-8dX"/>
+                                        <menuItem title="Full Screen" keyEquivalent="f" id="Ecq-hY-Xsz">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="gOu-QB-0Yc"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>

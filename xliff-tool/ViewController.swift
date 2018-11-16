@@ -165,6 +165,33 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    private func resetRowHeightCache() {
+        rowHeightsCache = [NSTableColumn: [String: CGFloat]]()
+    }
+    
+    private let defaultFontSize: CGFloat = 12.0
+    private var currentFontSize: CGFloat = 12.0
+    
+    @IBAction func makeTextStandardSize(_ sender: AnyObject) {
+        currentFontSize = defaultFontSize
+        outlineView.reloadData()
+        resetRowHeightCache()
+    }
+
+    @IBAction func makeTextLarger(_ sender: AnyObject) {
+        guard currentFontSize < defaultFontSize * 2 else { return }
+        currentFontSize *= 1.2
+        outlineView.reloadData()
+        resetRowHeightCache()
+    }
+
+    @IBAction func makeTextSmaller(_ sender: AnyObject) {
+        guard currentFontSize > defaultFontSize * 0.5 else { return }
+        currentFontSize /= 1.2
+        outlineView.reloadData()
+        resetRowHeightCache()
+    }
+
     @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
     @IBOutlet weak var searchField: NSSearchField!
@@ -244,6 +271,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     private func configureContentCell(_ cell: NSTableCellView, columnIdentifier identifier: NSUserInterfaceItemIdentifier, transUnit: XliffFile.TransUnit) {
+        cell.textField?.font = NSFont.userFont(ofSize: currentFontSize)
         switch identifier.rawValue {
         case "AutomaticTableColumnIdentifier.0":
             cell.textField!.stringValue = transUnit.source
@@ -265,6 +293,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     private func configureGroupCell(_ cell: NSTableCellView, file: XliffFile.File) {
+        cell.textField?.font = NSFont.userFont(ofSize: currentFontSize)
         cell.textField!.stringValue = String.localizedStringWithFormat(
             NSLocalizedString("%@ (source=%@, target=%@)", comment: "Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container."),
             file.name,
@@ -323,7 +352,9 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        if item is XliffFile.File { return outlineView.rowHeight }
+        if item is XliffFile.File {
+            return currentFontSize * 1.05 + 4.0
+        }
         if dynamicRowHeight {
             return heightForItem(item as AnyObject)
         } else if let item = item as? XliffFile.TransUnit,
@@ -332,7 +363,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
                 return heightForItem(item)
             }
         }
-        return outlineView.rowHeight
+        return currentFontSize * 1.05 + 2.0
     }
     
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76EDA0C6219E0E24003588C4 /* multiline.xliff in Resources */ = {isa = PBXBuildFile; fileRef = 76EDA0C4219E0ABF003588C4 /* multiline.xliff */; };
 		D807847B1DC758EF009582E0 /* xliff_toolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */; };
 		D888B2E81C3D851400660308 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2E71C3D851400660308 /* AppDelegate.swift */; };
 		D888B2EA1C3D851400660308 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2E91C3D851400660308 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76EDA0C4219E0ABF003588C4 /* multiline.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = multiline.xliff; sourceTree = "<group>"; };
 		D81397591C884D10009E08F8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		D888B2E41C3D851400660308 /* XLIFFTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLIFFTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D888B2E71C3D851400660308 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		D8C0DBB11C46F35C00320C2C /* fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				76EDA0C4219E0ABF003588C4 /* multiline.xliff */,
 				D8C0DBB21C46F35C00320C2C /* de.xliff */,
 				D8CB82D21C4929F1005ADDD3 /* bigfile.xliff */,
 			);
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */,
+				76EDA0C6219E0E24003588C4 /* multiline.xliff in Resources */,
 				D8CB82D31C4929F1005ADDD3 /* bigfile.xliff in Resources */,
 				D8CB82CD1C48E83E005ADDD3 /* InfoPlist.strings in Resources */,
 			);

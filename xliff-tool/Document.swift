@@ -36,8 +36,48 @@ class Document: NSDocument {
     override func data(ofType typeName: String) throws -> Data {
         // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
         // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-        return xliffDocument.xmlData
-//        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        
+        /**
+         We do want to match the original Xcode XLIFF XML document structure:
+         
+         1) no standalone="yes" attribute in the XML declaration
+         2) trailing newline (at the end of the file)
+         3) a new line between the XML declaration and XML body
+         
+         */
+        
+        // 1) don't add the standalone="yes" attribute to the XML declaration
+        xliffDocument.isStandalone = false
+
+        var xmlString = xliffDocument.xmlString.replacingOccurrences(of: XliffFile.idAttrLineBraakEscapeSequence,
+                                                                     with: "&#10;")
+
+        // 2) add a newline between the XML declaration and body, if needed
+        let regex = try! NSRegularExpression(pattern: "<\\?xml.+\\?>(?!\n)", options: .caseInsensitive)
+
+        let firstRange = regex.rangeOfFirstMatch(in: xmlString, range: NSRange(location: 0, length: 200))
+        if firstRange.location != NSNotFound {
+            let string = NSMutableString(string: xmlString)
+            string.insert("\n", at: firstRange.length)
+            xmlString = String(string)
+        }
+
+        // 3) add a trailing newline if missing
+        if let lastChar = xmlString.last, lastChar != "\n" {
+            xmlString.append("\n")
+        }
+
+        guard let data = xmlString.data(using: .utf8) else {
+            throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        }
+        return data
+        
+        // Note: this (.nodePreserveCharacterReferences) does not work as expected..
+        //        return xliffDocument.xmlData(options: [
+        //            .nodePreserveCharacterReferences,
+        //            ])
+
+        //        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
 
     private class func getXMLDocument(from data: Data) throws -> XMLDocument {
@@ -45,6 +85,7 @@ class Document: NSDocument {
             return try XMLDocument(data: data, options: [
                 .nodePreserveWhitespace,
                 .nodeCompactEmptyElement,
+                .nodePreserveCharacterReferences,
                 ]
             )
         } catch (let error as NSError) {

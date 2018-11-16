@@ -19,6 +19,20 @@ class XliffFile {
         var onlyNonTranslated = true
     }
     
+    /**
+     We do convert all occurring line breaks in each trans-unit id attribute
+
+     WHY, WTF??
+
+     This is just a hack because Xcode will create xml files like
+     
+     <trans-unit id="Label 3 Line1&#10;Line2&#10;Line3">
+     
+     using the &#10; entity for line breaks. Because XMLDocument will convert this entities _always_ to the corresponding
+     line break char (\n), we need to escape them so we can convert them back while saving the XML document
+     */
+    static let idAttrLineBraakEscapeSequence = "__LF__"
+    
     private static let ErrorDomain = "lazar.info.xliff-tool.xliff-file"
     
     private static func parseError(in xmlElement: XMLElement) -> NSError {
@@ -72,7 +86,8 @@ class XliffFile {
                 let source = xml.elements(forName: "source").first?.stringValue
                 else { throw XliffFile.parseError(in: xml) }
             
-            self.id = id
+            self.id = id.replacingOccurrences(of: "\n", with: idAttrLineBraakEscapeSequence)
+            xml.attribute(forName: "id")?.setStringValue(self.id, resolvingEntities: false)
             self.source = source
             self.target = xml.elements(forName: "target").first?.stringValue
             self.note = xml.elements(forName: "note").first?.stringValue

@@ -95,4 +95,33 @@ class xliff_toolTests: XCTestCase {
         }
     }
     
+    func testMultilineStrings() {
+        let document = try! Document(type: "XLIFF Localization File")
+        let url = self.testBundle.url(forResource: "multiline", withExtension: "xliff")!
+
+        do {
+            let inputData = try Data(contentsOf: url)
+            try document.read(from: url, ofType: "")
+            let outputData = try document.data(ofType: "xml")
+            
+            let inputXML = String(data: inputData, encoding: .utf8)!
+            let outputXML = String(data: outputData, encoding: .utf8)!
+            print(inputXML.grep("trans-unit id"))
+            print(outputXML.grep("trans-unit id"))
+
+            XCTAssertEqual(inputXML.grep("trans-unit id"), outputXML.grep("trans-unit id"))
+        } catch {
+            print(error)
+            XCTFail()
+        }
+    }
+    
+}
+
+extension String {
+    func grep(_ search: String) -> String {
+        return self.lines
+            .filter { $0.contains(search) }
+            .joined(separator: "\n")
+    }
 }

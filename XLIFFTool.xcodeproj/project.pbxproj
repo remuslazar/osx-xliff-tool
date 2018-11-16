@@ -21,7 +21,6 @@
 		D8C0DB9E1C45410B00320C2C /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DBA01C45410B00320C2C /* Localizable.stringsdict */; };
 		D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8C0DBB21C46F35C00320C2C /* de.xliff */; };
 		D8CB82CD1C48E83E005ADDD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82CF1C48E83E005ADDD3 /* InfoPlist.strings */; };
-		D8CB82D11C4911EA005ADDD3 /* dummy.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82D01C4911EA005ADDD3 /* dummy.xliff */; };
 		D8CB82D31C4929F1005ADDD3 /* bigfile.xliff in Resources */ = {isa = PBXBuildFile; fileRef = D8CB82D21C4929F1005ADDD3 /* bigfile.xliff */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +56,6 @@
 		D8C0DBAB1C46EF2A00320C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8C0DBB21C46F35C00320C2C /* de.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = de.xliff; sourceTree = "<group>"; };
 		D8CB82CE1C48E83E005ADDD3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D8CB82D01C4911EA005ADDD3 /* dummy.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = dummy.xliff; sourceTree = "<group>"; };
 		D8CB82D21C4929F1005ADDD3 /* bigfile.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bigfile.xliff; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				D8C0DBB21C46F35C00320C2C /* de.xliff */,
-				D8CB82D01C4911EA005ADDD3 /* dummy.xliff */,
 				D8CB82D21C4929F1005ADDD3 /* bigfile.xliff */,
 			);
 			path = fixtures;
@@ -191,13 +188,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Remus Lazar";
 				TargetAttributes = {
 					D888B2E31C3D851400660308 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 5MR244XF46;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -206,7 +203,7 @@
 					};
 					D8C0DBA61C46EF2A00320C2C = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 1010;
 						TestTargetID = D888B2E31C3D851400660308;
 					};
 				};
@@ -248,7 +245,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8CB82D11C4911EA005ADDD3 /* dummy.xliff in Resources */,
 				D8C0DBB31C46F35C00320C2C /* de.xliff in Resources */,
 				D8CB82D31C4929F1005ADDD3 /* bigfile.xliff in Resources */,
 				D8CB82CD1C48E83E005ADDD3 /* InfoPlist.strings in Resources */,
@@ -344,14 +340,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -391,14 +395,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -433,7 +445,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
 				PRODUCT_NAME = XLIFFTool;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -448,7 +461,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "info.lazar.xliff-tool";
 				PRODUCT_NAME = XLIFFTool;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -462,7 +476,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
 				PRODUCT_NAME = XLIFFToolTests;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLIFFTool.app/Contents/MacOS/XLIFFTool";
 			};
 			name = Debug;
@@ -477,7 +492,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "lazar.info.xliff-toolTests";
 				PRODUCT_NAME = XLIFFToolTests;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XLIFFTool.app/Contents/MacOS/XLIFFTool";
 			};
 			name = Release;

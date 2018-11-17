@@ -1,12 +1,12 @@
+/* Placeholder telling the user that the source language for a specific file is unavailable in the source xliff file
+   Placeholder telling the user that the target language for a specific file is unavailable in the source xliff file */
+"?" = "?";
+
 /* Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container. */
 "%@ (source=%@, target=%@)" = "%1$@ (von=%2$@, nach=%3$@)";
 
 /* Status bar label */
 "%d file(s), %d localizable string(s) available" = "%1$d Datei(en), %2$d lokalisierbare Resource(n) vorhanden";
-
-/* Placeholder telling the user that the source language for a specific file is unavailable in the source xliff file
-   Placeholder telling the user that the target language for a specific file is unavailable in the source xliff file */
-"?" = "?";
 
 /* XliffFile Parse Error: Failure Reason */
 "Could not parse the XLIFF XML file at: \"%@\"" = "XLIFF XML Datei konnte nicht verarbeitet werden an der Stelle: \"%@\"";

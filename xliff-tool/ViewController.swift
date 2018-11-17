@@ -87,6 +87,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.defaultRowHeight = outlineView.rowHeight
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reloadUI),
             name: NSNotification.Name.NSUndoManagerDidUndoChange, object: document!.undoManager)
@@ -165,6 +166,39 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         }
     }
     
+    private func resetRowHeightCache() {
+        rowHeightsCache = [NSTableColumn: [String: CGFloat]]()
+    }
+    
+    private let defaultFontSize: CGFloat = AppSettings.defaultFontSize
+    private var defaultRowHeight: CGFloat = 0
+    private var currentFontSize: CGFloat = AppSettings.defaultFontSize
+    
+    @IBAction func makeTextStandardSize(_ sender: AnyObject) {
+        currentFontSize = defaultFontSize
+        outlineView.rowHeight = defaultRowHeight
+        outlineView.reloadData()
+        resetRowHeightCache()
+    }
+
+    @IBAction func makeTextLarger(_ sender: AnyObject) {
+        guard currentFontSize < defaultFontSize * AppSettings.maxFontScale else { return }
+        let factor = AppSettings.adjustFontSizeFactor
+        currentFontSize *= factor
+        outlineView.rowHeight *= factor
+        outlineView.reloadData()
+        resetRowHeightCache()
+    }
+
+    @IBAction func makeTextSmaller(_ sender: AnyObject) {
+        guard currentFontSize > defaultFontSize * AppSettings.minFontScale else { return }
+        let factor = AppSettings.adjustFontSizeFactor
+        currentFontSize /= factor
+        outlineView.rowHeight /= factor
+        outlineView.reloadData()
+        resetRowHeightCache()
+    }
+
     @IBOutlet weak var infoLabel: NSTextField! { didSet { updateStatusBar() } }
     
     @IBOutlet weak var searchField: NSSearchField!
@@ -244,6 +278,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     private func configureContentCell(_ cell: NSTableCellView, columnIdentifier identifier: NSUserInterfaceItemIdentifier, transUnit: XliffFile.TransUnit) {
+        cell.textField?.font = NSFont.userFont(ofSize: currentFontSize)
         switch identifier.rawValue {
         case "AutomaticTableColumnIdentifier.0":
             cell.textField!.stringValue = transUnit.source
@@ -265,6 +300,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     private func configureGroupCell(_ cell: NSTableCellView, file: XliffFile.File) {
+        cell.textField?.font = NSFont.userFont(ofSize: currentFontSize)
         cell.textField!.stringValue = String.localizedStringWithFormat(
             NSLocalizedString("%@ (source=%@, target=%@)", comment: "Group header cell text, will show up in the outline view as a separator for each file in the XLIFF container."),
             file.name,

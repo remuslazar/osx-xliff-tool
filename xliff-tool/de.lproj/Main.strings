@@ -7,6 +7,9 @@
 /* Class = "NSMenuItem"; title = "XLIFFTool"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "XLIFFTool";
 
+/* Class = "NSMenuItem"; title = "Original Font Size"; ObjectID = "2AM-OR-v6N"; */
+"2AM-OR-v6N.title" = "Originalgröße";
+
 /* Class = "NSSearchFieldCell"; placeholderString = "Filter"; ObjectID = "2mk-yb-eet"; */
 "2mk-yb-eet.placeholderString" = "Filter";
 
@@ -45,6 +48,9 @@
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Hauptmenü";
+
+/* Class = "NSMenuItem"; title = "Increase Font Size"; ObjectID = "b5V-rw-zH8"; */
+"b5V-rw-zH8.title" = "Schrift vergrößern";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Filter out already translated items"; ObjectID = "bHj-A8-g1n"; */
 "bHj-A8-g1n.ibShadowedToolTip" = "Bereits übersetzte Einträge ausfiltern";
@@ -168,6 +174,9 @@
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
 "wpr-3q-Mcd.title" = "Hilfe";
+
+/* Class = "NSMenuItem"; title = "Decrease Font Size"; ObjectID = "wzG-4j-LgL"; */
+"wzG-4j-LgL.title" = "Schrift verkleinern";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
 "x3v-GG-iWU.title" = "Kopieren";

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76C7F82421A0228800DEEC45 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C7F82321A0228800DEEC45 /* AppSettings.swift */; };
 		76EDA0C6219E0E24003588C4 /* multiline.xliff in Resources */ = {isa = PBXBuildFile; fileRef = 76EDA0C4219E0ABF003588C4 /* multiline.xliff */; };
 		D807847B1DC758EF009582E0 /* xliff_toolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C0DBA91C46EF2A00320C2C /* xliff_toolTests.swift */; };
 		D888B2E81C3D851400660308 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D888B2E71C3D851400660308 /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76C7F82321A0228800DEEC45 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		76EDA0C4219E0ABF003588C4 /* multiline.xliff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = multiline.xliff; sourceTree = "<group>"; };
 		D81397591C884D10009E08F8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		D888B2E41C3D851400660308 /* XLIFFTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLIFFTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 				D888B2EB1C3D851400660308 /* Document.swift */,
 				D888B2EF1C3D851400660308 /* Main.storyboard */,
 				D888B2FE1C417ACD00660308 /* XliffFile.swift */,
+				76C7F82321A0228800DEEC45 /* AppSettings.swift */,
 				D8C0DB941C44220200320C2C /* Supporting Files */,
 			);
 			path = "xliff-tool";
@@ -264,6 +267,7 @@
 			files = (
 				D888B2EA1C3D851400660308 /* ViewController.swift in Sources */,
 				D888B2F91C4161C100660308 /* WindowController.swift in Sources */,
+				76C7F82421A0228800DEEC45 /* AppSettings.swift in Sources */,
 				D888B2E81C3D851400660308 /* AppDelegate.swift in Sources */,
 				D888B2EC1C3D851400660308 /* Document.swift in Sources */,
 				D888B2FF1C417ACD00660308 /* XliffFile.swift in Sources */,

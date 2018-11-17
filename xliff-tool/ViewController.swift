@@ -170,9 +170,9 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         rowHeightsCache = [NSTableColumn: [String: CGFloat]]()
     }
     
-    private let defaultFontSize: CGFloat = 12.0
+    private let defaultFontSize: CGFloat = AppSettings.defaultFontSize
     private var defaultRowHeight: CGFloat = 0
-    private var currentFontSize: CGFloat = 12.0
+    private var currentFontSize: CGFloat = AppSettings.defaultFontSize
     
     @IBAction func makeTextStandardSize(_ sender: AnyObject) {
         currentFontSize = defaultFontSize
@@ -182,17 +182,19 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
 
     @IBAction func makeTextLarger(_ sender: AnyObject) {
-        guard currentFontSize < defaultFontSize * 2 else { return }
-        currentFontSize *= 1.2
-        outlineView.rowHeight *= 1.2
+        guard currentFontSize < defaultFontSize * AppSettings.maxFontScale else { return }
+        let factor = AppSettings.adjustFontSizeFactor
+        currentFontSize *= factor
+        outlineView.rowHeight *= factor
         outlineView.reloadData()
         resetRowHeightCache()
     }
 
     @IBAction func makeTextSmaller(_ sender: AnyObject) {
-        guard currentFontSize > defaultFontSize * 0.5 else { return }
-        currentFontSize /= 1.2
-        outlineView.rowHeight /= 1.2
+        guard currentFontSize > defaultFontSize * AppSettings.minFontScale else { return }
+        let factor = AppSettings.adjustFontSizeFactor
+        currentFontSize /= factor
+        outlineView.rowHeight /= factor
         outlineView.reloadData()
         resetRowHeightCache()
     }

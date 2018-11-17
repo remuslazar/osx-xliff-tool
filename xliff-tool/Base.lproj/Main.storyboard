@@ -195,7 +195,7 @@ CA
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="xhT-rW-p3X">
                                     <items>
-                                        <menuItem title="Compact Rows" state="on" keyEquivalent="H" id="yB5-Io-E88">
+                                        <menuItem title="Compact Rows" state="mixed" keyEquivalent="H" id="yB5-Io-E88">
                                             <connections>
                                                 <action selector="toggleCompactRowsMode:" target="Ady-hI-5gd" id="n5c-pf-OuA"/>
                                             </connections>
@@ -434,11 +434,11 @@ CA
                                         </outlineView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Ft8-t6-lCk">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Ft8-t6-lCk">
                                     <rect key="frame" x="1" y="463" width="841" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="PdF-D3-22Q">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="PdF-D3-22Q">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

@@ -8,13 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate {
-
-    private struct Configuration {
-        // max number of items in the XLIFF file to allow dynamic row height for all table rows
-        // else we will re-tile just the selected row after selection, the remaining cells remaining single lined
-        static let maxItemsForDynamicRowHeight = 150
-    }
+class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSMenuItemValidation {
 
     // MARK: private data
     private var xliffFile: XliffFile? { didSet { reloadUI() } }
@@ -29,7 +23,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         return true
     }
     
-    private var dynamicRowHeight = false { didSet { outlineView?.reloadData() } }
+    private var dynamicRowHeight = true
     
     weak var document: Document? {
         didSet {
@@ -37,10 +31,6 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
                 // already validated, this should never fail
                 try! xliffFile = XliffFile(xliffDocument: xliffDocument)
                 xliffFile!.filter = filter
-                
-                if let file = xliffFile, file.totalCount < Configuration.maxItemsForDynamicRowHeight {
-                    dynamicRowHeight = true
-                }
             } else {
                 xliffFile = nil
             }
@@ -162,6 +152,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
         if let menuItem = sender as? NSMenuItem {
             menuItem.state = menuItem.state == .on ? .off : .on
             dynamicRowHeight = menuItem.state == .off
+            outlineView.reloadData()
         }
     }
     

@@ -16,20 +16,20 @@
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "3RZ-4P-x91"; */
 "3RZ-4P-x91.title" = "Text Cell";
 
-/* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "4VP-J9-NbX"; */
-"4VP-J9-NbX.headerCell.title" = "Quelle";
-
 /* Class = "NSMenuItem"; title = "Quit XLIFFTool"; ObjectID = "4sb-4s-VLi"; */
 "4sb-4s-VLi.title" = "XLIFFTool beenden";
+
+/* Class = "NSTableColumn"; headerCell.title = "Source"; ObjectID = "4VP-J9-NbX"; */
+"4VP-J9-NbX.headerCell.title" = "Quelle";
 
 /* Class = "NSTableColumn"; headerCell.title = "Target"; ObjectID = "5J1-GD-mDl"; */
 "5J1-GD-mDl.headerCell.title" = "Ziel";
 
-/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
-"5QF-Oa-p0T.title" = "Bearbeiten";
-
 /* Class = "NSMenuItem"; title = "About XLIFFTool"; ObjectID = "5kV-Vb-QxS"; */
 "5kV-Vb-QxS.title" = "Über XLIFFTool";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
+"5QF-Oa-p0T.title" = "Bearbeiten";
 
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
 "6dh-zS-Vam.title" = "Wiederholen";
@@ -37,8 +37,20 @@
 /* Class = "NSMenuItem"; title = "Correct Spelling Automatically"; ObjectID = "78Y-hA-62v"; */
 "78Y-hA-62v.title" = "Automatische Rechtschreibkorrektur";
 
+/* Class = "NSMenuItem"; title = "Select All"; ObjectID = "A2y-ll-dD6"; */
+"A2y-ll-dD6.title" = "Alles auswählen";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
+"aUF-d1-5bR.title" = "Window";
+
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Hauptmenü";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Filter out already translated items"; ObjectID = "bHj-A8-g1n"; */
+"bHj-A8-g1n.ibShadowedToolTip" = "Bereits übersetzte Einträge ausfiltern";
+
+/* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
+"bib-Uj-vzu.title" = "Datei";
 
 /* Class = "NSMenuItem"; title = "Save As…"; ObjectID = "Bw7-FT-i3A"; */
 "Bw7-FT-i3A.title" = "Speichern unter…";
@@ -49,17 +61,29 @@
 /* Class = "NSTableColumn"; headerCell.title = "Note"; ObjectID = "CmR-YN-mcL"; */
 "CmR-YN-mcL.headerCell.title" = "Bemerkung";
 
-/* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
-"DVo-aG-piG.title" = "Schließen";
-
 /* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "Dk9-rI-75b"; */
 "Dk9-rI-75b.title" = "Text Cell";
+
+/* Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ"; */
+"dMs-cI-mzQ.title" = "Datei";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
+"dRJ-4n-Yzg.title" = "Widerrufen";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "Dv1-io-Yv7"; */
 "Dv1-io-Yv7.title" = "Rechtschreibprüfung";
 
+/* Class = "NSMenuItem"; title = "Close"; ObjectID = "DVo-aG-piG"; */
+"DVo-aG-piG.title" = "Schließen";
+
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
 "F2S-fz-NVQ.title" = "Hilfe";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gPk-RE-P9h"; */
+"gPk-RE-P9h.title" = "Table View Cell";
+
+/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
+"gVA-U4-sdL.title" = "Einfügen";
 
 /* Class = "NSMenuItem"; title = "View"; ObjectID = "H8h-7b-M4v"; */
 "H8h-7b-M4v.title" = "View";
@@ -73,6 +97,9 @@
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "IAo-SY-fd9"; */
 "IAo-SY-fd9.title" = "Öffnen…";
 
+/* Class = "NSTextFieldCell"; title = "Group Header"; ObjectID = "jwG-el-8vG"; */
+"jwG-el-8vG.title" = "Group Header";
+
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "KaW-ft-85H"; */
 "KaW-ft-85H.title" = "Zurück zu gespeichert";
 
@@ -81,57 +108,6 @@
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
 "LE2-aR-0XJ.title" = "Alle nach vorne bringen";
-
-/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
-"OY7-WF-poV.title" = "Minimieren";
-
-/* Class = "NSMenuItem"; title = "Hide XLIFFTool"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "XLIFFTool verstecken";
-
-/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
-"R4o-n2-Eq4.title" = "Zoom";
-
-/* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
-"Td7-aD-5lo.title" = "Fenster";
-
-/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "VLe-zm-rdx"; */
-"VLe-zm-rdx.title" = "Table View Cell";
-
-/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
-"Vdr-fp-XzO.title" = "Andere verstecken";
-
-/* Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl"; */
-"W48-6f-4Dl.title" = "Bearbeiten";
-
-/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
-"Xz5-n4-O0W.title" = "Finden…";
-
-/* Class = "NSMenuItem"; title = "Print…"; ObjectID = "aTl-1u-JFS"; */
-"aTl-1u-JFS.title" = "Drucken…";
-
-/* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
-"aUF-d1-5bR.title" = "Window";
-
-/* Class = "NSButton"; ibShadowedToolTip = "Filter out already translated items"; ObjectID = "bHj-A8-g1n"; */
-"bHj-A8-g1n.ibShadowedToolTip" = "Bereits übersetzte Einträge ausfiltern";
-
-/* Class = "NSMenu"; title = "File"; ObjectID = "bib-Uj-vzu"; */
-"bib-Uj-vzu.title" = "Datei";
-
-/* Class = "NSMenuItem"; title = "File"; ObjectID = "dMs-cI-mzQ"; */
-"dMs-cI-mzQ.title" = "Datei";
-
-/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
-"dRJ-4n-Yzg.title" = "Widerrufen";
-
-/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "gPk-RE-P9h"; */
-"gPk-RE-P9h.title" = "Table View Cell";
-
-/* Class = "NSMenuItem"; title = "Paste"; ObjectID = "gVA-U4-sdL"; */
-"gVA-U4-sdL.title" = "Einfügen";
-
-/* Class = "NSTextFieldCell"; title = "Group Header"; ObjectID = "jwG-el-8vG"; */
-"jwG-el-8vG.title" = "Group Header";
 
 /* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "mEh-4w-IYs"; */
 "mEh-4w-IYs.title" = "Table View Cell";
@@ -145,20 +121,29 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "oas-Oc-fiZ"; */
 "oas-Oc-fiZ.title" = "Benutzte Dateien";
 
+/* Class = "NSMenuItem"; title = "Hide XLIFFTool"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "XLIFFTool verstecken";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
+"OY7-WF-poV.title" = "Minimieren";
+
 /* Class = "NSMenuItem"; title = "Delete"; ObjectID = "pa3-QI-u2k"; */
 "pa3-QI-u2k.title" = "Löschen";
 
 /* Class = "NSMenuItem"; title = "Save…"; ObjectID = "pxx-59-PXV"; */
 "pxx-59-PXV.title" = "Speichern…";
 
-/* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "qIS-W8-SiK"; */
-"qIS-W8-SiK.title" = "Seite einrichten…";
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
+"R4o-n2-Eq4.title" = "Zoom";
+
+/* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN"; */
+"rbD-Rh-wIN.title" = "Rechtschreibung während der Eingabe prüfen";
 
 /* Class = "NSTextFieldCell"; title = "Info-Label"; ObjectID = "rWk-0W-esM"; */
 "rWk-0W-esM.title" = "Info-Label";
 
-/* Class = "NSMenuItem"; title = "Check Spelling While Typing"; ObjectID = "rbD-Rh-wIN"; */
-"rbD-Rh-wIN.title" = "Rechtschreibung während der Eingabe prüfen";
+/* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
+"Td7-aD-5lo.title" = "Fenster";
 
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "tXI-mr-wws"; */
 "tXI-mr-wws.title" = "Benutzte Dateien";
@@ -169,8 +154,17 @@
 /* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
 "uRl-iY-unG.title" = "Ausschneiden";
 
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "Andere verstecken";
+
+/* Class = "NSTextFieldCell"; title = "Table View Cell"; ObjectID = "VLe-zm-rdx"; */
+"VLe-zm-rdx.title" = "Table View Cell";
+
 /* Class = "NSMenuItem"; title = "Clear Menu"; ObjectID = "vNY-rz-j42"; */
 "vNY-rz-j42.title" = "Clear Menu";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl"; */
+"W48-6f-4Dl.title" = "Bearbeiten";
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
 "wpr-3q-Mcd.title" = "Hilfe";
@@ -180,6 +174,9 @@
 
 /* Class = "NSMenu"; title = "View"; ObjectID = "xhT-rW-p3X"; */
 "xhT-rW-p3X.title" = "Darstellung";
+
+/* Class = "NSMenuItem"; title = "Find…"; ObjectID = "Xz5-n4-O0W"; */
+"Xz5-n4-O0W.title" = "Finden…";
 
 /* Class = "NSMenuItem"; title = "Compact Rows"; ObjectID = "yB5-Io-E88"; */
 "yB5-Io-E88.title" = "Kompakte Zeilen";

@@ -87,6 +87,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     
     override func viewDidAppear() {
         super.viewDidAppear()
+        self.defaultRowHeight = outlineView.rowHeight
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.reloadUI),
             name: NSNotification.Name.NSUndoManagerDidUndoChange, object: document!.undoManager)
@@ -170,10 +171,12 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     private let defaultFontSize: CGFloat = 12.0
+    private var defaultRowHeight: CGFloat = 0
     private var currentFontSize: CGFloat = 12.0
     
     @IBAction func makeTextStandardSize(_ sender: AnyObject) {
         currentFontSize = defaultFontSize
+        outlineView.rowHeight = defaultRowHeight
         outlineView.reloadData()
         resetRowHeightCache()
     }
@@ -181,6 +184,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBAction func makeTextLarger(_ sender: AnyObject) {
         guard currentFontSize < defaultFontSize * 2 else { return }
         currentFontSize *= 1.2
+        outlineView.rowHeight *= 1.2
         outlineView.reloadData()
         resetRowHeightCache()
     }
@@ -188,6 +192,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     @IBAction func makeTextSmaller(_ sender: AnyObject) {
         guard currentFontSize > defaultFontSize * 0.5 else { return }
         currentFontSize /= 1.2
+        outlineView.rowHeight /= 1.2
         outlineView.reloadData()
         resetRowHeightCache()
     }
@@ -352,9 +357,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
     }
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        if item is XliffFile.File {
-            return currentFontSize * 1.05 + 4.0
-        }
+        if item is XliffFile.File { return outlineView.rowHeight }
         if dynamicRowHeight {
             return heightForItem(item as AnyObject)
         } else if let item = item as? XliffFile.TransUnit,
@@ -363,7 +366,7 @@ class ViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDe
                 return heightForItem(item)
             }
         }
-        return currentFontSize * 1.05 + 2.0
+        return outlineView.rowHeight
     }
     
 }

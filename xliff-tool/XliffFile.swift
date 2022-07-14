@@ -79,12 +79,12 @@ class XliffFile {
         let note: String?
         private let xmlElement: XMLElement
         
-        init(xml: XMLElement) throws {
+        init?(xml: XMLElement) throws {
             xmlElement = xml
             
             guard let id = xml.attribute(forName: "id")?.stringValue,
                 let source = xml.elements(forName: "source").first?.stringValue
-                else { throw XliffFile.parseError(in: xml) }
+                else { return nil }
             
             self.id = id.replacingOccurrences(of: "\n", with: idAttrLineBraakEscapeSequence)
             xml.attribute(forName: "id")?.setStringValue(self.id, resolvingEntities: false)
@@ -128,7 +128,7 @@ class XliffFile {
                 else { throw XliffFile.parseError(in: file) }
             
             allItems = try ( file.nodes(forXPath: "body/trans-unit") as! [XMLElement])
-                .map { try TransUnit(xml: $0) }
+                .compactMap { try TransUnit(xml: $0) }
             
             self.name = name
             self.items = allItems
